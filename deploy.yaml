@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brass-band-rep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: brass-band-rep
+  strategy: {}
+  template:
+    metadata:
+      name: brass-band-rep
+      labels:
+        app: brass-band-rep
+    spec:
+      containers:
+        - env:
+            - name: CHANNEL_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: brass-band-rep-secret
+                  key: CHANNEL_SECRET              
+            - name: CHANNEL_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: brass-band-rep-secret
+                  key: CHANNEL_ACCESS_TOKEN
+          image: ghcr.io/smallbasic-n/brass-band-rep:v0.0.3
+          name: main
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+          ports:
+            - containerPort: 80
+              name: port
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: brass-band-rep-svc
+spec:
+  ports:
+    - name: port
+      port: 80
+      targetPort: 80
+  selector:
+    app: brass-band-rep
+  type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: brass-band-rep-ing
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+    kubernetes.io/tls-acme: 'true'
+    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+  labels:
+    name: brass-band-rep
+spec:
+  tls:
+  - hosts:
+      - brass-band.s.secuaos.work
+    secretName: brass-band-rep-cert
+  ingressClassName: nginx
+  rules:
+  - host: brass-band.s.secuaos.work
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: brass-band-rep-svc
+            port: 
+              number: 80

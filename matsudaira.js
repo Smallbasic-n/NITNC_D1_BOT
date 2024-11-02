@@ -1,5 +1,5 @@
 // Require the necessary discord.js classes
-const { Client, Events, GatewayIntentBits, Collection, REST, Routes, SlashCommandBuilder, ChatInputCommandInteraction, PermissionsBitField,Partials } = require('discord.js');
+const { Client, Events, GatewayIntentBits, Collection, REST, Routes, SlashCommandBuilder, ChatInputCommandInteraction, PermissionsBitField,Partials, EmbedBuilder } = require('discord.js');
 const { token, guildId, clientId, passphrase, salt } = require('./matsudaira.json');
 const iv= Buffer.from('00000000000000000000000000000000', 'hex');
 const fs = require('node:fs')
@@ -76,7 +76,19 @@ const iam_command={
             userData.users.push(newuser);
         }
         write(JSON.stringify(userData));
-        await interaction.reply("<@"+accountId+"> の中の人\n 名前："+givenname+"　"+firstname+"　("+rohmegivenname+" "+rohmefirstname+")\n学籍番号："+studentid);
+        const embd=new EmbedBuilder()
+            .setColor(0x87ebec)
+            .setTitle('@'+interaction.user.username+' の中の人')
+            .setAuthor({name: '松平定信'})
+            .setDescription('アカウントの中の人の情報を松平定信公に登録しました．')
+            .addFields(
+                { name: '名前', value: givenname+'　'+firstname},
+                { name: 'Name', value: rohmegivenname+' '+rohmefirstname},
+                { name: '学籍番号', value: studentid }
+            )
+            .setTimestamp()
+            .setFooter({ text: '老中 松平定信 https://github.com/Smallbasic-n/NITNC_D1_BOT'})
+        await interaction.reply({ content: '<@'+accountId+'>',embeds: [embd]});
     },
 };
 const whois_command={
@@ -94,8 +106,23 @@ const whois_command={
         const accountId=user.id;
         const data=userData.users.find(element=>element.accountId==accountId)
         interaction.ephemeral=true;
+        var roles=        interaction.guild.members.cache.get(accountId).roles.cache.map(r => `${r}`).join(' | ')
         if (data == undefined) {await interaction.reply({ content: "@"+user.username+"の情報は登録されていません．", ephemeral: true});return;}
-        await interaction.reply({ content: "@"+user.username+" の中の人\n 名前："+data.givenName+"　"+data.firstName+"　("+data.rohmeGivenName+" "+data.rohmeFirstName+")\n学籍番号："+data.studentId, ephemeral: true});
+
+        const embd=new EmbedBuilder()
+            .setColor(0x87ceeb)
+            .setTitle('@'+user.username+' の中の人')
+            .setAuthor({name: '松平定信'})
+            .setDescription('アカウントの中の人を松平定信公に照会しました．')
+            .addFields(
+                { name: '名前', value: data.givenName+'　'+data.firstName},
+                { name: 'Name', value: data.rohmeGivenName+' '+data.rohmeFirstName},
+                { name: '学籍番号', value: data.studentId },
+                { name: 'ロール', value: roles}
+            )
+            .setTimestamp()
+            .setFooter({ text: '老中 松平定信 https://github.com/Smallbasic-n/NITNC_D1_BOT'})
+        await interaction.reply({ embeds: [embd], ephemeral: true});
     },
 };
 const role_command={
@@ -103,6 +130,7 @@ const role_command={
         .setName('create')
         .setDescription('松平定信公にロールを作成してもらいます．')
         .addStringOption(option=>option.setName("name").setDescription("ロール名").setRequired(true))
+        .addStringOption(option=>option.setName('color').setDescription('ロールの色を指定します．').setRequired(false))
         ,
     /**
      * 
@@ -111,15 +139,16 @@ const role_command={
     async execute(interaction) {
         const user=interaction.user;
         const role=interaction.options.getString("name");
+        const color=interaction.options.getString("color")??"#87ceeb";
         const members=interaction.guild.members.cache.filter(member=>member.permissions.has('ManageRoles')).find((val)=>val.id==user.id);
         if (members==undefined){
             await interaction.reply({ content: "あなたの権限が不足しています．", ephemeral: true});return;
         }
         var id=(await interaction.guild.roles.create({
                     name: role,
-                    color: [0,0,255],
+                    color: color,
                     reason: '松平定信公により作成されました．',
-                    permissions: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.MentionEveryone,PermissionsBitField.Flags.UseExternalEmojis,PermissionsBitField.Flags.AddReactions,PermissionsBitField.Flags.CreatePublicThreads,PermissionsBitField.Default,PermissionsBitField.Flags.CreatePublicThreads],
+                    permissions: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.MentionEveryone,PermissionsBitField.Flags.UseExternalEmojis,PermissionsBitField.Flags.AddReactions,PermissionsBitField.Flags.CreatePublicThreads,PermissionsBitField.Default,PermissionsBitField.Flags.CreatePrivateThreads],
                     mentionable: true
 
             })).id;
@@ -316,6 +345,7 @@ client.once(Events.ClientReady,async readyClient => {
 client.on(Events.MessageReactionAdd,  async(reaction,user)=>{
     const message = reaction.message
    const member = message.guild.members.resolve(user)
+   if (member.id==client.user.id){return;}
    var ok=false
    var index=1
    userData.roles.forEach(element => {

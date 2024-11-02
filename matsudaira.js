@@ -1,6 +1,12 @@
 // Require the necessary discord.js classes
 const { Client, Events, GatewayIntentBits, Collection, REST, Routes, SlashCommandBuilder, ChatInputCommandInteraction, PermissionsBitField,Partials, EmbedBuilder } = require('discord.js');
-const { token, guildId, clientId, passphrase, salt } = require('./matsudaira.json');
+// const { token, guildId, clientId, passphrase, salt } = require('./matsudaira.json');
+const token=process.env.DISCORD_TOKEN;
+const guildId=process.env.DISCORD_GUILDID;
+const clientId=process.env.DISCORD_CLIENTID;
+const passphrase=process.env.PASSPHRASE;
+const salt=process.env.SALT;
+
 const iv= Buffer.from('00000000000000000000000000000000', 'hex');
 const fs = require('node:fs')
 const crypto = require('crypto');
@@ -11,13 +17,13 @@ var write = (text) =>{ //encrypt
   var cipher = crypto.createCipheriv(algorithm,key,iv)
   var crypted = cipher.update(text,'utf8','base64')
   crypted += cipher.final('base64');
-  fs.writeFileSync('./user.data',crypted);
+  fs.writeFileSync('/conf/user.data',crypted);
   return crypted;
 }
 
 var read = () => {//decrypt
   const key = crypto.scryptSync(passphrase, salt, 32)
-  const text=fs.readFileSync('./user.data').toString();
+  const text=fs.readFileSync('/conf/user.data').toString();
   var decipher = crypto.createDecipheriv(algorithm,key,iv)
   var dec = decipher.update(text,'base64','utf8')
   dec += decipher.final('utf8');
@@ -27,7 +33,7 @@ var read = () => {//decrypt
 
 var userData={users: [{studentId: 'Z99999', givenName: 'TEST', firstName: 'TESTER', rohmeFirstName: 'TESUTA', rohmeGivenName: 'TESUTO', accountId: 'INVAILD'}],roles: []}
 //if (!fs.existsSync('./user.iv')) {fs.writeFileSync("./user.iv",crypto.randomBytes(16))}
-if (!fs.existsSync('./user.data')) {write(JSON.stringify(userData))}
+if (!fs.existsSync('/conf/user.data')) {write(JSON.stringify(userData))}
 userData=JSON.parse(read());
 // Create a new client instance
 const client = new Client({

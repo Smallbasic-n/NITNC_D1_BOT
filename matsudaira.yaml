@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d1-bot-matsudaira
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: d1-bot-matsudaira
+  strategy: {}
+  template:
+    metadata:
+      name: d1-bot-matsudaira
+      labels:
+        app: d1-bot-matsudaira
+    spec:
+      containers:
+        - env:
+            - name: DISCORD_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: nitnc-d1-matsudaira-secret
+                  key: DISCORD_TOKEN
+            - name: DISCORD_CLIENTID
+              valueFrom:
+                secretKeyRef:
+                  name: nitnc-d1-matsudaira-secret
+                  key: DISCORD_CLIENTID
+            - name: DISCORD_GUILDID
+              valueFrom:
+                secretKeyRef:
+                  name: nitnc-d1-matsudaira-secret
+                  key: DISCORD_GUILDID
+            - name: PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: nitnc-d1-matsudaira-secret
+                  key: PASSPHRASE
+            - name: SALT
+              valueFrom:
+                secretKeyRef:
+                  name: nitnc-d1-matsudaira-secret
+                  key: SALT
+          volumeMounts:
+            - name: d1-bot-matsudaira
+              mountPath: /conf/
+          image: ghcr.io/smallbasic-n/d1-bot-matsudaira:v0.0.2
+          name: main
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+          ports:
+            - containerPort: 80
+              name: port
+      restartPolicy: Always
+      volumes:
+        - name: d1-bot-matsudaira
+          persistentVolumeClaim:
+            claimName: d1-bot-matsudaira
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: d1-bot-matsudaira
+spec:
+  resources:
+    requests:
+      storage: 100Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce

@@ -5,3 +5,4 @@ hasegawa.json
 zabieru.json
 node_modules
 user.*
+secret-*.yaml

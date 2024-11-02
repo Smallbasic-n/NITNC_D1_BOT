@@ -2,6 +2,6 @@ FROM public.ecr.aws/lambda/nodejs:20.2024.10.16.12
 WORKDIR /app
 COPY ./package.json /app/package.json
 RUN npm install
-COPY ./server.js /app/server.js
+COPY ./matsudaira.js /app/matsudaira.js
 
-ENTRYPOINT [ "node","/app/server.js" ]
+ENTRYPOINT [ "node","/app/matsudaira.js" ]

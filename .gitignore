@@ -6,3 +6,4 @@ zabieru.json
 node_modules
 user.*
 secret-*.yaml
+lincoln.json

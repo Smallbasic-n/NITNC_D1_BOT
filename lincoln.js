@@ -1,10 +1,10 @@
 // Require the necessary discord.js classes
-const { Client, Events, GatewayIntentBits,Partials, Collection, REST, SlashCommandBuilder, Routes, EmbedBuilder } = require('discord.js');
-const path=require('node:path')
+const { Client, Events, GatewayIntentBits,Partials, Collection, REST, SlashCommandBuilder, Routes, EmbedBuilder, ChatInputCommandInteraction, Integration } = require('discord.js');
 const request=require('request')
 const { token, guildId, chankId, passphrase, salt, clientId, factId, dataImportId, chankStepId,factRangeId } = require('./lincoln.json');
 const chankData="./lincoln.csv"
 const factbookData="./factbook.csv"
+const encryptFile="./lincoln.data"
 const iv= Buffer.from('00000000000000000000000000000000', 'hex');
 const fs = require('node:fs')
 const crypto = require('crypto');
@@ -15,23 +15,21 @@ var write = (text) =>{ //encrypt
   var cipher = crypto.createCipheriv(algorithm,key,iv)
   var crypted = cipher.update(text,'utf8','base64')
   crypted += cipher.final('base64');
-  fs.writeFileSync('./lincoln.data',crypted);
+  fs.writeFileSync(encryptFile,crypted);
   return crypted;
 }
 
 var read = () => {//decrypt
   const key = crypto.scryptSync(passphrase, salt, 32)
-  const text=fs.readFileSync('./lincoln.data').toString();
+  const text=fs.readFileSync(encryptFile).toString();
   var decipher = crypto.createDecipheriv(algorithm,key,iv)
   var dec = decipher.update(text,'base64','utf8')
   dec += decipher.final('utf8');
   return dec;
 }
 
-
 var userData={user:[{accountId: "",chank: 0,factbook: 0}],chankStep:1,factbookRange:[1,2]}
-//if (!fs.existsSync('./user.iv')) {fs.writeFileSync("./user.iv",crypto.randomBytes(16))}
-if (!fs.existsSync('./lincoln.data')) {write(JSON.stringify({user:[]}))}
+if (!fs.existsSync(encryptFile)) {write(JSON.stringify({user:[],chankStep:1,factbookRange:[1,2]}))}
 userData=JSON.parse(read());
 
 //const token=process.env.DISCORD_TOKEN;
@@ -93,12 +91,60 @@ const chanp_command={
                 { name: '暗唱例文正当数', value: factCt.toString()},
             )
             .setTimestamp()
-            .setFooter({ text: 'アメリカ合衆国 第16第 大統領 エイブラハム・リンカン https://github.com/Smallbasic-n/NITNC_D1_BOT'})
+            .setFooter({ text: 'アメリカ合衆国 第16代大統領 エイブラハム・リンカン https://github.com/Smallbasic-n/NITNC_D1_BOT'})
+        await interaction.reply({ embeds: [embd]});
+    },
+};
+const range_command={
+    data: new SlashCommandBuilder()
+        .setName('range')
+        .setDescription('チャンクで英単語、FACTBOOK これからの英文法 暗唱例文集のクイズの出題範囲を表示もしくは設定します．')
+        .addIntegerOption(option=>option.setName("chank").setDescription("チャンクで英単語の出題STEP番号を入力してください．").setRequired(false))
+        .addIntegerOption(option=>option.setName("factsta").setDescription("暗唱例文の出題開始番号を入力してください．").setRequired(false))
+        .addIntegerOption(option=>option.setName("factstp").setDescription("暗唱例文の出題終了番号を入力してください．").setRequired(false))
+        ,
+    /**
+     * 
+     * @param {ChatInputCommandInteraction} interaction 
+     */
+    async execute(interaction) {
+        const chanknum=interaction.options.getInteger("chank")
+        const factsta=interaction.options.getInteger("factsta")
+        const factstp=interaction.options.getInteger("factstp")
+        if (chanknum!=undefined){
+            userData.chankStep=chanknum;
+            write(JSON.stringify(userData))
+            chank.forEach((data)=>{
+                if (data[0]==userData.chankStep.toString()) rangeChank.push(data)
+            })
+        }
+        if (factsta!=undefined&factstp!=undefined){
+            userData.factbookRange[0]=factsta;
+            userData.factbookRange[1]=factstp;
+            write(JSON.stringify(userData))
+            iiii=0;
+            factbook.forEach((data)=>{
+                if (iiii>=(userData.factbookRange[0]-1)&&iiii<=userData.factbookRange[1]) rangeFact.push(data);
+                iiii+=1
+            })            
+        }
+        const embd=new EmbedBuilder()
+            .setColor(0x87ebec)
+            .setTitle('チャンクで英単語, 暗唱例文出題範囲')
+            .setAuthor({name: 'エイブラハム・リンカン'})
+            .setDescription('チャンク・暗唱例文クイズの出題範囲を表示します．')
+            .addFields(
+                { name: 'チャンク', value: userData.chankStep.toString()},
+                { name: '暗唱例文', value: userData.factbookRange[0].toString()+"~"+userData.factbookRange[1].toString()},
+            )
+            .setTimestamp()
+            .setFooter({ text: 'アメリカ合衆国 第16代大統領 エイブラハム・リンカン https://github.com/Smallbasic-n/NITNC_D1_BOT'})
         await interaction.reply({ embeds: [embd]});
     },
 };
 
 commands.push(chanp_command.data.toJSON());
+commands.push(range_command.data.toJSON());
 
 const rest = new REST().setToken(token);
 
@@ -120,6 +166,7 @@ const rest = new REST().setToken(token);
 })();
 
 client.commands.set(chanp_command.data.name, chanp_command);
+client.commands.set(range_command.data.name, range_command);
 
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
@@ -146,13 +193,14 @@ client.on(Events.InteractionCreate, async interaction => {
 var chank = fs.readFileSync(chankData).toString().split('\n').map(row => row.split(','));
 var factbook = fs.readFileSync(factbookData).toString().split('\n').map(row => row.split(','));
 
-var rangeChank=[[]]
+var rangeChank=[]
 chank.forEach((data)=>{
-    if (data[0]==userData.chankStep) rangeChank.push(data)
+    if (data[0]==userData.chankStep.toString()) rangeChank.push(data)
 })
+var rangeFact=[]
 var iiii=0
 factbook.forEach((data)=>{
-    if (iiii>=userData.factbookRange[0]&&iiii<=userData.factbookRange[1]) rangeChank.push(data);
+    if (iiii>=userData.factbookRange[0]&&iiii<=userData.factbookRange[1]) rangeFact.push(data);
     iiii+=1
 })
 var chankAns="";
@@ -182,7 +230,7 @@ client.once(Events.ClientReady,async readyClient => {
         }
         before.push(i)
         var index=chank[i]
-        chankAns=index[2].replaceAll(" ","").replaceAll("　","").replaceAll(",","").replaceAll("、","").toUpperCase();
+        chankAns=index[3].replaceAll(" ","").replaceAll("　","").replaceAll(",","").replaceAll("、","").toUpperCase();
         guild.channels.cache.get(chankId).send("日本語："+index[1]+"\n英語："+index[2]);
         
         ok=false;
@@ -206,35 +254,35 @@ client.once(Events.ClientReady,async readyClient => {
         var ok=false;
         var i=-1;
         while (!ok){
-            i = Math.floor(Math.random() * (chank.length - 0)) + 0
+            i = Math.floor(Math.random() * (rangeChank.length - 0)) + 0
             ok=true
             if (beforeRange.find(id=>id==i) != undefined){
-                if (beforeRange.length==chankStep.length) beforeRange=[];
+                if (beforeRange.length==rangeChank.length) beforeRange=[];
                 else ok=false;
             }
             if (rangeChank[i][0]==undefined||rangeChank[i][1]==undefined||rangeChank[i][2]==undefined||rangeChank[i][0]==''||rangeChank[i][1]==''||rangeChank[i][2]=='') ok=false
         }
         beforeRange.push(i)
         var index=rangeChank[i]
-        chankStepAns=index[2].replaceAll(" ","").replaceAll("　","").replaceAll(",","").replaceAll("、","").toUpperCase();
+        chankStepAns=index[3].replaceAll(" ","").replaceAll("　","").replaceAll(",","").replaceAll("、","").toUpperCase();
         guild.channels.cache.get(chankStepId).send("日本語："+index[1]+"\n英語："+index[2]);
         
         ok=false;
         i=-1;
         while (!ok){
-            i = Math.floor(Math.random() * (factbook.length - 0)) + 0
+            i = Math.floor(Math.random() * (rangeFact.length - 0)) + 0
             ok=true
             if (factbookBeforeRange.find(id=>id==i) != undefined){
-                if (factbookBeforeRange.length==factbook.length) factbookBeforeRange=[];
+                if (factbookBeforeRange.length==rangeFact.length) factbookBeforeRange=[];
                 else ok=false;
             }
-            if (factbookBeforeRange[i][0]==undefined||factbookBeforeRange[i][1]==undefined||factbookBeforeRange[i][0]==''||factbookBeforeRange[i][1]=='') ok=false
+            if (rangeFact[i][0]==undefined||rangeFact[i][1]==undefined||rangeFact[i][0]==''||rangeFact[i][1]=='') ok=false;
         }
         factbookBeforeRange.push(i)
-        var index=factbookBeforeRange[i]
+        var index=rangeFact[i]
         factRangeAns=index[1].replaceAll("　"," ").replaceAll("、",",");
         guild.channels.cache.get(factRangeId).send("日本語："+index[0]);
-    },10*1000)
+    },60*1000)
 });
 
 client.on(Events.MessageCreate, async (message)=>{
@@ -253,6 +301,28 @@ client.on(Events.MessageCreate, async (message)=>{
     }else if (message.channelId==factId){
         const content=message.content
         if (content.replaceAll("　"," ").replaceAll("、",",")==factAns){
+            message.react('💯')
+            var index=userData.user.findIndex((usr)=>usr.accountId==message.author.id)
+            if (index==-1){userData.user.push({accountId: message.author.id, chank: 0, factbook: 0});index=userData.user.findIndex((usr)=>usr.accountId==message.author.id);}
+            userData.user[index].factbook+=1;
+            write(JSON.stringify(userData));
+        }else{
+            message.react('🤔')
+        }        
+    }else if (message.channelId==chankStepId){
+        const content=message.content
+        if (content.replaceAll(" ","").replaceAll("　","").replaceAll(",","").replaceAll("、","").toUpperCase()==chankStepAns){
+            message.react('💯')
+            var index=userData.user.findIndex((usr)=>usr.accountId==message.author.id)
+            if (index==-1){userData.user.push({accountId: message.author.id, chank: 0, factbook: 0});index=userData.user.findIndex((usr)=>usr.accountId==message.author.id);}
+            userData.user[index].chank+=1;
+            write(JSON.stringify(userData));
+        }else{
+            message.react('🤔')
+        }
+    }else if (message.channelId==factRangeId){
+        const content=message.content
+        if (content.replaceAll("　"," ").replaceAll("、",",")==factRangeAns){
             message.react('💯')
             var index=userData.user.findIndex((usr)=>usr.accountId==message.author.id)
             if (index==-1){userData.user.push({accountId: message.author.id, chank: 0, factbook: 0});index=userData.user.findIndex((usr)=>usr.accountId==message.author.id);}

@@ -24,6 +24,8 @@
   "homepage": "https://github.com/Smallbasic-n/NITNC_D1_BOT#readme",
   "dependencies": {
     "discord.js": "^14.16.3",
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "node-libcurl": "^4.0.0",
+    "request": "^2.88.2"
   }
 }

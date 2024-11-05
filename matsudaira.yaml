@@ -31,6 +31,8 @@ spec:
                 secretKeyRef:
                   name: nitnc-d1-matsudaira-secret
                   key: DISCORD_GUILDID
+            - name: DISCORD_JOINCHANNELID
+              value: "1301170258819813389"
             - name: PASSPHRASE
               valueFrom:
                 secretKeyRef:
@@ -44,7 +46,7 @@ spec:
           volumeMounts:
             - name: d1-bot-matsudaira
               mountPath: /conf/
-          image: ghcr.io/smallbasic-n/d1-bot-matsudaira:v0.0.2
+          image: ghcr.io/smallbasic-n/d1-bot-matsudaira:v0.0.3
           name: main
           resources:
             limits:

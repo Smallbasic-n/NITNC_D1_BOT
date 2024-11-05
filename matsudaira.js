@@ -4,6 +4,7 @@ const { Client, Events, GatewayIntentBits, Collection, REST, Routes, SlashComman
 const token=process.env.DISCORD_TOKEN;
 const guildId=process.env.DISCORD_GUILDID;
 const clientId=process.env.DISCORD_CLIENTID;
+const joinChannelId=process.env.DISCORD_JOINCHANNELID;
 const passphrase=process.env.PASSPHRASE;
 const salt=process.env.SALT;
 
@@ -363,5 +364,8 @@ client.on(Events.MessageReactionAdd,  async(reaction,user)=>{
        }
        index+=1
    });
+});
+client.on(Events.GuildMemberAdd, async(member)=>{
+    member.guild.channels.cache.get(joinChannelId).send("<@"+member.id+"> さん．こんにちは．"+member.guild.name+"サーバに参加を歓迎します．ここで，<@"+member.id+"> さんに実行していただきたいことがあります．それはこの松平定信bot(人事部長bot)にあなたの名前と学籍番号を登録していただくことです．この情報はみなさんが「このアカウント，誰だろう」といったときにその情報をすぐに参照できるようにするためです．\nまず，自己紹介チャネルでiamコマンドを入力してください．(/iamと入力します．)ここで自分の名前と学籍番号を登録できます．なお，入力された内容はこのDiscordサーバ上で公開されるのでご注意ください．\n次に，「このアカウント，誰だろう？」と思ったときです．この時はwhoisコマンドを使用します．ここで中の人を知りたいアカウントの表示名を入力すると事前に登録されている中の人の情報が表示されます．(なお，whoisコマンドの回答はwhoisコマンドを実行した方のみが見れるようになっています．\n\nまた，ロール割り付けもできます．これに関してはロール割付をするときに説明いたします．\n\n※iamコマンドは自己紹介チャネルで実行してください．(他チャネルでも実行できますが，自己紹介のためのチャネルですので，ここで実行するようにしてください．)")
 })
 client.login(token);

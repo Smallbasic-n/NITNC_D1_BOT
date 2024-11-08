@@ -22,3 +22,9 @@ https://discord.com/api/oauth2/authorize?client_id=123456789012345678&permission
 
 入力例<br/>
 ![入力例](image-2.png)
+
+## 松平定信botへの情報照会方法
+まずは「/whois」とメッセージ欄に入力します．<br/>
+![whoisコマンド](image-4.png)
+表示されたwhoisコマンドをクリックまたはタップします．<br/>
+![whoisコマンドをタップ](image-5.png)<br/>

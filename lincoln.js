@@ -1,10 +1,22 @@
 // Require the necessary discord.js classes
 const { Client, Events, GatewayIntentBits,Partials, Collection, REST, SlashCommandBuilder, Routes, EmbedBuilder, ChatInputCommandInteraction, Integration } = require('discord.js');
 const request=require('request')
-const { token, guildId, chankId, passphrase, salt, clientId, factId, dataImportId, chankStepId,factRangeId } = require('./lincoln.json');
-const chankData="./lincoln.csv"
-const factbookData="./factbook.csv"
-const encryptFile="./lincoln.data"
+//const { token, guildId, chankId, passphrase, salt, clientId, factId, dataImportId, chankStepId,factRangeId } = require('./lincoln.json');
+const token=process.env.DISCORD_TOKEN;
+const guildId=process.env.DISCORD_GUILDID;
+const chankId=process.env.DISCORD_CHANK_CHID;
+const passphrase=process.env.PASSPHRASE;
+const salt=process.env.SALT;
+const clientId=process.env.DISCORD_CLIENTID;
+const factId=process.env.DISCORD_FACTBOOK_CHID;
+const dataImportId=process.env.CSV_CHID;
+const chankStepId=process.env.CHANK_RANGE_ID;
+const factRangeId=process.env.FACT_RANGE_ID;
+const interval=parseInt(process.env.INTERVAL);
+
+const chankData="/conf/chank.csv"
+const factbookData="/conf/factbook.csv"
+const encryptFile="/conf/lincoln.data"
 const iv= Buffer.from('00000000000000000000000000000000', 'hex');
 const fs = require('node:fs')
 const crypto = require('crypto');
@@ -28,8 +40,10 @@ var read = () => {//decrypt
   return dec;
 }
 
-var userData={user:[{accountId: "",chank: 0,factbook: 0}],chankStep:1,factbookRange:[1,2]}
-if (!fs.existsSync(encryptFile)) {write(JSON.stringify({user:[],chankStep:1,factbookRange:[1,2]}))}
+var userData={user:[{accountId: "",chank: 0,factbook: 0}],chankStep:1,factbookRange:[1,5]}
+if (!fs.existsSync(encryptFile)) {write(JSON.stringify({user:[],chankStep:1,factbookRange:[1,5]}))}
+if (!fs.existsSync(chankData)){fs.writeFileSync(chankData,"a,a,a,0")}
+if (!fs.existsSync(factbookData)){fs.writeFileSync(factbookData,"a,a")}
 userData=JSON.parse(read());
 
 //const token=process.env.DISCORD_TOKEN;
@@ -111,23 +125,32 @@ const range_command={
         const chanknum=interaction.options.getInteger("chank")
         const factsta=interaction.options.getInteger("factsta")
         const factstp=interaction.options.getInteger("factstp")
+        //var edited=false;
         if (chanknum!=undefined){
             userData.chankStep=chanknum;
             write(JSON.stringify(userData))
-            chank.forEach((data)=>{
-                if (data[0]==userData.chankStep.toString()) rangeChank.push(data)
+            chankRangeAll.question=[]
+            chankRangeAll.question.push(["a","a"])
+            chankAll.question.forEach((data)=>{
+                if (data[0]==userData.chankStep.toString()) chankRangeAll.question.push(data)
             })
+            //edited=true
         }
         if (factsta!=undefined&factstp!=undefined){
             userData.factbookRange[0]=factsta;
             userData.factbookRange[1]=factstp;
             write(JSON.stringify(userData))
-            iiii=0;
-            factbook.forEach((data)=>{
-                if (iiii>=(userData.factbookRange[0]-1)&&iiii<=userData.factbookRange[1]) rangeFact.push(data);
-                iiii+=1
-            })            
+            factbookRangeAll.question=[]
+            factbookRangeAll.question.push(["a","a"])
+            for (let i = 0; i < factbookAll.question.length; i++) {
+                if (userData.factbookRange[0]<=i &&i<=userData.factbookRange[1]) factbookRangeAll.question.push(factbookAll.question[i]);    
+            }
+            //edited=true      
         }
+        console.log("Chank step:"+userData.chankStep)
+        console.log("Chank step length:"+chankRangeAll.question.length)
+        console.log("Factbook Range:"+userData.factbookRange[0]+"~"+userData.factbookRange[1])
+        console.log("Factbook Range length:"+factbookRangeAll.question.length)
         const embd=new EmbedBuilder()
             .setColor(0x87ebec)
             .setTitle('チャンクで英単語, 暗唱例文出題範囲')
@@ -140,6 +163,7 @@ const range_command={
             .setTimestamp()
             .setFooter({ text: 'アメリカ合衆国 第16代大統領 エイブラハム・リンカン https://github.com/Smallbasic-n/NITNC_D1_BOT'})
         await interaction.reply({ embeds: [embd]});
+        //if (edited) process.exit(0);
     },
 };
 
@@ -190,162 +214,164 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 })
 
-var chank = fs.readFileSync(chankData).toString().split('\n').map(row => row.split(','));
-var factbook = fs.readFileSync(factbookData).toString().split('\n').map(row => row.split(','));
+let chankAll={
+    question:[],
+    nowAnswer: "",
+    before:[],
+    isChank: true,
+    disable:false
+}
+let factbookAll={
+    question:[],
+    nowAnswer: "",
+    before:[],
+    isChank: false,
+    disable:false
+}
+chankAll.question = fs.readFileSync(chankData).toString().replaceAll('"','').split('\n').map(row => row.split(','));
+factbookAll.question = fs.readFileSync(factbookData).toString().replaceAll('"','').split('\n').map(row => row.split(','));
 
-var rangeChank=[]
-chank.forEach((data)=>{
-    if (data[0]==userData.chankStep.toString()) rangeChank.push(data)
+let chankRangeAll={
+    question:[],
+    nowAnswer: "",
+    before:[],
+    isChank: true,
+    disable:false
+}
+let factbookRangeAll={
+    question:[],
+    nowAnswer: "",
+    before:[],
+    isChank: false,
+    disable:false
+}
+
+chankRangeAll.question.push(["a","a"])
+chankAll.question.forEach((data)=>{
+    if (data[3]==userData.chankStep.toString()) chankRangeAll.question.push(data)
 })
-var rangeFact=[]
-var iiii=0
-factbook.forEach((data)=>{
-    if (iiii>=userData.factbookRange[0]&&iiii<=userData.factbookRange[1]) rangeFact.push(data);
-    iiii+=1
-})
-var chankAns="";
-var factAns="";
-var chankStepAns="";
-var factRangeAns="";
-var beforeRange=[]
-var factbookBeforeRange=[]
-var before=[]
-var factbookBefore=[]
+console.log("Chank step:"+userData.chankStep)
+console.log("Chank step length:"+chankRangeAll.question.length)
+console.log("Factbook Range:"+userData.factbookRange[0]+"~"+userData.factbookRange[1])
+console.log("Factbook Range length:"+factbookRangeAll.question.length)
+factbookRangeAll.question.push(["a","a"])
+for (let i = 0; i < factbookAll.question.length; i++) {
+    //console.log("i="+i+","+(userData.factbookRange[0]<=i &&i<=userData.factbookRange[1]))
+    if (userData.factbookRange[0]<=i &&i<=userData.factbookRange[1]) factbookRangeAll.question.push(factbookAll.question[i]);
+}
+
 client.once(Events.ClientReady,async readyClient => {
     const guild=client.guilds.cache.get(guildId);
     const member = guild.members.cache.get(client.user.id);
     member.setNickname('エイブラハム・リンカン').catch(console.error);
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+    
+    /*sendQuestion(guild.channels.cache.get(chankId),chankAll);
+    sendQuestion(guild.channels.cache.get(factId),factbookAll);
+    sendQuestion(guild.channels.cache.get(chankStepId),chankRangeAll);
+    sendQuestion(guild.channels.cache.get(factRangeId),factbookRangeAll);*/
     setInterval(async () => {
-        var ok=false;
-        var i=-1;
-        while (!ok){
-            i = Math.floor(Math.random() * (chank.length - 0)) + 0
-            ok=true
-            if (before.find(id=>id==i) != undefined){
-                if (before.length==chank.length) before=[];
-                else ok=false;
-            }
-            if (chank[i][0]==undefined||chank[i][1]==undefined||chank[i][2]==undefined||chank[i][0]==''||chank[i][1]==''||chank[i][2]=='') ok=false
-        }
-        before.push(i)
-        var index=chank[i]
-        chankAns=index[3].replaceAll(" ","").replaceAll("　","").replaceAll(",","").replaceAll("、","").toUpperCase();
-        guild.channels.cache.get(chankId).send("日本語："+index[1]+"\n英語："+index[2]);
-        
-        ok=false;
-        i=-1;
-        while (!ok){
-            i = Math.floor(Math.random() * (factbook.length - 0)) + 0
-            ok=true
-            if (factbookBefore.find(id=>id==i) != undefined){
-                if (factbookBefore.length==factbook.length) factbookBefore=[];
-                else ok=false;
-            }
-            if (factbook[i][0]==undefined||factbook[i][1]==undefined||factbook[i][0]==''||factbook[i][1]=='') ok=false
-        }
-        factbookBefore.push(i)
-        var index=factbook[i]
-        factAns=index[1].replaceAll("　"," ").replaceAll("、",",");
-        guild.channels.cache.get(factId).send("日本語："+index[0]);
-
-
-
-        var ok=false;
-        var i=-1;
-        while (!ok){
-            i = Math.floor(Math.random() * (rangeChank.length - 0)) + 0
-            ok=true
-            if (beforeRange.find(id=>id==i) != undefined){
-                if (beforeRange.length==rangeChank.length) beforeRange=[];
-                else ok=false;
-            }
-            if (rangeChank[i][0]==undefined||rangeChank[i][1]==undefined||rangeChank[i][2]==undefined||rangeChank[i][0]==''||rangeChank[i][1]==''||rangeChank[i][2]=='') ok=false
-        }
-        beforeRange.push(i)
-        var index=rangeChank[i]
-        chankStepAns=index[3].replaceAll(" ","").replaceAll("　","").replaceAll(",","").replaceAll("、","").toUpperCase();
-        guild.channels.cache.get(chankStepId).send("日本語："+index[1]+"\n英語："+index[2]);
-        
-        ok=false;
-        i=-1;
-        while (!ok){
-            i = Math.floor(Math.random() * (rangeFact.length - 0)) + 0
-            ok=true
-            if (factbookBeforeRange.find(id=>id==i) != undefined){
-                if (factbookBeforeRange.length==rangeFact.length) factbookBeforeRange=[];
-                else ok=false;
-            }
-            if (rangeFact[i][0]==undefined||rangeFact[i][1]==undefined||rangeFact[i][0]==''||rangeFact[i][1]=='') ok=false;
-        }
-        factbookBeforeRange.push(i)
-        var index=rangeFact[i]
-        factRangeAns=index[1].replaceAll("　"," ").replaceAll("、",",");
-        guild.channels.cache.get(factRangeId).send("日本語："+index[0]);
-    },60*1000)
+        sendQuestion(guild.channels.cache.get(chankId),chankAll);
+        sendQuestion(guild.channels.cache.get(factId),factbookAll);
+        sendQuestion(guild.channels.cache.get(chankStepId),chankRangeAll);
+        sendQuestion(guild.channels.cache.get(factRangeId),factbookRangeAll);
+    },interval*1000)
 });
+//csv format
+//answer,japanese(,english,step)
+function sendQuestion(channel,obj={
+    question:[],
+    nowAnswer: "",
+    before:[],
+    isChank: true,
+    disable: false
+}){
+    var ok=false;
+    var i=-1;
+    while (!ok){
+        i = Math.floor(Math.random() * (obj.question.length - 0)) + 0
+        if (i==0){ok=false;continue;}//console.log("denied281 i="+i);
+        ok=true
+        if (obj.before.find(id=>id==i) != undefined){
+            if (obj.before.length>=obj.question.length-1) obj.before=[];
+            else {ok=false;}
+        }
+        if (obj.question[i][0]==undefined||obj.question[i][1]==undefined||obj.question[i][0]==''||obj.question[i][1]=='') {ok=false;}
+        if (obj.isChank&&(obj.question[i][2]==undefined||obj.question[i][2]=='')) {ok=false;}
+    }
+    obj.disable=false;
+    //console.log("next step")
+    obj.before.push(i)
+    var index=obj.question[i]
+    console.log(Date(Date.now())+": Send "+(obj.isChank?"chank":"factbook")+" "+i+"/"+obj.question.length);
+    obj.nowAnswer=index[0].replaceAll(" ","").replaceAll("　","").replaceAll(",","").replaceAll("、","").toUpperCase();
+    var result="日本語："+index[1]
+    if (obj.isChank)result+="\n英語："+index[2]
+    channel.send(result);
+}
+/**
+ * 
+ * @param {Message<boolean>} message 
+ */
+function answerCheck(message,obj={
+    question:[],
+    nowAnswer: "",
+    before:[],
+    isChank: true
+}){
+    const content=message.content
+    if (obj.disable) return;
+    if (content.replaceAll(" ","").replaceAll("　","").replaceAll(",","").replaceAll("、","").toUpperCase()==obj.nowAnswer){
+        message.react('💯')
+        var index=userData.user.findIndex((usr)=>usr.accountId==message.author.id)
+        if (index==-1){userData.user.push({accountId: message.author.id, chank: 0, factbook: 0});index=userData.user.findIndex((usr)=>usr.accountId==message.author.id);}
+        if (obj.isChank) userData.user[index].chank+=1;
+        else userData.user[index].factbook+=1;
+        write(JSON.stringify(userData));
+        obj.disable=true;
+    }else{
+        message.react('🤔')
+    }
+
+}
 
 client.on(Events.MessageCreate, async (message)=>{
     if (message.author.id==client.user.id) return;
-    if (message.channelId==chankId){
-        const content=message.content
-        if (content.replaceAll(" ","").replaceAll("　","").replaceAll(",","").replaceAll("、","").toUpperCase()==chankAns){
-            message.react('💯')
-            var index=userData.user.findIndex((usr)=>usr.accountId==message.author.id)
-            if (index==-1){userData.user.push({accountId: message.author.id, chank: 0, factbook: 0});index=userData.user.findIndex((usr)=>usr.accountId==message.author.id);}
-            userData.user[index].chank+=1;
-            write(JSON.stringify(userData));
-        }else{
-            message.react('🤔')
-        }
-    }else if (message.channelId==factId){
-        const content=message.content
-        if (content.replaceAll("　"," ").replaceAll("、",",")==factAns){
-            message.react('💯')
-            var index=userData.user.findIndex((usr)=>usr.accountId==message.author.id)
-            if (index==-1){userData.user.push({accountId: message.author.id, chank: 0, factbook: 0});index=userData.user.findIndex((usr)=>usr.accountId==message.author.id);}
-            userData.user[index].factbook+=1;
-            write(JSON.stringify(userData));
-        }else{
-            message.react('🤔')
-        }        
-    }else if (message.channelId==chankStepId){
-        const content=message.content
-        if (content.replaceAll(" ","").replaceAll("　","").replaceAll(",","").replaceAll("、","").toUpperCase()==chankStepAns){
-            message.react('💯')
-            var index=userData.user.findIndex((usr)=>usr.accountId==message.author.id)
-            if (index==-1){userData.user.push({accountId: message.author.id, chank: 0, factbook: 0});index=userData.user.findIndex((usr)=>usr.accountId==message.author.id);}
-            userData.user[index].chank+=1;
-            write(JSON.stringify(userData));
-        }else{
-            message.react('🤔')
-        }
-    }else if (message.channelId==factRangeId){
-        const content=message.content
-        if (content.replaceAll("　"," ").replaceAll("、",",")==factRangeAns){
-            message.react('💯')
-            var index=userData.user.findIndex((usr)=>usr.accountId==message.author.id)
-            if (index==-1){userData.user.push({accountId: message.author.id, chank: 0, factbook: 0});index=userData.user.findIndex((usr)=>usr.accountId==message.author.id);}
-            userData.user[index].factbook+=1;
-            write(JSON.stringify(userData));
-        }else{
-            message.react('🤔')
-        }        
-    }else if (message.channelId==dataImportId){
+    if      (message.channelId==chankId)     answerCheck(message,chankAll)
+    else if (message.channelId==factId)      answerCheck(message,factbookAll)
+    else if (message.channelId==chankStepId) answerCheck(message,chankRangeAll)
+    else if (message.channelId==factRangeId) answerCheck(message,factbookRangeAll)
+    else if (message.channelId==dataImportId){
         const attach=message.attachments.map(attachment=>attachment.url);
         if (attach.length==0){
             message.reply("csvファイルを添付してください．")
         }else{
             request({url: attach[0],method: "GET"},(er,rp,bd)=>{
+                console.log(message.content)
                 if (message.content.includes("chank")){
                     fs.writeFileSync(chankData,fs.readFileSync(chankData).toString()+'\n'+bd)
-                    chank = fs.readFileSync(chankData).toString().split('\n').map(row => row.split(','));                    
-                    message.reply('チャンクで英単語のデータを追加しました．(STEP:'+chank[chank.length-1][0]+')')
+                    chankAll.question = fs.readFileSync(chankData).toString().replaceAll('"','').split('\n').map(row => row.split(','));         
+                    chankRangeAll.question=[];
+                    chankRangeAll.question.push(["a","a"])
+                    chankAll.question.forEach((data)=>{
+                        if (data[3]==userData.chankStep.toString()) chankRangeAll.question.push(data)
+                    })
+                    console.log("Chank step:"+userData.chankStep)
+                    console.log("Chank step length:"+chankRangeAll.question.length)
+                    message.reply('チャンクで英単語のデータを追加しました．(STEP:'+chankAll.question[chankAll.question.length-1][3]+')')
                 }else if(message.content.includes("factbook")){
                     fs.writeFileSync(factbookData,fs.readFileSync(factbookData).toString()+'\n'+bd)
-                    const lasti=factbook.length;
-                    factbook = fs.readFileSync(factbookData).toString().split('\n').map(row => row.split(','));                    
-                    message.reply('FACTBOOK 暗唱例文集のデータを追加しました．('+lasti+"~"+factbook.length+')')
+                    const lasti=factbookAll.question.length;
+                    factbookAll.question = fs.readFileSync(factbookData).toString().replaceAll('"','').split('\n').map(row => row.split(','));           
+                    console.log("Factbook Range:"+userData.factbookRange[0]+"~"+userData.factbookRange[1])
+                    console.log("Factbook Range length:"+factbookRangeAll.question.length)
+                    factbookRangeAll.question=[]
+                    factbookRangeAll.question.push(["a","a"])
+                    for (let i = 0; i < factbookAll.question.length; i++) {
+                        //console.log("i="+i+","+(userData.factbookRange[0]<=i &&i<=userData.factbookRange[1]))
+                        if (userData.factbookRange[0]<=i &&i<=userData.factbookRange[1]) factbookRangeAll.question.push(factbookAll.question[i]);    
+                    }                  
+                    message.reply('FACTBOOK 暗唱例文集のデータを追加しました．('+lasti+"~"+factbookAll.question.length+')')
                 }
             })
         }

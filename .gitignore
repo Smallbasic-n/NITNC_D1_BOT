@@ -8,3 +8,4 @@ user.*
 secret-*.yaml
 lincoln.json
 lincoln.data
+lincoln_data/

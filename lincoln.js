@@ -20,6 +20,7 @@ const encryptFile="/conf/lincoln.data"
 const iv= Buffer.from('00000000000000000000000000000000', 'hex');
 const fs = require('node:fs')
 const crypto = require('crypto');
+const { env } = require('node:process');
 const algorithm = 'aes-256-ctr';
 
 var write = (text) =>{ //encrypt
@@ -288,15 +289,18 @@ function sendQuestion(channel,obj={
 }){
     var ok=false;
     var i=-1;
+    var loop=0;
     while (!ok){
+        if (loop>=(obj.question.length+5)){console.log("Loop detected");process.exit(1);}
+        loop+=1
         i = Math.floor(Math.random() * (obj.question.length - 0)) + 0
         if (i==0){ok=false;continue;}//console.log("denied281 i="+i);
         ok=true
         if (obj.before.find(id=>id==i) != undefined){
             if (obj.before.length>=obj.question.length-1) obj.before=[];
-            else {ok=false;}
+            else {ok=false;continue;}
         }
-        if (obj.question[i][0]==undefined||obj.question[i][1]==undefined||obj.question[i][0]==''||obj.question[i][1]=='') {ok=false;}
+        if (obj.question[i][0]==undefined||obj.question[i][1]==undefined||obj.question[i][0]==''||obj.question[i][1]=='') {ok=false;continue;}
         if (obj.isChank&&(obj.question[i][2]==undefined||obj.question[i][2]=='')) {ok=false;}
     }
     obj.disable=false;

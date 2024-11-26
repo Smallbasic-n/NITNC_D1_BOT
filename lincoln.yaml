@@ -72,7 +72,7 @@ spec:
           volumeMounts:
             - name: d1-bot-lincoln
               mountPath: /conf/
-          image: ghcr.io/smallbasic-n/d1-bot-lincoln:v0.0.18
+          image: ghcr.io/smallbasic-n/d1-bot-lincoln:v0.0.19
           name: main
           resources:
             limits:

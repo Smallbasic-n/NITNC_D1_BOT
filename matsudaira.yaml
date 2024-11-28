@@ -47,7 +47,7 @@ spec:
           volumeMounts:
             - name: d1-bot-matsudaira
               mountPath: /conf/
-          image: ghcr.io/smallbasic-n/d1-bot-matsudaira:v0.0.3
+          image: ghcr.io/smallbasic-n/d1-bot-matsudaira:v0.0.4
           name: main
           resources:
             limits:
@@ -56,9 +56,6 @@ spec:
             requests:
               cpu: 10m
               memory: 10Mi
-          ports:
-            - containerPort: 80
-              name: port
       restartPolicy: Always
       volumes:
         - name: d1-bot-matsudaira

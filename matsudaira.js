@@ -1,6 +1,7 @@
 // Require the necessary discord.js classes
 const { Client, Events, GatewayIntentBits, Collection, REST, Routes, SlashCommandBuilder, ChatInputCommandInteraction, PermissionsBitField,Partials, EmbedBuilder } = require('discord.js');
-// const { token, guildId, clientId, passphrase, salt } = require('./matsudaira.json');
+//const { token, guildId, clientId, passphrase, salt, joinChannelId } = require('./matsudaira.json');
+
 const token=process.env.DISCORD_TOKEN;
 const guildId=process.env.DISCORD_GUILDID;
 const clientId=process.env.DISCORD_CLIENTID;
@@ -12,19 +13,19 @@ const iv= Buffer.from('00000000000000000000000000000000', 'hex');
 const fs = require('node:fs')
 const crypto = require('crypto');
 const algorithm = 'aes-256-ctr';
-
+const configFile="/conf/user.data"// /conf/user.data
 var write = (text) =>{ //encrypt
   const key = crypto.scryptSync(passphrase, salt, 32)
   var cipher = crypto.createCipheriv(algorithm,key,iv)
   var crypted = cipher.update(text,'utf8','base64')
   crypted += cipher.final('base64');
-  fs.writeFileSync('/conf/user.data',crypted);
+  fs.writeFileSync(configFile,crypted);
   return crypted;
 }
 
 var read = () => {//decrypt
   const key = crypto.scryptSync(passphrase, salt, 32)
-  const text=fs.readFileSync('/conf/user.data').toString();
+  const text=fs.readFileSync(configFile).toString();
   var decipher = crypto.createDecipheriv(algorithm,key,iv)
   var dec = decipher.update(text,'base64','utf8')
   dec += decipher.final('utf8');
@@ -34,11 +35,11 @@ var read = () => {//decrypt
 
 var userData={users: [{studentId: 'Z99999', givenName: 'TEST', firstName: 'TESTER', rohmeFirstName: 'TESUTA', rohmeGivenName: 'TESUTO', accountId: 'INVAILD'}],roles: []}
 //if (!fs.existsSync('./user.iv')) {fs.writeFileSync("./user.iv",crypto.randomBytes(16))}
-if (!fs.existsSync('/conf/user.data')) {write(JSON.stringify(userData))}
+if (!fs.existsSync(configFile)) {write(JSON.stringify(userData))}
 userData=JSON.parse(read());
 // Create a new client instance
 const client = new Client({
-	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions],
+	intents: [GatewayIntentBits.Guilds,GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions],
 	partials: [Partials.Message, Partials.Channel, Partials.Reaction],
     disableEveryone: false
 });
@@ -366,6 +367,6 @@ client.on(Events.MessageReactionAdd,  async(reaction,user)=>{
    });
 });
 client.on(Events.GuildMemberAdd, async(member)=>{
-    member.guild.channels.cache.get(joinChannelId).send("<@"+member.id+"> さん．こんにちは．"+member.guild.name+"サーバに参加を歓迎します．ここで，<@"+member.id+"> さんに実行していただきたいことがあります．それはこの松平定信bot(人事部長bot)にあなたの名前と学籍番号を登録していただくことです．この情報はみなさんが「このアカウント，誰だろう」といったときにその情報をすぐに参照できるようにするためです．\nまず，自己紹介チャネルでiamコマンドを入力してください．(/iamと入力します．)ここで自分の名前と学籍番号を登録できます．なお，入力された内容はこのDiscordサーバ上で公開されるのでご注意ください．\n次に，「このアカウント，誰だろう？」と思ったときです．この時はwhoisコマンドを使用します．ここで中の人を知りたいアカウントの表示名を入力すると事前に登録されている中の人の情報が表示されます．(なお，whoisコマンドの回答はwhoisコマンドを実行した方のみが見れるようになっています．\n\nまた，ロール割り付けもできます．これに関してはロール割付をするときに説明いたします．\n\n※iamコマンドは自己紹介チャネルで実行してください．(他チャネルでも実行できますが，自己紹介のためのチャネルですので，ここで実行するようにしてください．)")
+    member.guild.channels.cache.get(joinChannelId).send("<@"+member.id+"> さん．こんにちは．D1サーバで，人事担当をしております，松平定信と申します．"+member.guild.name+"サーバに参加を歓迎します．まずは，次のWebサイトを参考に，私にあなたの名前と学籍番号を登録して下さい． https://github.com/Smallbasic-n/NITNC_D1_BOT?tab=readme-ov-file#%E6%9D%BE%E5%B9%B3%E5%AE%9A%E4%BF%A1 みんなでよいサーバを作っていきましょう！")
 })
 client.login(token);

@@ -1,19 +1,19 @@
 // Require the necessary discord.js classes
-const { Client, Events, GatewayIntentBits,Partials, Collection, REST, SlashCommandBuilder, Routes, EmbedBuilder, ChatInputCommandInteraction, Integration, Guild } = require('discord.js');
+const { Client, Events, GatewayIntentBits,Partials, Collection, REST, SlashCommandBuilder, Routes, EmbedBuilder, ChatInputCommandInteraction, Guild } = require('discord.js');
 const request=require('request')
-const { token, guildId, scheduleId, passphrase, salt, clientId } = require('./kiyomori.json');
+const express = require('express')
+const basicAuth = require('basic-auth-connect')
+const { token, guildId, scheduleId, passphrase, salt, clientId, apiuser,apipass } = require('./kiyomori.json');
 
 /*const token=process.env.DISCORD_TOKEN;
 const guildId=process.env.DISCORD_GUILDID;
-const chankId=process.env.DISCORD_CHANK_CHID;
+const scheduleId=process.env.DISCORD_SCHEDULEID;
 const passphrase=process.env.PASSPHRASE;
 const salt=process.env.SALT;
 const clientId=process.env.DISCORD_CLIENTID;
-const factId=process.env.DISCORD_FACTBOOK_CHID;
-const dataImportId=process.env.CSV_CHID;
-const chankStepId=process.env.CHANK_RANGE_ID;
-const factRangeId=process.env.FACT_RANGE_ID;
-const interval=parseInt(process.env.INTERVAL);*/
+const apiuser=process.env.API_USERNAME;
+const apipass=process.env.API_PASSWORD;*/
+const port = 3001
 
 const encryptFile="./kiyomori.data"
 const iv= Buffer.from('00000000000000000000000000000000', 'hex');
@@ -48,6 +48,7 @@ const client = new Client({
 	partials: [Partials.Message, Partials.Channel, Partials.Reaction],
     disableEveryone: false
 });
+const app = express()
 
 const commands = [];
 client.commands = new Collection();
@@ -160,7 +161,7 @@ function foundAleart(guild){
         var year=dates.getUTCFullYear()
         var month = dates.getUTCMonth()+1
         var day= dates.getUTCDate()
-        if (data.year==year&&data.month==month&&data.day==(day+1)&&!data.complete_yester){
+        if (data.year==year&&data.month==month&&data.day==(day+1)&&!data.complete_yester&&dates.getHours()>=20){
             guild.channels.cache.get(scheduleId).send("@everyone \n# 重要　明日の授業変更について \n明日"+data.year+"年"+data.month+"月"+data.day+"日"+"の"+data.start+"限～"+data.end+"限は**"+data.subjectName+"**が実施されます．お忘れ物をないさいませぬよう，お気をつけ下さい．\n 太政大臣 平清盛")
             userData.schedule[i].complete_yester=true;
             userData.schedule[i].complete_day=false;
@@ -174,4 +175,24 @@ function foundAleart(guild){
         i +=1;
     })
 }
-client.login(token);
+
+app.use(basicAuth(apiuser,apipass))
+app.get('/api/v1/schedule', (req, res) => {
+    res.send({schedule: userData.schedule});
+})
+app.post('/api/v1/schedule',(req,res)=>{
+    userData.schedule.push(req.body);
+    write(userData);
+    res.send({code: 200,result: "write back"})
+})
+async function startApi () {
+    app.listen(port, () => {
+        console.log(`Kiyomori bot api listening on port ${port}`)
+    })
+}
+async function startAll() {
+    await startApi()
+    client.login(token);
+}
+
+startAll()

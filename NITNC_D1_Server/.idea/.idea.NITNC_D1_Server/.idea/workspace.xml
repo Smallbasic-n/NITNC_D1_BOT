@@ -17,276 +17,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="">
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto.Client/ImagawaYoshimoto.Client.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto.Client/Pages/Auth.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto.Client/Pages/Counter.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto.Client/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto.Client/RedirectToLogin.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto.Client/_Imports.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto.Client/wwwroot/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto.Client/wwwroot/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/IdentityRedirectManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/IdentityUserAccessor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/AccessDenied.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/ExternalLogin.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/InvalidUser.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/Lockout.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/Login.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/_Imports.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/App.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/MainLayout.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/MainLayout.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/NavMenu.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/NavMenu.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Counter2.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Error.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Home.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Weather.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Routes.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/_Imports.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/ApplicationDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/ApplicationUser.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/Migrations/00000000000000_CreateIdentitySchema.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/Migrations/00000000000000_CreateIdentitySchema.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/app.db" afterDir="false" />
+    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="D科生以外のログインができない用になった">
       <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data\app.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/ImagawaYoshimoto.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/app.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/initialSQL/init.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/IdentityNoOpEmailSender.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ConfirmEmail.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ConfirmEmailChange.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ForgotPassword.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ForgotPasswordConfirmation.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/InvalidPasswordReset.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/LoginWith2fa.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/LoginWithRecoveryCode.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/ChangePassword.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/DeletePersonalData.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/Disable2fa.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/Email.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/EnableAuthenticator.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/ExternalLogins.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/GenerateRecoveryCodes.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/Index.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/PersonalData.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/ResetAuthenticator.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/SetPassword.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/TwoFactorAuthentication.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/_Imports.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Register.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/RegisterConfirmation.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ResendEmailConfirmation.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ResetPassword.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ResetPasswordConfirmation.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Shared/ExternalLoginPicker.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Shared/ManageLayout.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Shared/ManageNavMenu.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Shared/ShowRecoveryCodes.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/Components/Account/Shared/StatusMessage.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/IdentityNoOpEmailSender.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/IdentityRedirectManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/IdentityUserAccessor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/AccessDenied.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ConfirmEmail.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ConfirmEmailChange.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ExternalLogin.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ForgotPassword.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ForgotPasswordConfirmation.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/InvalidPasswordReset.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/InvalidUser.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Lockout.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Login.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/LoginWith2fa.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/LoginWithRecoveryCode.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/ChangePassword.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/DeletePersonalData.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/Disable2fa.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/Email.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/EnableAuthenticator.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/ExternalLogins.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/GenerateRecoveryCodes.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/Index.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/PersonalData.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/ResetAuthenticator.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/SetPassword.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/TwoFactorAuthentication.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/_Imports.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Register.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/RegisterConfirmation.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ResendEmailConfirmation.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ResetPassword.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ResetPasswordConfirmation.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/_Imports.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/AccountLayout.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/ExternalLoginPicker.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/ManageLayout.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/ManageNavMenu.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/RedirectToLogin.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/ShowRecoveryCodes.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/StatusMessage.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/App.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Layout/MainLayout.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Layout/MainLayout.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Layout/NavMenu.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Layout/NavMenu.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Auth.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Counter.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Error.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Home.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Weather.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Routes.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/_Imports.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/ApplicationDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/ApplicationUser.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/Migrations/00000000000000_CreateIdentitySchema.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/Migrations/00000000000000_CreateIdentitySchema.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/app.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/ImagawaYoshimoto2nd1.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/wwwroot/app.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/wwwroot/bootstrap/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/wwwroot/bootstrap/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/wwwroot/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/wwwroot/mainapps.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/global.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/IdentityNoOpEmailSender.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/IdentityRedirectManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/IdentityUserAccessor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/AccessDenied.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/ConfirmEmail.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/ConfirmEmailChange.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/ExternalLogin.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/ForgotPassword.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/ForgotPasswordConfirmation.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/InvalidPasswordReset.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/InvalidUser.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Lockout.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Login.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/LoginWith2fa.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/LoginWithRecoveryCode.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/ChangePassword.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/DeletePersonalData.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/Disable2fa.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/Email.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/EnableAuthenticator.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/ExternalLogins.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/GenerateRecoveryCodes.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/Index.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/PersonalData.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/ResetAuthenticator.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/SetPassword.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/TwoFactorAuthentication.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Manage/_Imports.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/Register.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/RegisterConfirmation.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/ResendEmailConfirmation.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/ResetPassword.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/ResetPasswordConfirmation.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Pages/_Imports.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Shared/AccountLayout.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Shared/ExternalLoginPicker.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Shared/ManageLayout.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Shared/ManageNavMenu.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Shared/RedirectToLogin.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Shared/ShowRecoveryCodes.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Account/Shared/StatusMessage.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/App.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Layout/MainLayout.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Layout/MainLayout.razor.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Layout/NavMenu.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Layout/NavMenu.razor.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Pages/Auth.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Pages/Counter.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Pages/Error.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Pages/Home.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Pages/Weather.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/Routes.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Components/_Imports.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Data/ApplicationDbContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Data/ApplicationUser.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Data/Migrations/00000000000000_CreateIdentitySchema.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Data/Migrations/00000000000000_CreateIdentitySchema.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Data/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Data/app.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/Properties/launchSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/appsettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/wwwroot/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/wwwroot/bootstrap/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/wwwroot/bootstrap/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/wwwroot/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/init.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.ServiceDefaults/NITNC_D1_Server.ServiceDefaults.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.ServiceDefaults/NITNC_D1_Server.ServiceDefaults.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.sln" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/ExternalLogin.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/ExternalLogin.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/InvalidUser.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/InvalidUser.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/Login.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/NavMenu.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -323,7 +62,7 @@
     <setting file="file://$PROJECT_DIR$/NoUsed/Components/Account/Shared/ManageNavMenu.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ExternalLogin.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/App.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Home.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Home.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -562,7 +301,7 @@
       <workItem from="1732953005793" duration="31976000" />
       <workItem from="1733009379071" duration="8000" />
       <workItem from="1733009396659" duration="3047000" />
-      <workItem from="1733012457037" duration="26166000" />
+      <workItem from="1733012457037" duration="27595000" />
     </task>
     <task id="LOCAL-00001" summary="今川がデータベースを利用できる要になった&#10;microsoftでログインできる">
       <option name="closed" value="true" />
@@ -580,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732997214580</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="D科生以外のログインができない用になった">
+      <option name="closed" value="true" />
+      <created>1733054866809</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733054866809</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -592,7 +339,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="今川がデータベースを利用できる要になった&#10;microsoftでログインできる" />
     <MESSAGE value=".gitignore的変更" />
-    <option name="LAST_COMMIT_MESSAGE" value=".gitignore的変更" />
+    <MESSAGE value="D科生以外のログインができない用になった" />
+    <option name="LAST_COMMIT_MESSAGE" value="D科生以外のログインができない用になった" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

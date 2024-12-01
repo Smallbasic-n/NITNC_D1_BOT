@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using ImagawaYoshimoto.Client.Pages;
 using ImagawaYoshimoto.Components;
 using ImagawaYoshimoto.Components.Account;
 using ImagawaYoshimoto.Data;
@@ -37,13 +36,8 @@ builder.Services.AddAuthentication(options =>
 
 var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__d1system");
 
-//builder.Configuration.GetConnectionString("DefaultConnection") ??
-                       //throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-
 builder.Configuration["ConnectionStrings:postgresdb"]=connectionString;
 
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseSqlite(connectionString));
 
 builder.AddNpgsqlDbContext<ApplicationDbContext>(connectionName: "d1system");
 builder.EnrichNpgsqlDbContext<ApplicationDbContext>(
@@ -66,7 +60,6 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
     .AddSignInManager()
     .AddDefaultTokenProviders();
 
-//builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 
 var app = builder.Build();
 

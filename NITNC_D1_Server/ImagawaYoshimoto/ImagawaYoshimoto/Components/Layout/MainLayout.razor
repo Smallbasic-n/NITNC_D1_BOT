@@ -1,13 +1,23 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
+    <AuthorizeView>
+        <Authorized>
+            <div class="sidebar">
+                <NavMenu/>
+            </div>
+        </Authorized>
+        <NotAuthorized></NotAuthorized>
+    </AuthorizeView>
 
     <main>
         <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+            <AuthorizeView>
+                <Authorized>
+                    @context.User.Identity?.Name としてログインしています．
+                </Authorized>
+                <NotAuthorized></NotAuthorized>
+            </AuthorizeView>
         </div>
 
         <article class="content px-4">

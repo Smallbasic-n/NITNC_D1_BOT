@@ -1,16 +1,14 @@
 using Aspire.Hosting;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.Extensions.Options;
 
 var builder = DistributedApplication.CreateBuilder(args);
-var postgres =
-        builder.AddPostgresContainer("pgsql")
+var postgres = 
+    builder.AddPostgres("pgsql",builder.AddParameter("UserName",secret: true),builder.AddParameter("Password",secret: true))
             .WithEnvironment("POSTGRES_DB", "d1system")
-            .WithVolumeMount("./postgres1", "/var/lib/postgresql/data")
-            .WithVolumeMount("./init.sql","/docker-entrypoint-initdb.d/init.sql", VolumeMountType.Bind,true)
-            .AddDatabase("d1system")
-    ;
-
-builder.AddProject<Projects.ImagawaYoshimoto>("ImagawaYoshimoto").WithReference(postgres).WithEnvironment(options =>
-{
-    options.EnvironmentVariables.Add("CONNECTION_STRING", postgres.Resource.GetConnectionString());
-});
+            .WithDataBindMount("./postgres1", false)
+            .WithInitBindMount("./initialSQL",true)
+            .WithPgAdmin()
+            .AddDatabase("d1system");
+builder.AddProject<Projects.ImagawaYoshimoto>("ImagawaYoshimoto").WithReference(postgres);
 builder.Build().Run();

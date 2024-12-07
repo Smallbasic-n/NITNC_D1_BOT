@@ -162,10 +162,11 @@ ALTER TABLE public."AspNetUsers" OWNER TO postgres;
 --
 
 CREATE TABLE public."ChankQuestions" (
-    id integer NOT NULL,
-    japanese character varying NOT NULL,
-    english character varying,
-    answer character varying
+    "Id" SERIAL NOT NULL,
+    "Step" integer NOT NULL,
+    "Japanese" character varying NOT NULL,
+    "English" character varying,
+    "Answer" character varying
 );
 
 
@@ -177,9 +178,9 @@ ALTER TABLE public."ChankQuestions" OWNER TO postgres;
 --
 
 CREATE TABLE public."FactbookQuestions" (
-    id integer NOT NULL,
-    japanese character varying,
-    answer character varying
+    "Id" SERIAL NOT NULL,
+    "Japanese" character varying,
+    "Answer" character varying
 );
 
 
@@ -191,11 +192,11 @@ ALTER TABLE public."FactbookQuestions" OWNER TO postgres;
 --
 
 CREATE TABLE public."KiyomoriAssignments" (
-    id integer NOT NULL,
-    subjectname character varying NOT NULL,
-    workname character varying NOT NULL,
-    range character varying NOT NULL,
-    deadline date NOT NULL
+    "Id" SERIAL NOT NULL,
+    "SubjectName" character varying NOT NULL,
+    "WorkName" character varying NOT NULL,
+    "Range" character varying NOT NULL,
+    "Deadline" date NOT NULL
 );
 
 
@@ -207,11 +208,11 @@ ALTER TABLE public."KiyomoriAssignments" OWNER TO postgres;
 --
 
 CREATE TABLE public."KiyomoriSchedules" (
-    id integer NOT NULL,
-    subjectname character varying NOT NULL,
+    "Id" SERIAL NOT NULL,
+    "SubjectName" character varying NOT NULL,
     "Date" date NOT NULL,
-    starts integer NOT NULL,
-    ends integer NOT NULL
+    "Starts" integer NOT NULL,
+    "Ends" integer NOT NULL
 );
 
 
@@ -223,13 +224,13 @@ ALTER TABLE public."KiyomoriSchedules" OWNER TO postgres;
 --
 
 CREATE TABLE public."MatsudairaDatas" (
-    id integer NOT NULL,
-    accountid character varying NOT NULL,
-    chank integer DEFAULT 0 NOT NULL,
-    factbook integer DEFAULT 0 NOT NULL,
-    fristname character varying NOT NULL,
-    givenname character varying NOT NULL,
-    email character varying NOT NULL
+    "Id" SERIAL NOT NULL,
+    "Accountid" character varying NOT NULL,
+    "Chank" integer DEFAULT 0 NOT NULL,
+    "FactBook" integer DEFAULT 0 NOT NULL,
+    "FirstName" character varying NOT NULL,
+    "GivenName" character varying NOT NULL,
+    "Email" character varying NOT NULL
 );
 
 
@@ -324,7 +325,7 @@ COPY public."AspNetUsers" ("Id", "UserName", "NormalizedUserName", "Email", "Nor
 -- Data for Name: ChankQuestions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."ChankQuestions" (id, japanese, english, answer) FROM stdin;
+COPY public."ChankQuestions" ("Id", "Japanese", "English", "Answer") FROM stdin;
 \.
 
 
@@ -334,7 +335,7 @@ COPY public."ChankQuestions" (id, japanese, english, answer) FROM stdin;
 -- Data for Name: FactbookQuestions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."FactbookQuestions" (id, japanese, answer) FROM stdin;
+COPY public."FactbookQuestions" ("Id", "Japanese", "Answer") FROM stdin;
 \.
 
 
@@ -344,7 +345,7 @@ COPY public."FactbookQuestions" (id, japanese, answer) FROM stdin;
 -- Data for Name: KiyomoriAssignments; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."KiyomoriAssignments" (id, subjectname, workname, range, deadline) FROM stdin;
+COPY public."KiyomoriAssignments" ("Id", "SubjectName", "WorkName", "Range", "Deadline") FROM stdin;
 \.
 
 
@@ -354,7 +355,7 @@ COPY public."KiyomoriAssignments" (id, subjectname, workname, range, deadline) F
 -- Data for Name: KiyomoriSchedules; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."KiyomoriSchedules" (id, subjectname, "Date", starts, ends) FROM stdin;
+COPY public."KiyomoriSchedules" ("Id", "SubjectName", "Date", "Starts", "Ends") FROM stdin;
 \.
 
 
@@ -364,7 +365,7 @@ COPY public."KiyomoriSchedules" (id, subjectname, "Date", starts, ends) FROM std
 -- Data for Name: MatsudairaDatas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."MatsudairaDatas" (id, accountid, chank, factbook, fristname, givenname, email) FROM stdin;
+COPY public."MatsudairaDatas" ("Id", "Accountid", "Chank", "FactBook", "FirstName", "GivenName", "Email") FROM stdin;
 \.
 
 
@@ -457,7 +458,7 @@ ALTER TABLE ONLY public."__EFMigrationsHistory"
 --
 
 ALTER TABLE ONLY public."KiyomoriAssignments"
-    ADD CONSTRAINT assignments_pk PRIMARY KEY (id);
+    ADD CONSTRAINT assignments_pk PRIMARY KEY ("Id");
 
 
 --
@@ -466,7 +467,7 @@ ALTER TABLE ONLY public."KiyomoriAssignments"
 --
 
 ALTER TABLE ONLY public."ChankQuestions"
-    ADD CONSTRAINT chank_pk PRIMARY KEY (id);
+    ADD CONSTRAINT chank_pk PRIMARY KEY ("Id");
 
 
 --
@@ -475,7 +476,7 @@ ALTER TABLE ONLY public."ChankQuestions"
 --
 
 ALTER TABLE ONLY public."FactbookQuestions"
-    ADD CONSTRAINT factbook_pk PRIMARY KEY (id);
+    ADD CONSTRAINT factbook_pk PRIMARY KEY ("Id");
 
 
 --
@@ -484,7 +485,7 @@ ALTER TABLE ONLY public."FactbookQuestions"
 --
 
 ALTER TABLE ONLY public."KiyomoriSchedules"
-    ADD CONSTRAINT schedule_pk PRIMARY KEY (id);
+    ADD CONSTRAINT schedule_pk PRIMARY KEY ("Id");
 
 
 --

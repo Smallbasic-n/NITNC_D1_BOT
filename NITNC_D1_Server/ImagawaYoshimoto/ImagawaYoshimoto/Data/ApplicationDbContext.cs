@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,4 +7,14 @@ namespace ImagawaYoshimoto.Data;
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : IdentityDbContext<ApplicationUser>(options)
 {
+    
+    
+    public DbSet<ChankQuestions> ChankQuestions { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+        builder.Entity<ChankQuestions>()
+            .HasKey(x => new { x.Id });
+    }
 }

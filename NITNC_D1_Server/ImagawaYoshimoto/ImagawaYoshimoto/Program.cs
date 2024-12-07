@@ -53,6 +53,12 @@ builder.EnrichNpgsqlDbContext<ApplicationDbContext>(
           sqlOptions.ExecutionStrategy(c => new NpgsqlRetryingExecutionStrategy(c));
       }));
 
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options=>
+    options.UseNpgsql(connectionString, sqlOptions =>
+    {
+        sqlOptions.ExecutionStrategy(c => new NpgsqlRetryingExecutionStrategy(c));
+    }));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)

@@ -20,8 +20,8 @@
 <RadzenAlert Variant="Variant.Flat" AlertStyle="AlertStyle.Info" Icon="info" Shade="Shade.Lighter" Size="AlertSize.Small" AllowClose=false>
     ここでは，CSVファイルでアップロードしていただきます．Excelなどで作成されるかと思いますが，次の注意事項をお守り下さい．<br/>
     ・ファイルは1STEPごとに作成し，1ファイルごとアップロードしてください．<br/>
-    ・A列1行目からはじめ，1行目から問題を入力して下さい．キャプションなどは不要です．<br/>
-    ・A列から順に，チャンクの問題，その日本語，解答　の順番としてください．<br/>
+    ・A列1行目からはじめ，1行目から問題を入力して下さい．キャプションは，左から順に，Answer，Japanese，Englishとしてください．<br/>
+    ・A列から順に，チャンクの解答，日本語，問題　の順番としてください．<br/>
 </RadzenAlert>
 <RadzenRow AlignItems="AlignItems.End" Wrap="FlexWrap.Wrap" Gap="1rem" class="rz-p-sm-12">
     <RadzenColumn Size="12" SizeMD="6" SizeLG="3">
@@ -30,7 +30,7 @@
         </RadzenFormField>
     </RadzenColumn>
     <RadzenColumn Size="12" SizeMD="6" SizeLG="3">
-        <RadzenFormField Text="データファイル(csv)" Style="width: 100%;">
+        <RadzenFormField Text="データファイル(csv)" Style="width: 100%;" >
             <RadzenFileInput TValue="string" Change="s => ChankData=s"></RadzenFileInput>
         </RadzenFormField>
     </RadzenColumn>
@@ -42,12 +42,13 @@
     private bool busy = false;
     private bool error = false;
     private string errorMessage = "";
-    private ApplicationDbContext Context;
+    private ApplicationDbContext Context { get; set; }
+
     private void SubmitChank(MouseEventArgs obj)
     {
+        if (busy) return;
         busy = true;
         Context = DbFactory.CreateDbContext();
-        //Context.Database.BeginTransaction();
         error = false;
         if (ChankData.IndexOf("data:text/csv;base64,") == -1)
         {
@@ -56,12 +57,18 @@
             return;
         }
         var data = Encoding.UTF8.GetString(Convert.FromBase64String(ChankData.Replace("data:text/csv;base64,",""))).Replace('\r','\n').Replace("\r\n","\n").Split('\n');
+        
+        if (data[0] != "\"Answer\",\"Japanese\",\"English\"")
+        {
+            error = true;
+            errorMessage = "正しい形式のCSVファイルをアップロードしてください．";
+            return;
+        }
         for (int i = 0; i < data.Length; i++)
         {
             if (string.IsNullOrWhiteSpace(data[i])) continue;
             if (i == 0) data[0] += ",\"Id\",\"Step\"";
             else data[i] += ",\"0\",\"0\"";
-            Console.WriteLine("Index: {0} Data: {1}",i,data[i]);
         }
         
         var editedCSV = "";
@@ -79,18 +86,8 @@
         {
             Context.Add(data1);
         }
-
         Context.SaveChanges();
-        //Console.WriteLine(data);
-        /*
-        foreach (var dt1 in res)
-        {
-            var data1=dt1.Split(',');
-            //Context.Database.BeginTransaction();
-            await Context.Database.ExecuteSqlRawAsync("insert into \"ChankQuestions\" (japanese, english, answer) values ({0},{1},{2});", data1[1], data1[2], data1[0]);
-            //Context.Database.CommitTransaction();
-        }*/
-        //
+        busy = false;
     }
 
     public void Dispose(){}

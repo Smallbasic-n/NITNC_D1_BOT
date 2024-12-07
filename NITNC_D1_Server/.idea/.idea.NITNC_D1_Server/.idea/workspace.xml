@@ -17,15 +17,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="余計なコードを消した">
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/ChankAdd.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/ChankQuestions.cs" afterDir="false" />
+    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="リンカンのチャンクデータ登録ができるようになった">
+      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/FactbookQuestions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/MainLayout.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/MainLayout.razor.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/NavMenu.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/ChankAdd.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/ChankAdd.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Home.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/ImagawaYoshimoto.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/ImagawaYoshimoto.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/initialSQL/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/initialSQL/init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lincoln/chank.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../lincoln/chank.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,16 +53,17 @@
     &quot;assignee&quot;: &quot;Smallbasic-n&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Smallbasic-n/NITNC_D1_BOT.git&quot;,
-    &quot;accountId&quot;: &quot;79eb160f-6d3e-4d13-a482-9844bbbcca16&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Smallbasic-n/NITNC_D1_BOT.git",
+    "accountId": "00b16629-a93c-471e-9d81-79e7ec1593a3"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$APPLICATION_HOME_DIR$/lib/modules/intellij.rider.jar!/schemas/msbuild/Microsoft.Build.Commontypes.xsd" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3e1beecd653485b1deb7561c9360f17cdf93ce222c59548f021503eb07450/UserManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/74febfcea6d535e7851c7701ea8c840e0c5415221a64b87b5f308832b9b24c/IServerSideBlazorBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/nobu/ドキュメント/NITNC_D1_BOT/NITNC_D1_Server/ImagawaYoshimoto/ImagawaYoshimoto/Data/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/nobu/ドキュメント/NITNC_D1_BOT/NITNC_D1_Server/ImagawaYoshimoto/ImagawaYoshimoto/Data/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/nobu/ドキュメント/NITNC_D1_BOT/NITNC_D1_Server/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NoUsed/Components/Account/Pages/ConfirmEmail.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NoUsed/Components/Account/Shared/ManageNavMenu.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ExternalLogin.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
@@ -322,7 +325,7 @@
       <workItem from="1733009379071" duration="8000" />
       <workItem from="1733009396659" duration="3047000" />
       <workItem from="1733012457037" duration="32462000" />
-      <workItem from="1733496247239" duration="17236000" />
+      <workItem from="1733496247239" duration="24122000" />
     </task>
     <task id="LOCAL-00001" summary="今川がデータベースを利用できる要になった&#10;microsoftでログインできる">
       <option name="closed" value="true" />
@@ -356,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733055866887</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="リンカンのチャンクデータ登録ができるようになった">
+      <option name="closed" value="true" />
+      <created>1733559470704</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733559470704</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -381,7 +392,8 @@
     <MESSAGE value=".gitignore的変更" />
     <MESSAGE value="D科生以外のログインができない用になった" />
     <MESSAGE value="余計なコードを消した" />
-    <option name="LAST_COMMIT_MESSAGE" value="余計なコードを消した" />
+    <MESSAGE value="リンカンのチャンクデータ登録ができるようになった" />
+    <option name="LAST_COMMIT_MESSAGE" value="リンカンのチャンクデータ登録ができるようになった" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -30,10 +30,18 @@
     <RadzenFileInput TValue="string" Change="s => FactbookData=s"></RadzenFileInput>
 </RadzenFormField>
 <RadzenButton Click="SubmitFACTBOOK">FACTBOOKの問題をリンカンに登録する</RadzenButton>
+
+@if (completed)
+{
+    <RadzenAlert Variant="Variant.Flat" AlertStyle="AlertStyle.Info" Icon="info" Shade="Shade.Lighter" Size="AlertSize.Small" AllowClose=false>
+        登録に成功しました．
+    </RadzenAlert>
+}
 @code {
     private string FactbookData { get; set; }
     private bool busy = false;
     private bool error = false;
+    private bool completed = false;
     private string errorMessage = "";
     private int nextIndex = 0;
     private ApplicationDbContext Context { get; set; }
@@ -89,6 +97,7 @@
         }
         Context.SaveChanges();
         busy = false;
+        completed = true;
     }
 
     public void Dispose(){}

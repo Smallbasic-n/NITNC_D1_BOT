@@ -12,6 +12,7 @@
     <ItemGroup>
         <PackageReference Include="CsvHelper" Version="33.0.1" />
         <PackageReference Include="Radzen.Blazor" Version="5.6.10" />
+        <ProjectReference Include="..\..\NITNC_D1_Server.DataContext\NITNC_D1_Server.DataContext.csproj" />
         <ProjectReference Include="..\ImagawaYoshimoto.Client\ImagawaYoshimoto.Client.csproj"/>
         <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="9.0.0" />

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ImagawaYoshimoto.Components;
 using ImagawaYoshimoto.Components.Account;
-using ImagawaYoshimoto.Data;
+using NITNC_D1_Server.DataContext;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Radzen;
 

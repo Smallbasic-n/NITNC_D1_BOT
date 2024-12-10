@@ -1,7 +1,7 @@
 @page "/FactbookAdd"
 @using System.Globalization
 @using System.Text
-@using ImagawaYoshimoto.Data
+@using NITNC_D1_Server.DataContext
 @using Microsoft.EntityFrameworkCore
 @implements IDisposable
 @inject IDbContextFactory<ApplicationDbContext> DbFactory
@@ -90,7 +90,7 @@
         var parse = new CsvHelper.CsvReader(new StringReader(editedCSV),CultureInfo.CurrentCulture);
         parse.Read();
         parse.ReadHeader();
-        var res = parse.GetRecords<Data.FactbookQuestions>().Select(x => new Data.FactbookQuestions(){ Answer = x.Answer, Japanese = x.Japanese});
+        var res = parse.GetRecords<FactbookQuestions>().Select(x => new FactbookQuestions(){ Answer = x.Answer, Japanese = x.Japanese});
         foreach (var data1 in res)
         {
             Context.Add(data1);
@@ -102,20 +102,5 @@
 
     public void Dispose(){}
 
-    public class ChankQuestions
-    {
-        public int id {get;set;}
-        public string japanese {get;set;}
-        public string english {get;set;}
-        public string answer {get;set;}
-
-        public ChankQuestions(int id_,string japanese_,string english_,string answer_)
-        {
-            this.id = id_;
-            this.japanese = japanese_;
-            this.english = english_;
-            this.answer = answer_;
-        }
-    }
     
 }

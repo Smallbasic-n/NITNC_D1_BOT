@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using ImagawaYoshimoto.Data;
+using NITNC_D1_Server.DataContext;
 
 namespace ImagawaYoshimoto.Components.Account;
 

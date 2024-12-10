@@ -2,7 +2,7 @@ using System.Net.Mime;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ImagawaYoshimoto.Data;
+namespace NITNC_D1_Server.DataContext;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : IdentityDbContext<ApplicationUser>(options)

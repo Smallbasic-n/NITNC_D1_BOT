@@ -18,6 +18,7 @@
     <ItemGroup>
       <ProjectReference Include="..\AbrahamLincoln\AbrahamLincoln.csproj" />
       <ProjectReference Include="..\ImagawaYoshimoto\ImagawaYoshimoto\ImagawaYoshimoto.csproj" />
+      <ProjectReference Include="..\MatsudairaSadanobu\MatsudairaSadanobu.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -12,6 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagawaYoshimoto.Client", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbrahamLincoln", "AbrahamLincoln\AbrahamLincoln.csproj", "{31FDB8EE-A9EA-4035-8FBE-8A5B24F54144}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatsudairaSadanobu", "MatsudairaSadanobu\MatsudairaSadanobu.csproj", "{7A670BCA-9082-42F2-845D-E6B65326A22D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NITNC_D1_Server.DataContext", "NITNC_D1_Server.DataContext\NITNC_D1_Server.DataContext.csproj", "{1AFEA827-82D7-46EE-BE75-18CD7A492DB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,14 @@ Global
 		{31FDB8EE-A9EA-4035-8FBE-8A5B24F54144}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31FDB8EE-A9EA-4035-8FBE-8A5B24F54144}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31FDB8EE-A9EA-4035-8FBE-8A5B24F54144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A670BCA-9082-42F2-845D-E6B65326A22D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A670BCA-9082-42F2-845D-E6B65326A22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A670BCA-9082-42F2-845D-E6B65326A22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A670BCA-9082-42F2-845D-E6B65326A22D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AFEA827-82D7-46EE-BE75-18CD7A492DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AFEA827-82D7-46EE-BE75-18CD7A492DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AFEA827-82D7-46EE-BE75-18CD7A492DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AFEA827-82D7-46EE-BE75-18CD7A492DB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

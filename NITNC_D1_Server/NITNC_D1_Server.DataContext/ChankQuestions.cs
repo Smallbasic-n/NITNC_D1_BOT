@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using CsvHelper.Configuration.Attributes;
 
-namespace ImagawaYoshimoto.Data;
+namespace NITNC_D1_Server.DataContext;
 
 public class ChankQuestions
 {

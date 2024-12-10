@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using ImagawaYoshimoto.Components.Account.Pages;
 //using ImagawaYoshimoto.Components.Account.Pages.Manage;
-using ImagawaYoshimoto.Data;
+using NITNC_D1_Server.DataContext;
 
 namespace Microsoft.AspNetCore.Routing;
 

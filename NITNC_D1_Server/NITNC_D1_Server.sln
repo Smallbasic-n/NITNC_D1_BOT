@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagawaYoshimoto", "Imagawa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagawaYoshimoto.Client", "ImagawaYoshimoto\ImagawaYoshimoto.Client\ImagawaYoshimoto.Client.csproj", "{E37AA496-810F-4171-8C93-8A027EEA1FC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbrahamLincoln", "AbrahamLincoln\AbrahamLincoln.csproj", "{31FDB8EE-A9EA-4035-8FBE-8A5B24F54144}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{E37AA496-810F-4171-8C93-8A027EEA1FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E37AA496-810F-4171-8C93-8A027EEA1FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E37AA496-810F-4171-8C93-8A027EEA1FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31FDB8EE-A9EA-4035-8FBE-8A5B24F54144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31FDB8EE-A9EA-4035-8FBE-8A5B24F54144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31FDB8EE-A9EA-4035-8FBE-8A5B24F54144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31FDB8EE-A9EA-4035-8FBE-8A5B24F54144}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

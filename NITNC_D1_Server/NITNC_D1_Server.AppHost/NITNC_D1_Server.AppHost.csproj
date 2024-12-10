@@ -16,11 +16,17 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\AbrahamLincoln\AbrahamLincoln.csproj" />
       <ProjectReference Include="..\ImagawaYoshimoto\ImagawaYoshimoto\ImagawaYoshimoto.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Remove="obj\**" />
+      <Content Update="appsettings.Development.json">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>

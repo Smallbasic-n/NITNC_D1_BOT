@@ -236,6 +236,23 @@ CREATE TABLE public."MatsudairaDatas" (
 
 ALTER TABLE public."MatsudairaDatas" OWNER TO postgres;
 
+
+--
+-- TOC entry 229 (class 1259 OID 32854)
+-- Name: MatsudairaDatas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."LincolnConfiguration" (
+      "RangeStep" integer DEFAULT 0 NOT NULL,
+      "RangeStart" integer DEFAULT 0 NOT NULL,
+      "RangeEnds" integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE public."LincolnConfiguration" OWNER TO postgres;
+
+INSERT INTO public."LincolnConfiguration" VALUES (1,1,5);
+
 --
 -- TOC entry 217 (class 1259 OID 24577)
 -- Name: __EFMigrationsHistory; Type: TABLE; Schema: public; Owner: postgres

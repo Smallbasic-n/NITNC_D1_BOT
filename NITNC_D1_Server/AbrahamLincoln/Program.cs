@@ -1,22 +1,26 @@
 ﻿using System.ComponentModel;
 using System.Data;
+using System.Globalization;
 using Discord;
+using Discord.Interactions;
 using Discord.WebSocket;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using NITNC_D1_Server.DataContext;
 using Npgsql;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 using NpgsqlTypes;
 
 namespace AbrahamLincoln;
 
 class Program
 {
-    private static readonly DiscordSocketClient Client = new (new DiscordSocketConfig()
-    {
-        GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.GuildMembers | GatewayIntents.MessageContent
-    });
-    
+    private static DiscordSocketClient Client;
     private static SocketGuild Guild;
-
-    private static readonly NpgsqlConnection Context = new (Environment.GetEnvironmentVariable("ConnectionStrings__d1system"));
+    private static ApplicationDbContext Context;
+    
     private static readonly ulong GuildId= Convert.ToUInt64(Environment.GetEnvironmentVariable("GuildId"));
     private static readonly ulong ChankChannel= Convert.ToUInt64(Environment.GetEnvironmentVariable("ChankChId"));
     private static readonly ulong ChankRangeChannel=Convert.ToUInt64(Environment.GetEnvironmentVariable("ChankRangeChId"));
@@ -35,6 +39,38 @@ class Program
     static async Task Main(string[] args)
     {
         Console.WriteLine("Hello, World!");
+
+        ApplicationDbContext._encryptionKey =
+            Convert.FromBase64String(Environment.GetEnvironmentVariable("EncyptionKey")??"");
+        ApplicationDbContext._encryptionIV =
+            Convert.FromBase64String(Environment.GetEnvironmentVariable("EncyptionIV")??"");
+        
+        var builder = new ConfigurationBuilder()
+            .AddEnvironmentVariables();
+        var configuration = builder.Build();
+        
+        var services = new ServiceCollection()
+            .AddSingleton(configuration)
+            .AddSingleton(new DiscordSocketConfig
+            {
+                GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.GuildMembers |
+                                 GatewayIntents.MessageContent
+            })
+            .AddSingleton<DiscordSocketClient>()
+            .AddSingleton(config =>
+                new InteractionService(config.GetRequiredService<DiscordSocketClient>()))
+            .AddSingleton<InteractionHandler>()
+            .AddDbContext<ApplicationDbContext>(options=>
+                options.UseNpgsql(configuration.GetConnectionString("d1system"), sqlOptions =>
+                {
+                    sqlOptions.ExecutionStrategy(c => new NpgsqlRetryingExecutionStrategy(c));
+                    
+                }))
+            .BuildServiceProvider();
+        Client=services.GetRequiredService<DiscordSocketClient>();
+        Context = services.GetRequiredService<ApplicationDbContext>();
+        await services.GetRequiredService<InteractionHandler>().InitializeAsync();
+        
         Client.Log += LogAsync;
         Client.Ready += ReadyAsync;
         Client.MessageReceived += MessageReceivedAsync;
@@ -50,30 +86,19 @@ class Program
         return Task.CompletedTask;
     }
 
-    private static async Task<Task> ReadyAsync()
+    private static Task ReadyAsync()
     {
         Console.WriteLine("logged in as "+Client.CurrentUser);
         Guild = Client.GetGuild(GuildId);
-        await Context.OpenAsync();
         var background = new BackgroundWorker();
         background.DoWork += async (sender, args) =>
         {
             while (true)
             {
-                var confsql = Context.CreateCommand();
-                confsql.CommandText =
-                    "SELECT \"RangeStep\", \"RangeStart\", \"RangeEnds\" FROM \"LincolnConfiguration\";";
-                using (var chk = await confsql.ExecuteReaderAsync())
-                {
-                    while (chk.Read())
-                    {
-                        ChankStep = Convert.ToInt32(chk["RangeStep"]);
-                        FactbookStart = Convert.ToInt32(chk["RangeStart"]);
-                        FactbookEnd = Convert.ToInt32(chk["RangeEnds"]);
-                    }
-
-                    await chk.CloseAsync();
-                }
+                var data = Context.LincolnConfiguration.Single();
+                ChankStep = data.RangeStep;
+                FactbookStart = data.RangeStart;
+                FactbookEnd = data.RangeEnds;
 
                 await ChankAllRange();
                 await ChankStepRange();
@@ -89,77 +114,38 @@ class Program
     
     private static async Task ChankAllRange()
     {
-        var chanksql = Context.CreateCommand();
-        chanksql.CommandText = "SELECT \"Japanese\", \"English\", \"Answer\" FROM \"ChankQuestions\" WHERE \"Step\" <= "+ChankStep +" AND \"Id\"=(SELECT (max(\"Id\") * random())::int FROM \"ChankQuestions\");";
-        using (var chk=await chanksql.ExecuteReaderAsync())
-        {
-            while (chk.Read())
-            {
-                ChankAnswer=chk.GetString(2);
-                await Guild.GetTextChannel(ChankChannel).SendMessageAsync($"日本語：{chk.GetString(0)}\n英語：{chk.GetString(1)}");
-            }
-            await chk.CloseAsync();
-        }
+        var data=Context.ChankQuestions.Where(x => x.Step <= ChankStep).OrderBy(x => Guid.NewGuid()).Take(1).Single();
+        ChankAnswer=data.Answer;
+        await Guild.GetTextChannel(ChankChannel).SendMessageAsync($"日本語：{data.Japanese}\n英語：{data.English}");
     }
     
     private static async Task ChankStepRange()
     {
-        var chanksql = Context.CreateCommand();
-        chanksql.CommandText = "SELECT \"Japanese\", \"English\", \"Answer\" FROM \"ChankQuestions\" WHERE \"Step\" = "+ChankStep +" AND \"Id\"=(SELECT (max(\"Id\") * random())::int FROM \"ChankQuestions\");";
-        using (var chk=await chanksql.ExecuteReaderAsync())
-        {
-            while (chk.Read())
-            {
-                ChankRangeAnswer=chk.GetString(2);
-                await Guild.GetTextChannel(ChankRangeChannel).SendMessageAsync($"日本語：{chk.GetString(0)}\n英語：{chk.GetString(1)}");
-            }
-            await chk.CloseAsync();
-        }
+        var data=Context.ChankQuestions.Where(x => x.Step == ChankStep).OrderBy(x => Guid.NewGuid()).Take(1).Single();
+        ChankAnswer=data.Answer;
+        await Guild.GetTextChannel(ChankRangeChannel).SendMessageAsync($"日本語：{data.Japanese}\n英語：{data.English}");
     }
     
     private static async Task FactbookAllRange()
     {
-        var chanksql = Context.CreateCommand();
-        chanksql.CommandText = "SELECT \"Japanese\", \"Answer\" FROM \"FactbookQuestions\" WHERE \"Id\" <= "+FactbookEnd +" AND \"Id\"=(SELECT (max(\"Id\") * random())::int FROM \"FactbookQuestions\");";
-        using (var chk=await chanksql.ExecuteReaderAsync())
-        {
-            while (chk.Read())
-            {
-                FactbookAnswer=chk.GetString(1);
-                await Guild.GetTextChannel(FactbookChannel).SendMessageAsync($"日本語：{chk.GetString(0)}");
-            }
-            await chk.CloseAsync();
-        }
+        var data=Context.FactbookQuestions.Where(x => x.Id<= FactbookEnd ).OrderBy(x => Guid.NewGuid()).Take(1).Single();
+        ChankAnswer=data.Answer;
+        await Guild.GetTextChannel(FactbookChannel).SendMessageAsync($"日本語：{data.Japanese}");
     }
     
     private static async Task FactbookStaStpRange()
     {
-        var chanksql = Context.CreateCommand();
-        chanksql.CommandText = "SELECT \"Japanese\", \"Answer\" FROM \"FactbookQuestions\" WHERE \"Id\" >= "+FactbookStart+" AND \"Id\" <= "+FactbookEnd +" AND \"Id\"=(SELECT (max(\"Id\") * random())::int FROM \"FactbookQuestions\");";
-        using (var chk=await chanksql.ExecuteReaderAsync())
-        {
-            while (chk.Read())
-            {
-                FactbookRangeAnswer=chk.GetString(1);
-                await Guild.GetTextChannel(FactbookRangeChannel).SendMessageAsync($"日本語：{chk.GetString(0)}");
-            }
-            await chk.CloseAsync();
-        }
+        var data=Context.FactbookQuestions.Where(x => x.Id >= FactbookStart && x.Id<= FactbookEnd ).OrderBy(x => Guid.NewGuid()).Take(1).Single();
+        ChankAnswer=data.Answer;
+        await Guild.GetTextChannel(FactbookRangeChannel).SendMessageAsync($"日本語：{data.Japanese}");
     }
     
-    private static async Task ScoreReg(string whichAdd,string accountId)
+    private static async Task ScoreReg(bool isChank,ulong accountId)
     {
-        var updatesql = Context.CreateCommand();
-        updatesql.CommandText = "UPDATE \"MatsudairaDatas\" SET \""+whichAdd+"\"=\""+whichAdd+"\"+1 WHERE \"AccountId\" = "+accountId+";";
-        using (var chk=await updatesql.ExecuteReaderAsync())
-        {
-            while (chk.Read())
-            {
-                FactbookRangeAnswer=chk.GetString(1);
-                await Guild.GetTextChannel(FactbookRangeChannel).SendMessageAsync($"日本語：{chk.GetString(0)}");
-            }
-            await chk.CloseAsync();
-        }
+        var user=Context.MatsudairaDatas.Single(x => x.AccountId == accountId);
+        if (isChank) user.Chank += 1;
+        else user.FactBook += 1;
+        await Context.SaveChangesAsync();
     }
     
     private static async Task MessageReceivedAsync(SocketMessage message)
@@ -178,8 +164,9 @@ class Program
             answerData.ToUpper())
         {
             emoji = "\ud83d\udcaf";
-            await ScoreReg(isChankA||isChankB ? "Chank" : "FactBook", message.Author.Id.ToString());
+            await ScoreReg(isChankA||isChankB, message.Author.Id);
         }
         await message.AddReactionAsync(new Emoji(emoji));
     }
+    
 }

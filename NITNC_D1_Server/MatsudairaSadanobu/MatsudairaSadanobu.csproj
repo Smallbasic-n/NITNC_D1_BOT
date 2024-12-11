@@ -7,12 +7,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Discord.Net" Version="3.16.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\NITNC_D1_Server.DataContext\NITNC_D1_Server.DataContext.csproj" />
-    </ItemGroup>
-
 </Project>

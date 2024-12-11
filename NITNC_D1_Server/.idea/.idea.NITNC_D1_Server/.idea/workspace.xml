@@ -18,32 +18,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="リンカンbotが問題を出して応答するようになった">
+    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="Entitiy Framework関係をすべて共通プロジェクトに置き換えた">
+      <change afterPath="$PROJECT_DIR$/AbrahamLincoln/InteractionHandler.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/MatsudairaSadanobu/MatsudairaSadanobu.csproj" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Class1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/NITNC_D1_Server.DataContext.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/LincolnConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/MatsudairaDatas.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/IdentityUserAccessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/IdentityUserAccessor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/ExternalLogin.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/ExternalLogin.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Account/Pages/Login.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/ChankAdd.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/ChankAdd.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/_Imports.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/ApplicationUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ApplicationUser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/ChankQuestions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ChankQuestions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/FactbookQuestions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/FactbookQuestions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/Migrations/00000000000000_CreateIdentitySchema.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Migrations/00000000000000_CreateIdentitySchema.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/Migrations/00000000000000_CreateIdentitySchema.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Migrations/00000000000000_CreateIdentitySchema.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Data/app.db" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/app.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/ImagawaYoshimoto.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/ImagawaYoshimoto.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.sln" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AbrahamLincoln/AbrahamLincoln.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AbrahamLincoln/AbrahamLincoln.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AbrahamLincoln/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AbrahamLincoln/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/NITNC_D1_Server.DataContext.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/NITNC_D1_Server.DataContext.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -366,7 +352,7 @@
       <workItem from="1733009379071" duration="8000" />
       <workItem from="1733009396659" duration="3047000" />
       <workItem from="1733012457037" duration="32462000" />
-      <workItem from="1733496247239" duration="46518000" />
+      <workItem from="1733496247239" duration="57450000" />
     </task>
     <task id="LOCAL-00001" summary="今川がデータベースを利用できる要になった&#10;microsoftでログインできる">
       <option name="closed" value="true" />
@@ -432,7 +418,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733865972931</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Entitiy Framework関係をすべて共通プロジェクトに置き換えた">
+      <option name="closed" value="true" />
+      <created>1733868081530</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733868081531</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,7 +455,8 @@
     <MESSAGE value="FactBook用のデータ登録ができた&#10;ナビゲーションバーを改善した" />
     <MESSAGE value="データ登録時の完了メッセージを追加した" />
     <MESSAGE value="リンカンbotが問題を出して応答するようになった" />
-    <option name="LAST_COMMIT_MESSAGE" value="リンカンbotが問題を出して応答するようになった" />
+    <MESSAGE value="Entitiy Framework関係をすべて共通プロジェクトに置き換えた" />
+    <option name="LAST_COMMIT_MESSAGE" value="Entitiy Framework関係をすべて共通プロジェクトに置き換えた" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

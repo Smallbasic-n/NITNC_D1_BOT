@@ -20,37 +20,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="リンカンbotについて，スコア記録できるようになった">
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/initialSQL/init1.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/MatsudairaRoles.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/NITNC_D1_Server.MigrationService.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.json" afterDir="false" />
+    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="データベースをEntity Framework Coreにした&#10;松平定信botがデプロイ前までできるようになった">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AbrahamLincoln/AbrahamLincoln.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AbrahamLincoln/AbrahamLincoln.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/ChankAdd.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/ChankAdd.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/ImagawaYoshimoto.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/ImagawaYoshimoto.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/MatsudairaSadanobu.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/MatsudairaSadanobu.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AbrahamLincoln/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AbrahamLincoln/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/initialSQL/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ApplicationUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ApplicationUser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ChankQuestions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ChankQuestions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Class1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/FactbookQuestions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/FactbookQuestions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/LincolnConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/LincolnConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/MatsudairaDatas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/MatsudairaDatas.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Migrations/00000000000000_CreateIdentitySchema.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Migrations/00000000000000_CreateIdentitySchema.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/NITNC_D1_Server.DataContext.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/app.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.sln" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/LincolnConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/LincolnConfiguration.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,8 +59,11 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0b7856b364e04283a10bb924825b197f28f228/5c/871e96ef/StateManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b340b8fec8144b3aa7bc3a6d6abaa900d1bc00/73/e901ba3e/Task.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b340b8fec8144b3aa7bc3a6d6abaa900d1bc00/fe/0ef9b23f/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/46aa9080b6d23d2ee049e3b4be51c3c5acb0483d437bf481f8e46467d836e2/SocketInteraction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/759cb9d256b6b24b4c629cad77def463491b8a51ed0142ddabaf3fa5d90ac12/EmbedBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/beaf23cc394db595c8b4a1f8ef05659ef13edc92c71e88c4ee64db884c79f18/Optional.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/daeb1df858687e94086074db782bdded42e6afd8b64835fc4da7219c0e5/RequestQueueBucket.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="jar://$APPLICATION_HOME_DIR$/lib/modules/intellij.rider.jar!/schemas/msbuild/Microsoft.Build.Commontypes.xsd" root0="FORCE_HIGHLIGHTING" />
@@ -405,7 +384,7 @@
       <workItem from="1733009396659" duration="3047000" />
       <workItem from="1733012457037" duration="32462000" />
       <workItem from="1733496247239" duration="89271000" />
-      <workItem from="1734085715588" duration="32191000" />
+      <workItem from="1734085715588" duration="39578000" />
     </task>
     <task id="LOCAL-00001" summary="今川がデータベースを利用できる要になった&#10;microsoftでログインできる">
       <option name="closed" value="true" />
@@ -487,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733918331612</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="データベースをEntity Framework Coreにした&#10;松平定信botがデプロイ前までできるようになった">
+      <option name="closed" value="true" />
+      <created>1734349480278</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1734349480278</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,7 +505,8 @@
     <MESSAGE value="リンカンbotが問題を出して応答するようになった" />
     <MESSAGE value="Entitiy Framework関係をすべて共通プロジェクトに置き換えた" />
     <MESSAGE value="リンカンbotについて，スコア記録できるようになった" />
-    <option name="LAST_COMMIT_MESSAGE" value="リンカンbotについて，スコア記録できるようになった" />
+    <MESSAGE value="データベースをEntity Framework Coreにした&#10;松平定信botがデプロイ前までできるようになった" />
+    <option name="LAST_COMMIT_MESSAGE" value="データベースをEntity Framework Coreにした&#10;松平定信botがデプロイ前までできるようになった" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

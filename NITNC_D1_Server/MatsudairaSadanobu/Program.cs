@@ -354,18 +354,8 @@ class Program
 
     private static Task ReactionAdded(Cacheable<IUserMessage, ulong> arg1, Cacheable<IMessageChannel, ulong> arg2, SocketReaction arg3)
     {
-        Console.Write("ReactionAdded: IsBot: ");
-        Console.WriteLine(arg3.User.Value.IsBot);
-        Console.Write("MessageId: ");
-        Console.WriteLine(arg3.MessageId);
-        Console.Write("Expected MessageId: ");
-        Console.WriteLine(surveyMessageId);
         if (arg3.User.Value.IsBot|| arg3.MessageId != surveyMessageId) return Task.CompletedTask;
-        Console.Write("EmojiID: ");
         var emojiId= char.ConvertToUtf32(arg3.Emote.Name, 0)-0x1F600;
-        Console.WriteLine(emojiId);
-        Console.Write("Role Id: ");
-        Console.WriteLine(emojis[emojiId].RoleId);
         try
         {
             Guild.GetUser(arg3.User.Value.Id).AddRoleAsync(Guild.GetRole(emojis[emojiId].RoleId)).Wait();
@@ -386,6 +376,7 @@ class Program
     private static async Task ReadyAsync()
     {
         Console.WriteLine("logged in as "+Client.CurrentUser);
+        Guild.CurrentUser.ModifyAsync(x => x.Nickname = "松平定信");
         Guild = Client.GetGuild(GuildId);
         var commandIam = new SlashCommandBuilder()
         #region IamCommand

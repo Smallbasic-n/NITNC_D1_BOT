@@ -29,7 +29,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .HasKey(x => new { x.Id });
         builder.Entity<FactbookQuestions>()
             .HasKey(x => new { x.Id });
-        builder.Entity<LincolnConfiguration>().HasNoKey();
+        builder.Entity<LincolnConfiguration>()
+            .HasKey(x=> new { x.Id });
         builder.Entity<MatsudairaDatas>()
             .HasKey(x=>new {x.Id});
         builder.Entity<MatsudairaRoles>()

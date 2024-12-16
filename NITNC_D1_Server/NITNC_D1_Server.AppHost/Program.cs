@@ -33,7 +33,7 @@ if (string.IsNullOrWhiteSpace(keyparam.Resource.Value))
 builder.AddProject<Projects.ImagawaYoshimoto>("ImagawaYoshimoto").WithReference(postgres)
     .WithEnvironment("EncryptionKey",keyparam)
     .WithEnvironment("EncryptionIV", ivparam);
-/*
+
 builder.AddProject<Projects.AbrahamLincoln>("AbrahamLincoln").WithReference(postgres)
     .WithEnvironment("ClientId", builder.AddParameter("ClientId", true))
     .WithEnvironment("Token", builder.AddParameter("Token", true))
@@ -44,9 +44,9 @@ builder.AddProject<Projects.AbrahamLincoln>("AbrahamLincoln").WithReference(post
     .WithEnvironment("FactbookRangeChId", builder.AddParameter("FactbookRangeChId", true))
     .WithEnvironment("Iteration", builder.AddParameter("Iteration", true))
     .WithEnvironment("EncyptionKey",keyparam)
-    .WithEnvironment("EncyptionIV", ivparam);*/
+    .WithEnvironment("EncyptionIV", ivparam);
 
-
+/*
 builder.AddProject<Projects.MatsudairaSadanobu>("MatsudairaSadanobu").WithReference(postgres)
     .WithEnvironment("ClientId", builder.AddParameter("ClientId", true))
     .WithEnvironment("Token", builder.AddParameter("Token", true))
@@ -55,7 +55,7 @@ builder.AddProject<Projects.MatsudairaSadanobu>("MatsudairaSadanobu").WithRefere
     .WithEnvironment("EmailDomain", builder.AddParameter("EmailDomain", true))
     .WithEnvironment("EncryptionKey",keyparam)
     .WithEnvironment("EncryptionIV", ivparam);
-
+*/
 builder.AddProject<Projects.NITNC_D1_Server_MigrationService>("migration")
     .WithReference(postgres)
     .WithEnvironment("EncryptionKey",keyparam)

@@ -4,7 +4,7 @@
 @using NITNC_D1_Server.DataContext
 @using Microsoft.EntityFrameworkCore
 @implements IDisposable
-@inject IDbContextFactory<ApplicationDbContext> DbFactory
+@inject ApplicationDbContext Context
 @rendermode InteractiveServer
 
 <PageTitle>チャンク | エイブラハム・リンカン | 今川義元</PageTitle>
@@ -50,13 +50,11 @@
     private bool error = false;
     private bool completed = false;
     private string errorMessage = "";
-    private ApplicationDbContext Context { get; set; }
 
     private void SubmitChank(MouseEventArgs obj)
     {
         if (busy) return;
         busy = true;
-        Context = DbFactory.CreateDbContext();
         error = false;
         if (ChankData.IndexOf("data:text/csv;base64,") == -1)
         {

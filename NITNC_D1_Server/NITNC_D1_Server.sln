@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.0.0
 MinimumVisualStudioVersion = 17.8.0.0
@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbrahamLincoln", "AbrahamLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatsudairaSadanobu", "MatsudairaSadanobu\MatsudairaSadanobu.csproj", "{7A670BCA-9082-42F2-845D-E6B65326A22D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NITNC_D1_Server.DataContext", "NITNC_D1_Server.DataContext\NITNC_D1_Server.DataContext.csproj", "{1AFEA827-82D7-46EE-BE75-18CD7A492DB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NITNC_D1_Server.MigrationService", "NITNC_D1_Server.MigrationService\NITNC_D1_Server.MigrationService.csproj", "{0104DB50-EF0F-4C04-9B3A-F67D8F27BB25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,10 +46,10 @@ Global
 		{7A670BCA-9082-42F2-845D-E6B65326A22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A670BCA-9082-42F2-845D-E6B65326A22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A670BCA-9082-42F2-845D-E6B65326A22D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1AFEA827-82D7-46EE-BE75-18CD7A492DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1AFEA827-82D7-46EE-BE75-18CD7A492DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1AFEA827-82D7-46EE-BE75-18CD7A492DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1AFEA827-82D7-46EE-BE75-18CD7A492DB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0104DB50-EF0F-4C04-9B3A-F67D8F27BB25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0104DB50-EF0F-4C04-9B3A-F67D8F27BB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0104DB50-EF0F-4C04-9B3A-F67D8F27BB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0104DB50-EF0F-4C04-9B3A-F67D8F27BB25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

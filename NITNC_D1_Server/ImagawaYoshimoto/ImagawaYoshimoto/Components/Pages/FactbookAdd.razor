@@ -4,7 +4,7 @@
 @using NITNC_D1_Server.DataContext
 @using Microsoft.EntityFrameworkCore
 @implements IDisposable
-@inject IDbContextFactory<ApplicationDbContext> DbFactory
+@inject ApplicationDbContext Context
 @rendermode InteractiveServer
 
 <PageTitle>FactBook | エイブラハム・リンカン | 今川義元</PageTitle>
@@ -44,10 +44,8 @@
     private bool completed = false;
     private string errorMessage = "";
     private int nextIndex = 0;
-    private ApplicationDbContext Context { get; set; }
     protected override Task OnInitializedAsync()
     {
-        Context = DbFactory.CreateDbContext();
         var res = -1;
         if (Context.FactbookQuestions.Count() == 0) res = 0;
         else res=Context.FactbookQuestions.Max(b=>b.Id);

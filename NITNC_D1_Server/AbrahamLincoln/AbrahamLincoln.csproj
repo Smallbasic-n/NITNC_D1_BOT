@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\NITNC_D1_Server.DataContext\NITNC_D1_Server.DataContext.csproj" />
+      <ProjectReference Include="..\NITNC_D1_Server.MigrationService\NITNC_D1_Server.MigrationService.csproj" />
     </ItemGroup>
 
 </Project>

@@ -12,13 +12,14 @@ var postgres =
             .WithPgAdmin()
             .AddDatabase("d1system");
 
-builder.AddProject<Projects.ImagawaYoshimoto>("ImagawaYoshimoto").WithReference(postgres);
-var keyparam = builder.AddParameter("EncyptionKey", true);
-var ivparam = builder.AddParameter("EncyptionIV", true);
+    //
+var keyparam = builder.AddParameter("EncryptionKey", true);
+var ivparam = builder.AddParameter("EncryptionIV", true);
 if (string.IsNullOrWhiteSpace(keyparam.Resource.Value))
 {
     
     using var aes = Aes.Create();
+    aes.KeySize = 256;
     aes.GenerateKey();
     aes.GenerateIV();
     var key = Convert.ToBase64String(aes.Key);
@@ -26,9 +27,13 @@ if (string.IsNullOrWhiteSpace(keyparam.Resource.Value))
     Console.WriteLine(key);
     Console.WriteLine();
     Console.WriteLine(iv);
-    keyparam=builder.AddParameter("EncyptionKey", key);
-    ivparam=builder.AddParameter("EncyptionIV", iv);
+    keyparam=builder.AddParameter("EncryptionKey", key);
+    ivparam=builder.AddParameter("EncryptionIV", iv);
 }
+builder.AddProject<Projects.ImagawaYoshimoto>("ImagawaYoshimoto").WithReference(postgres)
+    .WithEnvironment("EncryptionKey",keyparam)
+    .WithEnvironment("EncryptionIV", ivparam);
+/*
 builder.AddProject<Projects.AbrahamLincoln>("AbrahamLincoln").WithReference(postgres)
     .WithEnvironment("ClientId", builder.AddParameter("ClientId", true))
     .WithEnvironment("Token", builder.AddParameter("Token", true))
@@ -39,5 +44,20 @@ builder.AddProject<Projects.AbrahamLincoln>("AbrahamLincoln").WithReference(post
     .WithEnvironment("FactbookRangeChId", builder.AddParameter("FactbookRangeChId", true))
     .WithEnvironment("Iteration", builder.AddParameter("Iteration", true))
     .WithEnvironment("EncyptionKey",keyparam)
-    .WithEnvironment("EncyptionIV", ivparam);
+    .WithEnvironment("EncyptionIV", ivparam);*/
+
+
+builder.AddProject<Projects.MatsudairaSadanobu>("MatsudairaSadanobu").WithReference(postgres)
+    .WithEnvironment("ClientId", builder.AddParameter("ClientId", true))
+    .WithEnvironment("Token", builder.AddParameter("Token", true))
+    .WithEnvironment("GuildId", builder.AddParameter("GuildId", true))
+    .WithEnvironment("JoinChId", builder.AddParameter("JoinChId", true))
+    .WithEnvironment("EmailDomain", builder.AddParameter("EmailDomain", true))
+    .WithEnvironment("EncryptionKey",keyparam)
+    .WithEnvironment("EncryptionIV", ivparam);
+
+builder.AddProject<Projects.NITNC_D1_Server_MigrationService>("migration")
+    .WithReference(postgres)
+    .WithEnvironment("EncryptionKey",keyparam)
+    .WithEnvironment("EncryptionIV", ivparam);
 builder.Build().Run();

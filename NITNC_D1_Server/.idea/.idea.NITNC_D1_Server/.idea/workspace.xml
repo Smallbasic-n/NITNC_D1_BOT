@@ -9,27 +9,48 @@
     <projectFile profileName="http">ImagawaYoshimoto/ImagawaYoshimoto.csproj</projectFile>
     <projectFile profileName="https">ImagawaYoshimoto/ImagawaYoshimoto.csproj</projectFile>
     <projectFile>ImagawaYoshimoto/ImagawaYoshimoto/ImagawaYoshimoto.csproj</projectFile>
+    <projectFile>MatsudairaSadanobu/MatsudairaSadanobu.csproj</projectFile>
     <projectFile aspireProfileName="http">NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj</projectFile>
     <projectFile aspireProfileName="https">NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj</projectFile>
     <projectFile profileName="http">NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj</projectFile>
     <projectFile profileName="https">NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj</projectFile>
+    <projectFile profileName="NITNC_D1_Server.MigrationService">NITNC_D1_Server.MigrationService/NITNC_D1_Server.MigrationService.csproj</projectFile>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="Entitiy Framework関係をすべて共通プロジェクトに置き換えた">
-      <change afterPath="$PROJECT_DIR$/AbrahamLincoln/InteractionHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MatsudairaSadanobu/MatsudairaSadanobu.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/LincolnConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/MatsudairaDatas.cs" afterDir="false" />
+    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="リンカンbotについて，スコア記録できるようになった">
+      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/initialSQL/init1.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/MatsudairaRoles.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/NITNC_D1_Server.MigrationService.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Program.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.Development.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AbrahamLincoln/AbrahamLincoln.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AbrahamLincoln/AbrahamLincoln.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AbrahamLincoln/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AbrahamLincoln/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/ChankAdd.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/ChankAdd.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/ImagawaYoshimoto.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/ImagawaYoshimoto.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/MatsudairaSadanobu.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/MatsudairaSadanobu.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/NITNC_D1_Server.DataContext.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/NITNC_D1_Server.DataContext.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/initialSQL/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ApplicationUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ApplicationUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/ChankQuestions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ChankQuestions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Class1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/FactbookQuestions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/FactbookQuestions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/LincolnConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/LincolnConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/MatsudairaDatas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/MatsudairaDatas.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Migrations/00000000000000_CreateIdentitySchema.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Migrations/00000000000000_CreateIdentitySchema.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/NITNC_D1_Server.DataContext.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.DataContext/app.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.sln" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,33 +76,28 @@
     &quot;assignee&quot;: &quot;Smallbasic-n&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Smallbasic-n/NITNC_D1_BOT.git",
-    "accountId": "00b16629-a93c-471e-9d81-79e7ec1593a3"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Smallbasic-n/NITNC_D1_BOT.git&quot;,
+    &quot;accountId&quot;: &quot;00b16629-a93c-471e-9d81-79e7ec1593a3&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b340b8fec8144b3aa7bc3a6d6abaa900d1bc00/73/e901ba3e/Task.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/46aa9080b6d23d2ee049e3b4be51c3c5acb0483d437bf481f8e46467d836e2/SocketInteraction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/beaf23cc394db595c8b4a1f8ef05659ef13edc92c71e88c4ee64db884c79f18/Optional.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/daeb1df858687e94086074db782bdded42e6afd8b64835fc4da7219c0e5/RequestQueueBucket.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="jar://$APPLICATION_HOME_DIR$/lib/modules/intellij.rider.jar!/schemas/msbuild/Microsoft.Build.Commontypes.xsd" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/nobu/ドキュメント/NITNC_D1_BOT/NITNC_D1_Server/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/ChankAdd.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/nobu/ドキュメント/NITNC_D1_BOT/NITNC_D1_Server/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/nobu/ドキュメント/NITNC_D1_BOT/NITNC_D1_Server/ImagawaYoshimoto/ImagawaYoshimoto/Data/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/nobu/ドキュメント/NITNC_D1_BOT/NITNC_D1_Server/ImagawaYoshimoto/ImagawaYoshimoto/Data/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/nobu/ドキュメント/NITNC_D1_BOT/NITNC_D1_Server/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/nobu/ドキュメント/NITNC_D1_BOT/NITNC_D1_Server/NITNC_D1_Server.AppHost/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NoUsed/Components/Account/Pages/ConfirmEmail.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NoUsed/Components/Account/Shared/ManageNavMenu.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ExternalLogin.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/App.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Home.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -97,7 +113,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Aspire Host.NITNC_D1_Server.AppHost: http.executor": "Run",
+    "Aspire Host.NITNC_D1_Server.AppHost: http.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "imagawasystem",
@@ -106,11 +122,12 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/新規スクラッチファイル": [
+      "SQL",
       "GitIgnore"
     ]
   }
@@ -126,10 +143,10 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NITNC_D1_Server.AppHost" />
       <option name="TRACK_ENVS" value="1" />
       <envs>
-        <env name="ASPNETCORE_ENVIRONMENT" value="Development" />
-        <env name="ASPNETCORE_URLS" value="http://localhost:15159" />
-        <env name="DOTNET_DASHBOARD_OTLP_ENDPOINT_URL" value="http://localhost:16238" />
         <env name="DOTNET_ENVIRONMENT" value="Development" />
+        <env name="ASPNETCORE_ENVIRONMENT" value="Development" />
+        <env name="DOTNET_DASHBOARD_OTLP_ENDPOINT_URL" value="http://localhost:16238" />
+        <env name="ASPNETCORE_URLS" value="http://localhost:15159" />
         <env name="DOTNET_LAUNCH_PROFILE" value="http" />
       </envs>
       <option name="USE_PODMAN_RUNTIME" value="0" />
@@ -149,10 +166,10 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NITNC_D1_Server.AppHost" />
       <option name="TRACK_ENVS" value="1" />
       <envs>
-        <env name="ASPNETCORE_ENVIRONMENT" value="Development" />
-        <env name="ASPNETCORE_URLS" value="https://localhost:17023;http://localhost:15159" />
-        <env name="DOTNET_DASHBOARD_OTLP_ENDPOINT_URL" value="https://localhost:18010" />
         <env name="DOTNET_ENVIRONMENT" value="Development" />
+        <env name="ASPNETCORE_ENVIRONMENT" value="Development" />
+        <env name="DOTNET_DASHBOARD_OTLP_ENDPOINT_URL" value="https://localhost:18010" />
+        <env name="ASPNETCORE_URLS" value="https://localhost:17023;http://localhost:15159" />
         <env name="DOTNET_LAUNCH_PROFILE" value="https" />
       </envs>
       <option name="USE_PODMAN_RUNTIME" value="0" />
@@ -225,6 +242,24 @@
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto.Client/ImagawaYoshimoto.Client.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="MatsudairaSadanobu" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/MatsudairaSadanobu/MatsudairaSadanobu.csproj" />
       <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
@@ -324,11 +359,28 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="NITNC_D1_Server.MigrationService" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/NITNC_D1_Server.MigrationService.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net9.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="NITNC_D1_Server.MigrationService" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
     <list>
+      <item itemvalue=".NET プロジェクト.MatsudairaSadanobu" />
       <item itemvalue=".NET プロジェクト.AbrahamLincoln" />
       <item itemvalue=".NET プロジェクト.BlazorApp1.Client" />
       <item itemvalue=".NET プロジェクト.ImagawaYoshimoto" />
       <item itemvalue=".NET プロジェクト.ImagawaYoshimoto.Client" />
+      <item itemvalue=".NET 起動設定プロファイル.NITNC_D1_Server.MigrationService" />
       <item itemvalue=".NET 起動設定プロファイル.BlazorApp1: http" />
       <item itemvalue=".NET 起動設定プロファイル.BlazorApp1: https" />
       <item itemvalue=".NET 起動設定プロファイル.ImagawaYoshimoto: http" />
@@ -352,7 +404,8 @@
       <workItem from="1733009379071" duration="8000" />
       <workItem from="1733009396659" duration="3047000" />
       <workItem from="1733012457037" duration="32462000" />
-      <workItem from="1733496247239" duration="57450000" />
+      <workItem from="1733496247239" duration="89271000" />
+      <workItem from="1734085715588" duration="32191000" />
     </task>
     <task id="LOCAL-00001" summary="今川がデータベースを利用できる要になった&#10;microsoftでログインできる">
       <option name="closed" value="true" />
@@ -426,7 +479,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733868081531</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="リンカンbotについて，スコア記録できるようになった">
+      <option name="closed" value="true" />
+      <created>1733918331612</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1733918331612</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,7 +517,8 @@
     <MESSAGE value="データ登録時の完了メッセージを追加した" />
     <MESSAGE value="リンカンbotが問題を出して応答するようになった" />
     <MESSAGE value="Entitiy Framework関係をすべて共通プロジェクトに置き換えた" />
-    <option name="LAST_COMMIT_MESSAGE" value="Entitiy Framework関係をすべて共通プロジェクトに置き換えた" />
+    <MESSAGE value="リンカンbotについて，スコア記録できるようになった" />
+    <option name="LAST_COMMIT_MESSAGE" value="リンカンbotについて，スコア記録できるようになった" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

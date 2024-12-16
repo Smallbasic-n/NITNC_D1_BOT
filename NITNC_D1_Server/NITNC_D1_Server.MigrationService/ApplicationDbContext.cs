@@ -15,6 +15,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<FactbookQuestions> FactbookQuestions { get; set; }
     public DbSet<LincolnConfiguration> LincolnConfiguration { get; set; }
     public DbSet<MatsudairaDatas> MatsudairaDatas { get; set; }
+    public DbSet<MatsudairaRoles> MatsudairaROles { get; set; }
 
     public static byte[] _encryptionKey; 
     public static byte[] _encryptionIV;
@@ -28,8 +29,11 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .HasKey(x => new { x.Id });
         builder.Entity<FactbookQuestions>()
             .HasKey(x => new { x.Id });
-        builder.Entity<LincolnConfiguration>();
-        builder.Entity<MatsudairaDatas>();
+        builder.Entity<LincolnConfiguration>().HasNoKey();
+        builder.Entity<MatsudairaDatas>()
+            .HasKey(x=>new {x.Id});
+        builder.Entity<MatsudairaRoles>()
+            .HasKey(x=>new {x.Id});
         builder.UseEncryption(_provider);
     }
     

@@ -1,10 +1,12 @@
+using System.ComponentModel.DataAnnotations;
 using SoftFluent.ComponentModel.DataAnnotations;
 
 namespace NITNC_D1_Server.DataContext;
 
 public class MatsudairaDatas
 {
-    public ulong Id { get; set; }
+    [Key]
+    public int Id { get; set; }
     public ulong AccountId { get; set; }
     public ulong Chank { get; set; }
     public ulong FactBook { get; set; }
@@ -13,5 +15,9 @@ public class MatsudairaDatas
     [Encrypted]
     public string GivenName { get; set; }
     [Encrypted]
+    public string RohmeFirstName { get; set; }
+    [Encrypted]
+    public string RohmeGivenName { get; set; }
+    
     public string Email { get; set; }
 }

@@ -15,6 +15,11 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents()
     .AddAuthenticationStateSerialization();
 
+
+ApplicationDbContext._encryptionKey = Convert.FromBase64String("4RWxkL6rX0B/Z4L5zEdnFQ==");//(Environment.GetEnvironmentVariable("EncryptionKey"));
+ApplicationDbContext._encryptionIV = Convert.FromBase64String("ztA3yKfQhMjyRmMji66z2Xj9Im4h2o7hTj6JdpR418E=");//(Environment.GetEnvironmentVariable("EncryptionIV"));
+
+
 builder.Services.AddRadzenComponents();
 builder.Services.AddRadzenCookieThemeService();
 builder.Services.AddRadzenQueryStringThemeService();
@@ -38,26 +43,11 @@ var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__d1
 
 builder.Configuration["ConnectionStrings:postgresdb"]=connectionString;
 
-
-builder.AddNpgsqlDbContext<ApplicationDbContext>(connectionName: "d1system");
-builder.EnrichNpgsqlDbContext<ApplicationDbContext>(
-    configureSettings: settings =>
-    {
-        settings.ConnectionString = connectionString;
-        settings.DisableRetry = false;
-        settings.CommandTimeout = 30;
-    });
-  builder.Services.AddDbContextPool<ApplicationDbContext>(options =>
-      options.UseNpgsql(connectionString, sqlOptions =>
-      {
-          sqlOptions.ExecutionStrategy(c => new NpgsqlRetryingExecutionStrategy(c));
-      }));
-
-builder.Services.AddDbContextFactory<ApplicationDbContext>(options=>
+builder.Services.AddDbContext<ApplicationDbContext>(options=>
     options.UseNpgsql(connectionString, sqlOptions =>
     {
         sqlOptions.ExecutionStrategy(c => new NpgsqlRetryingExecutionStrategy(c));
-    }));
+    }));//.ConfigureWarnings(opt=>opt.Default(WarningBehavior.Log)));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

@@ -1,7 +1,4 @@
 using System.Security.Cryptography;
-using Aspire.Hosting;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.Extensions.Options;
 
 var builder = DistributedApplication.CreateBuilder(args);
 var postgres = 
@@ -34,6 +31,7 @@ builder.AddProject<Projects.ImagawaYoshimoto>("ImagawaYoshimoto").WithReference(
     .WithEnvironment("EncryptionKey",keyparam)
     .WithEnvironment("EncryptionIV", ivparam);
 
+/*
 builder.AddProject<Projects.AbrahamLincoln>("AbrahamLincoln").WithReference(postgres)
     .WithEnvironment("ClientId", builder.AddParameter("ClientId", true))
     .WithEnvironment("Token", builder.AddParameter("Token", true))
@@ -46,7 +44,6 @@ builder.AddProject<Projects.AbrahamLincoln>("AbrahamLincoln").WithReference(post
     .WithEnvironment("EncyptionKey",keyparam)
     .WithEnvironment("EncyptionIV", ivparam);
 
-/*
 builder.AddProject<Projects.MatsudairaSadanobu>("MatsudairaSadanobu").WithReference(postgres)
     .WithEnvironment("ClientId", builder.AddParameter("ClientId", true))
     .WithEnvironment("Token", builder.AddParameter("Token", true))
@@ -56,6 +53,15 @@ builder.AddProject<Projects.MatsudairaSadanobu>("MatsudairaSadanobu").WithRefere
     .WithEnvironment("EncryptionKey",keyparam)
     .WithEnvironment("EncryptionIV", ivparam);
 */
+
+builder.AddProject<Projects.TairanoKiyomori>("TairanoKiyomori").WithReference(postgres)
+    .WithEnvironment("ClientId", builder.AddParameter("ClientId", true))
+    .WithEnvironment("Token", builder.AddParameter("Token", true))
+    .WithEnvironment("GuildId", builder.AddParameter("GuildId", true))
+    .WithEnvironment("ScheduleChId", builder.AddParameter("ScheduleChId", true))
+    .WithEnvironment("EncryptionKey",keyparam)
+    .WithEnvironment("EncryptionIV", ivparam);
+
 builder.AddProject<Projects.NITNC_D1_Server_MigrationService>("migration")
     .WithReference(postgres)
     .WithEnvironment("EncryptionKey",keyparam)

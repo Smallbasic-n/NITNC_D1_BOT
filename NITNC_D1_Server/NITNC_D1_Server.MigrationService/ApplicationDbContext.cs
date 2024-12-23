@@ -16,6 +16,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<LincolnConfiguration> LincolnConfiguration { get; set; }
     public DbSet<MatsudairaDatas> MatsudairaDatas { get; set; }
     public DbSet<MatsudairaRoles> MatsudairaROles { get; set; }
+    public DbSet<KiyomoriSchedule> KiyomoriSchedule { get; set; }
 
     public static byte[] _encryptionKey; 
     public static byte[] _encryptionIV;
@@ -34,6 +35,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         builder.Entity<MatsudairaDatas>()
             .HasKey(x=>new {x.Id});
         builder.Entity<MatsudairaRoles>()
+            .HasKey(x=>new {x.Id});
+        builder.Entity<KiyomoriSchedule>()
             .HasKey(x=>new {x.Id});
         builder.UseEncryption(_provider);
     }

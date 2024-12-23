@@ -15,31 +15,127 @@
     <projectFile profileName="http">NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj</projectFile>
     <projectFile profileName="https">NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj</projectFile>
     <projectFile profileName="NITNC_D1_Server.MigrationService">NITNC_D1_Server.MigrationService/NITNC_D1_Server.MigrationService.csproj</projectFile>
+    <projectFile profileName="TairanoKiyomori">TairanoKiyomori/TairanoKiyomori.csproj</projectFile>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="Aspire Serviceとして再構築した松平定信">
-      <change afterPath="$PROJECT_DIR$/AbrahamLincoln/Modules/CommandMoudle.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AbrahamLincoln/Worker.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiscordBotBasic/Module.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiscordBotBasic/Worker.cs" afterDir="false" />
+    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="リンカン完成！">
+      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/KiyomoriSchedule.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TairanoKiyomori/Modules/ScheduleCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TairanoKiyomori/Program.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TairanoKiyomori/TairanoKiyomori.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TairanoKiyomori/Worker.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TairanoKiyomori/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AbrahamLincoln/AbrahamLincoln.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AbrahamLincoln/AbrahamLincoln.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AbrahamLincoln/InteractionHandler.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AbrahamLincoln/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AbrahamLincoln/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiscordBotBasic/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DiscordBotBasic/Class1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/Modules/RoleCommandModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Modules/RoleCommandModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/Modules/WhoisCommandModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Modules/WhoisCommandModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/Worker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Worker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/FactbookAdd.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/NITNC_D1_Server.AppHost.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Class1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/LincolnConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/LincolnConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.sln" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/IdentityNoOpEmailSender.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ConfirmEmail.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ConfirmEmailChange.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ForgotPassword.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ForgotPasswordConfirmation.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/InvalidPasswordReset.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/LoginWith2fa.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/LoginWithRecoveryCode.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/ChangePassword.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/DeletePersonalData.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/Disable2fa.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/Email.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/EnableAuthenticator.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/ExternalLogins.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/GenerateRecoveryCodes.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/Index.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/PersonalData.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/ResetAuthenticator.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/SetPassword.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/TwoFactorAuthentication.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Manage/_Imports.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/Register.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/RegisterConfirmation.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ResendEmailConfirmation.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ResetPassword.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Pages/ResetPasswordConfirmation.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Shared/ExternalLoginPicker.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Shared/ManageLayout.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Shared/ManageNavMenu.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Shared/ShowRecoveryCodes.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/Components/Account/Shared/StatusMessage.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/IdentityComponentsEndpointRouteBuilderExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/IdentityNoOpEmailSender.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/IdentityRedirectManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/IdentityUserAccessor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/AccessDenied.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ConfirmEmail.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ConfirmEmailChange.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ExternalLogin.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ForgotPassword.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ForgotPasswordConfirmation.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/InvalidPasswordReset.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/InvalidUser.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Lockout.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Login.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/LoginWith2fa.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/LoginWithRecoveryCode.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/ChangePassword.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/DeletePersonalData.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/Disable2fa.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/Email.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/EnableAuthenticator.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/ExternalLogins.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/GenerateRecoveryCodes.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/Index.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/PersonalData.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/ResetAuthenticator.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/SetPassword.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/TwoFactorAuthentication.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Manage/_Imports.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/Register.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/RegisterConfirmation.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ResendEmailConfirmation.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ResetPassword.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ResetPasswordConfirmation.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/_Imports.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/AccountLayout.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/ExternalLoginPicker.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/ManageLayout.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/ManageNavMenu.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/RedirectToLogin.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/ShowRecoveryCodes.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Shared/StatusMessage.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/App.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Layout/MainLayout.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Layout/MainLayout.razor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Layout/NavMenu.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Layout/NavMenu.razor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Auth.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Counter.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Error.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Home.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Weather.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Routes.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/_Imports.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/ApplicationDbContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/ApplicationUser.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/Migrations/00000000000000_CreateIdentitySchema.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/Migrations/00000000000000_CreateIdentitySchema.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Data/app.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/ImagawaYoshimoto2nd1.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Program.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/TairanoKiyomori/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/wwwroot/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/wwwroot/bootstrap/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/wwwroot/bootstrap/bootstrap.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/wwwroot/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/wwwroot/mainapps.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +171,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0b7856b364e04283a10bb924825b197f28f228/5c/871e96ef/StateManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b340b8fec8144b3aa7bc3a6d6abaa900d1bc00/15/80cdc5d1/Monitor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b340b8fec8144b3aa7bc3a6d6abaa900d1bc00/73/e901ba3e/Task.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b340b8fec8144b3aa7bc3a6d6abaa900d1bc00/fc/c5ac1502/DateTime.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b340b8fec8144b3aa7bc3a6d6abaa900d1bc00/fe/0ef9b23f/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d961748ae0684eccbc636b5ca7c46afe209c30/06/cad25e33/SingleQueryingEnumerable`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/46aa9080b6d23d2ee049e3b4be51c3c5acb0483d437bf481f8e46467d836e2/SocketInteraction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/759cb9d256b6b24b4c629cad77def463491b8a51ed0142ddabaf3fa5d90ac12/EmbedBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/beaf23cc394db595c8b4a1f8ef05659ef13edc92c71e88c4ee64db884c79f18/Optional.cs" root0="FORCE_HIGHLIGHTING" />
@@ -84,11 +182,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9342fb513b7b524925c79d9822cd3ecaf072c50231aa3b469875f4c2cdf/IdentityDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://$APPLICATION_HOME_DIR$/lib/modules/intellij.rider.jar!/schemas/msbuild/Microsoft.Build.Commontypes.xsd" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NITNC_D1_Server.AppHost/obj/Debug/net9.0/Aspire/references/MatsudairaSadanobu.ProjectMetadata.g.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/NoUsed/Components/Account/Pages/ConfirmEmail.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/NoUsed/Components/Account/Shared/ManageNavMenu.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Account/Pages/ExternalLogin.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/App.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/NoUsed/ImagawaYoshimoto2nd1/Components/Pages/Home.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -385,12 +478,28 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="TairanoKiyomori" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/TairanoKiyomori/TairanoKiyomori.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net9.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="TairanoKiyomori" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue=".NET プロジェクト.MatsudairaSadanobu" />
       <item itemvalue=".NET プロジェクト.AbrahamLincoln" />
       <item itemvalue=".NET プロジェクト.BlazorApp1.Client" />
       <item itemvalue=".NET プロジェクト.ImagawaYoshimoto" />
       <item itemvalue=".NET プロジェクト.ImagawaYoshimoto.Client" />
+      <item itemvalue=".NET 起動設定プロファイル.TairanoKiyomori" />
       <item itemvalue=".NET 起動設定プロファイル.MatsudairaSadanobu" />
       <item itemvalue=".NET 起動設定プロファイル.NITNC_D1_Server.MigrationService" />
       <item itemvalue=".NET 起動設定プロファイル.BlazorApp1: http" />
@@ -418,7 +527,7 @@
       <workItem from="1733012457037" duration="32462000" />
       <workItem from="1733496247239" duration="89271000" />
       <workItem from="1734085715588" duration="48025000" />
-      <workItem from="1734478174853" duration="48571000" />
+      <workItem from="1734478174853" duration="53458000" />
     </task>
     <task id="LOCAL-00001" summary="今川がデータベースを利用できる要になった&#10;microsoftでログインできる">
       <option name="closed" value="true" />
@@ -524,7 +633,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734856648230</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="リンカン完成！">
+      <option name="closed" value="true" />
+      <created>1734951488441</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1734951488441</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +675,8 @@
     <MESSAGE value="データベースをEntity Framework Coreにした&#10;松平定信botがデプロイ前までできるようになった" />
     <MESSAGE value="リンカンbotに関して，正常に動作するようになった．&#10;ニックネームもそれぞれのbotに合うようになった" />
     <MESSAGE value="Aspire Serviceとして再構築した松平定信" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aspire Serviceとして再構築した松平定信" />
+    <MESSAGE value="リンカン完成！" />
+    <option name="LAST_COMMIT_MESSAGE" value="リンカン完成！" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

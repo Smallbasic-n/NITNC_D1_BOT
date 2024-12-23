@@ -17,6 +17,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<MatsudairaDatas> MatsudairaDatas { get; set; }
     public DbSet<MatsudairaRoles> MatsudairaROles { get; set; }
     public DbSet<KiyomoriSchedule> KiyomoriSchedule { get; set; }
+    public DbSet<KiyomoriAssignment> KiyomoriAssignment { get; set; }
+    public DbSet<KiyomoriSubject> KiyomoriSubject { get; set; }
+    public DbSet<KiyomoriWorking> KiyomoriWorking { get; set; }
 
     public static byte[] _encryptionKey; 
     public static byte[] _encryptionIV;
@@ -38,6 +41,16 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .HasKey(x=>new {x.Id});
         builder.Entity<KiyomoriSchedule>()
             .HasKey(x=>new {x.Id});
+        builder.Entity<KiyomoriWorking>()
+            .HasMany(e => e.KiyomoriAssignments)
+            .WithOne(e => e.KiyomoriWorking)
+            .HasForeignKey(e => e.WorkId)
+            .IsRequired();
+        builder.Entity<KiyomoriSubject>()
+            .HasMany(e => e.KiyomoriWorking)
+            .WithOne(e => e.KiyomoriSubject)
+            .HasForeignKey(e => e.SubjectId)
+            .IsRequired();
         builder.UseEncryption(_provider);
     }
     

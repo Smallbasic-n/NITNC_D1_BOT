@@ -1,0 +1,71 @@
+@page "/Subject"
+@rendermode InteractiveServer
+@inject ApplicationDbContext Context
+
+<h3>教科登録</h3>
+<RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
+    <RadzenColumn Size="12" SizeMD="4">
+        <RadzenCard>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">教科名</RadzenText>
+            <RadzenTextBox Change=@(args => _subjectName=args) Style="width: 100%" aria-label="教科名" />
+        </RadzenCard>
+    </RadzenColumn>
+    <RadzenColumn Size="12" SizeMD="4">
+        <RadzenCard>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">曜日</RadzenText>
+            <RadzenDropDown @bind-Value=@_chosenDay Data=@_days Style="width: 100%; max-width: 400px;" Name="Day" />
+        </RadzenCard>
+    </RadzenColumn>
+    <RadzenColumn Size="12" SizeMD="4">
+        <RadzenButton Click="Register">登録</RadzenButton>
+    </RadzenColumn>
+</RadzenRow>
+@if (_hasMessage)
+{
+    <RadzenAlert Variant="Variant.Flat" AlertStyle="AlertStyle.Info" Icon="info" Shade="Shade.Lighter" Size="AlertSize.Small" AllowClose=false>
+        @_message
+    </RadzenAlert>
+}
+@code {
+    private string _subjectName = "";
+    private string[] _days = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"];
+    private string _chosenDay = "";
+    private bool _hasMessage = false;
+    private string _message = "";
+
+    private async Task Register(MouseEventArgs obj)
+    {
+        DayEnums dayEnums = DayEnums.Monday;
+        switch (_chosenDay)
+        {
+            case "月曜日":
+                dayEnums=DayEnums.Monday;
+                break;
+            case "火曜日":
+                dayEnums=DayEnums.Tuesday;
+                break;
+            case "水曜日":
+                dayEnums=DayEnums.Wednesday;
+                break;
+            case "木曜日":
+                dayEnums=DayEnums.Thursday;
+                break;
+            case "金曜日":
+                dayEnums=DayEnums.Friday;
+                break;
+            case "土曜日":
+                dayEnums=DayEnums.Saturday;
+                break;
+            case "日曜日":
+                dayEnums=DayEnums.Sunday;
+                break;
+        }
+        var subject=await Context.KiyomoriSubject.AddAsync(new KiyomoriSubject() { Day = dayEnums, SubjectName = _subjectName });
+        await Context.SaveChangesAsync();
+        await Context.KiyomoriWorking.AddAsync(new KiyomoriWorking() { SubjectId = subject.Entity.Id, WorkName = "デフォルト" });
+        await Context.SaveChangesAsync();
+        _message = "教科「" + _subjectName + "」を登録しました．";
+        _hasMessage = true;
+    }
+
+}

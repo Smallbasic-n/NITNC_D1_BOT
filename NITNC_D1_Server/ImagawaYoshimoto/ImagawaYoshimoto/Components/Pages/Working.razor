@@ -1,0 +1,43 @@
+@page "/Working"
+@rendermode InteractiveServer
+@inject ApplicationDbContext Context
+
+<h3>ワークブック等登録</h3>
+<RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
+    <RadzenColumn Size="12" SizeMD="4">
+        <RadzenCard>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">教科名</RadzenText>
+            <RadzenDropDown @bind-Value=@_subjectName Data=@Context.KiyomoriSubject Style="width: 100%; max-width: 400px;" Name="Subjects" />
+        </RadzenCard>
+    </RadzenColumn>
+    <RadzenColumn Size="12" SizeMD="4">
+        <RadzenCard>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">ワークブック名</RadzenText>
+            <RadzenTextBox Change=@(args => _workingName=args) Style="width: 100%" aria-label="ワークブック名" />
+        </RadzenCard>
+    </RadzenColumn>
+    <RadzenColumn Size="12" SizeMD="4">
+        <RadzenButton Click="Register">登録</RadzenButton>
+    </RadzenColumn>
+</RadzenRow>
+@if (_hasMessage)
+{
+    <RadzenAlert Variant="Variant.Flat" AlertStyle="AlertStyle.Info" Icon="info" Shade="Shade.Lighter" Size="AlertSize.Small" AllowClose=false>
+        @_message
+    </RadzenAlert>
+}
+@code {
+    private KiyomoriSubject _subjectName;
+    private string _workingName = "";
+    private bool _hasMessage = false;
+    private string _message = "";
+
+    private async Task Register(MouseEventArgs obj)
+    {
+        await Context.KiyomoriWorking.AddAsync(new KiyomoriWorking() { SubjectId = _subjectName.Id, WorkName = _workingName });
+        await Context.SaveChangesAsync();
+        _message = "教科「" + _subjectName.SubjectName + "」のワークブック「"+_workingName+"」を登録しました．";
+        _hasMessage = true;
+    }
+
+}

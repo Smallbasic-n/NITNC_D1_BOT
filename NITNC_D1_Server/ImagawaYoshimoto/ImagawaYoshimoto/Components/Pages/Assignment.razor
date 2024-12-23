@@ -1,0 +1,62 @@
+@page "/Assignment"
+@rendermode InteractiveServer
+@inject ApplicationDbContext Context
+
+<h3>課題登録</h3>
+<RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
+    <RadzenColumn Size="12" SizeMD="4">
+        <RadzenCard>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">教科名</RadzenText>
+            <RadzenDropDown @bind-Value=@_subjectName Data=@Context.KiyomoriSubject Style="width: 100%; max-width: 400px;" Name="Subjects" />
+        </RadzenCard>
+    </RadzenColumn>
+    @if (_subjectName != null)
+    {
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">ワークブック名(該当しない場合はデフォルトを選択)</RadzenText>
+                <RadzenDropDown @bind-Value=@_workingName Data=@Context.KiyomoriWorking.Where(x=>x.SubjectId==_subjectName.Id) Style="width: 100%; max-width: 400px;" Name="Workings" />
+            </RadzenCard>
+        </RadzenColumn>
+    }
+    <RadzenColumn Size="12" SizeMD="4">
+        <RadzenCard>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">詳細(範囲など)</RadzenText>
+            <RadzenTextBox Change=@(args => _comment=args) Style="width: 100%" aria-label="ワークブック名" />
+        </RadzenCard>
+    </RadzenColumn>
+    <RadzenColumn Size="12" SizeMD="4">
+        <RadzenCard>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">期限</RadzenText>
+            <RadzenCheckBox @bind-value=@_isNextClass>次の授業まで(次の @_subjectName.Day.ToString() まで)</RadzenCheckBox>
+            <RadzenDatePicker @bind-Value=@_date Name="Deadline" ShowCalendarWeek />
+        </RadzenCard>
+    </RadzenColumn>
+    <RadzenColumn Size="12" SizeMD="4">
+        <RadzenButton Click="Register">登録</RadzenButton>
+    </RadzenColumn>
+</RadzenRow>
+@if (_hasMessage)
+{
+    <RadzenAlert Variant="Variant.Flat" AlertStyle="AlertStyle.Info" Icon="info" Shade="Shade.Lighter" Size="AlertSize.Small" AllowClose=false>
+        @_message
+    </RadzenAlert>
+}
+@code {
+    private KiyomoriSubject _subjectName;
+    private KiyomoriWorking _workingName;
+    private string _comment;
+    private DateTime _date;
+    private bool _isNextClass;
+    private bool _hasMessage = false;
+    private string _message = "";
+
+    private async Task Register(MouseEventArgs obj)
+    {
+        await Context.KiyomoriAssignment.AddAsync(new KiyomoriAssignment(){ Deadline = _date, Detail = _comment, WorkId = _workingName.Id});
+        await Context.SaveChangesAsync();
+        _message = "教科「" + _subjectName.SubjectName + "」のワークブック課題「"+_workingName+"("+_comment+")」を登録しました．";
+        _hasMessage = true;
+    }
+
+}

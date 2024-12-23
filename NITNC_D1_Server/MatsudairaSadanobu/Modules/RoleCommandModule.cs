@@ -1,29 +1,16 @@
 using Discord;
 using Discord.Interactions;
+using DiscordBotBasic;
 using Microsoft.EntityFrameworkCore;
 using NITNC_D1_Server.DataContext;
 using static DiscordBotBasic.Supports;
 
 namespace MatsudairaSadanobu.Modules;
 
-public class RoleCommandModule : InteractionModuleBase<SocketInteractionContext>
+public class RoleCommandModule(IDbContextFactory<ApplicationDbContext> context, IConfiguration configuration): Module(context, configuration)
 
 {
-    private readonly ApplicationDbContext DbContext;
-    private ulong JoinChId;
-    
-    public InteractionService Commands { get; set; }
-
-    private DiscordBotBasic.InteractionHandler _handler;
-
-    public RoleCommandModule(DiscordBotBasic.InteractionHandler handler, IDbContextFactory<ApplicationDbContext> context,
-        IConfiguration configuration)
-    {
-        _handler = handler;
-        DbContext = context.CreateDbContext();
-        JoinChId=Convert.ToUInt64(configuration["JoinChId"]);
-    }
-
+    private readonly ulong _joinChId=Convert.ToUInt64(configuration["JoinChId"]);
 
     [SlashCommand(
         "rolecreate",
@@ -163,7 +150,7 @@ public class RoleCommandModule : InteractionModuleBase<SocketInteractionContext>
             buttons.WithButton(Context.Guild.GetRole(roleDt1.RoleId).Name,"role-"+roleDt1.RoleId.ToString());
         }
         await RespondAsync(ephemeral:true, text:"ロール付与令を発行します．");
-        var message= await Context.Guild.GetTextChannel(JoinChId).SendMessageAsync(
+        var message= await Context.Guild.GetTextChannel(_joinChId).SendMessageAsync(
             embed: EmbedInstanceCreator(
                 "松平定信公によるロール付与の令",
                 "自分が該当するロールにリアクションをつけてください．"

@@ -20,22 +20,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="リンカンbotに関して，正常に動作するようになった．&#10;ニックネームもそれぞれのbotに合うようになった">
-      <change afterPath="$PROJECT_DIR$/DiscordBotBasic/Class1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiscordBotBasic/DiscordBotBasic.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiscordBotBasic/InteractionHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Modules/RoleCommandModule.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Modules/WhoisCommandModule.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Worker.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MatsudairaSadanobu/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MatsudairaSadanobu/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MatsudairaSadanobu_old/MatsudairaSadanobu_old.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MatsudairaSadanobu_old/Program.cs" afterDir="false" />
+    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="Aspire Serviceとして再構築した松平定信">
+      <change afterPath="$PROJECT_DIR$/AbrahamLincoln/Modules/CommandMoudle.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AbrahamLincoln/Worker.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiscordBotBasic/Module.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiscordBotBasic/Worker.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/MatsudairaSadanobu.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/MatsudairaSadanobu.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AbrahamLincoln/AbrahamLincoln.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AbrahamLincoln/AbrahamLincoln.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AbrahamLincoln/InteractionHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AbrahamLincoln/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AbrahamLincoln/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiscordBotBasic/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DiscordBotBasic/Class1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/Modules/RoleCommandModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Modules/RoleCommandModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/Modules/WhoisCommandModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Modules/WhoisCommandModule.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MatsudairaSadanobu/Worker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MatsudairaSadanobu/Worker.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.AppHost/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.sln" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Class1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/LincolnConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/LincolnConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +73,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0b7856b364e04283a10bb924825b197f28f228/5c/871e96ef/StateManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b340b8fec8144b3aa7bc3a6d6abaa900d1bc00/15/80cdc5d1/Monitor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b340b8fec8144b3aa7bc3a6d6abaa900d1bc00/73/e901ba3e/Task.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b340b8fec8144b3aa7bc3a6d6abaa900d1bc00/fe/0ef9b23f/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/46aa9080b6d23d2ee049e3b4be51c3c5acb0483d437bf481f8e46467d836e2/SocketInteraction.cs" root0="FORCE_HIGHLIGHTING" />
@@ -76,6 +81,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/beaf23cc394db595c8b4a1f8ef05659ef13edc92c71e88c4ee64db884c79f18/Optional.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/daeb1df858687e94086074db782bdded42e6afd8b64835fc4da7219c0e5/RequestQueueBucket.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dbad425389ce87a11db1d22b2ab7f978e8e9ec4538bfcfbb79324d1545c0/InteractionService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f9342fb513b7b524925c79d9822cd3ecaf072c50231aa3b469875f4c2cdf/IdentityDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://$APPLICATION_HOME_DIR$/lib/modules/intellij.rider.jar!/schemas/msbuild/Microsoft.Build.Commontypes.xsd" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NITNC_D1_Server.AppHost/obj/Debug/net9.0/Aspire/references/MatsudairaSadanobu.ProjectMetadata.g.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NoUsed/Components/Account/Pages/ConfirmEmail.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
@@ -103,7 +109,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Aspire Host.NITNC_D1_Server.AppHost: http.executor": "Run",
+    "Aspire Host.NITNC_D1_Server.AppHost: http.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "imagawasystem",
@@ -412,7 +418,7 @@
       <workItem from="1733012457037" duration="32462000" />
       <workItem from="1733496247239" duration="89271000" />
       <workItem from="1734085715588" duration="48025000" />
-      <workItem from="1734478174853" duration="29328000" />
+      <workItem from="1734478174853" duration="48571000" />
     </task>
     <task id="LOCAL-00001" summary="今川がデータベースを利用できる要になった&#10;microsoftでログインできる">
       <option name="closed" value="true" />
@@ -510,7 +516,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734356824702</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Aspire Serviceとして再構築した松平定信">
+      <option name="closed" value="true" />
+      <created>1734856648230</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1734856648230</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,7 +557,8 @@
     <MESSAGE value="リンカンbotについて，スコア記録できるようになった" />
     <MESSAGE value="データベースをEntity Framework Coreにした&#10;松平定信botがデプロイ前までできるようになった" />
     <MESSAGE value="リンカンbotに関して，正常に動作するようになった．&#10;ニックネームもそれぞれのbotに合うようになった" />
-    <option name="LAST_COMMIT_MESSAGE" value="リンカンbotに関して，正常に動作するようになった．&#10;ニックネームもそれぞれのbotに合うようになった" />
+    <MESSAGE value="Aspire Serviceとして再構築した松平定信" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aspire Serviceとして再構築した松平定信" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

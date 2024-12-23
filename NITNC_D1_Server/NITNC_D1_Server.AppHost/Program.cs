@@ -9,10 +9,10 @@ var postgres =
             .WithEnvironment("POSTGRES_DB", "d1system")
             .WithDataBindMount("./postgres1", false)
             .WithInitBindMount("./initialSQL",true)
+            .WithImageTag("17.2")
             .WithPgAdmin()
             .AddDatabase("d1system");
 
-    //
 var keyparam = builder.AddParameter("EncryptionKey", true);
 var ivparam = builder.AddParameter("EncryptionIV", true);
 if (string.IsNullOrWhiteSpace(keyparam.Resource.Value))
@@ -33,7 +33,7 @@ if (string.IsNullOrWhiteSpace(keyparam.Resource.Value))
 builder.AddProject<Projects.ImagawaYoshimoto>("ImagawaYoshimoto").WithReference(postgres)
     .WithEnvironment("EncryptionKey",keyparam)
     .WithEnvironment("EncryptionIV", ivparam);
-/*
+
 builder.AddProject<Projects.AbrahamLincoln>("AbrahamLincoln").WithReference(postgres)
     .WithEnvironment("ClientId", builder.AddParameter("ClientId", true))
     .WithEnvironment("Token", builder.AddParameter("Token", true))
@@ -42,11 +42,11 @@ builder.AddProject<Projects.AbrahamLincoln>("AbrahamLincoln").WithReference(post
     .WithEnvironment("ChankRangeChId", builder.AddParameter("ChankRangeChId", true))
     .WithEnvironment("FactbookChId", builder.AddParameter("FactbookChId", true))
     .WithEnvironment("FactbookRangeChId", builder.AddParameter("FactbookRangeChId", true))
-    .WithEnvironment("Iteration", builder.AddParameter("Iteration", true))
+    .WithEnvironment("Interval", builder.AddParameter("Interval", true))
     .WithEnvironment("EncyptionKey",keyparam)
     .WithEnvironment("EncyptionIV", ivparam);
-*/
 
+/*
 builder.AddProject<Projects.MatsudairaSadanobu>("MatsudairaSadanobu").WithReference(postgres)
     .WithEnvironment("ClientId", builder.AddParameter("ClientId", true))
     .WithEnvironment("Token", builder.AddParameter("Token", true))
@@ -55,7 +55,7 @@ builder.AddProject<Projects.MatsudairaSadanobu>("MatsudairaSadanobu").WithRefere
     .WithEnvironment("EmailDomain", builder.AddParameter("EmailDomain", true))
     .WithEnvironment("EncryptionKey",keyparam)
     .WithEnvironment("EncryptionIV", ivparam);
-
+*/
 builder.AddProject<Projects.NITNC_D1_Server_MigrationService>("migration")
     .WithReference(postgres)
     .WithEnvironment("EncryptionKey",keyparam)

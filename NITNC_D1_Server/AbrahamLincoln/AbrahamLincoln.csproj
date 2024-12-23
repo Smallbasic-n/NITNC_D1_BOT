@@ -8,11 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Discord.Net" Version="3.16.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\NITNC_D1_Server.MigrationService\NITNC_D1_Server.MigrationService.csproj" />
+      <ProjectReference Include="..\DiscordBotBasic\DiscordBotBasic.csproj" />
     </ItemGroup>
 
 </Project>

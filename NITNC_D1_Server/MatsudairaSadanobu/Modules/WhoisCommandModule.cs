@@ -1,28 +1,15 @@
 using Discord;
 using Discord.Interactions;
+using DiscordBotBasic;
 using Microsoft.EntityFrameworkCore;
 using NITNC_D1_Server.DataContext;
 using static DiscordBotBasic.Supports;
 
 namespace MatsudairaSadanobu.Modules;
 
-public class WhoisCommandModule : InteractionModuleBase<SocketInteractionContext>
-
+public class WhoisCommandModule(IDbContextFactory<ApplicationDbContext> context, IConfiguration configuration): Module(context, configuration)
 {
-    private readonly ApplicationDbContext DbContext;
-    private string EmailDomain;
-    // Dependencies can be accessed through Property injection, public properties with public setters will be set by the service provider
-    public InteractionService Commands { get; set; }
-
-    private DiscordBotBasic.InteractionHandler _handler;
-
-    public WhoisCommandModule(DiscordBotBasic.InteractionHandler handler, IDbContextFactory<ApplicationDbContext> context, IConfiguration configuration)
-    {
-        _handler = handler;
-        DbContext = context.CreateDbContext();
-        EmailDomain = configuration["EmailDomain"];
-    }
-
+    private readonly string _emailDomain = configuration["EmailDomain"]??"";
 
     [SlashCommand(
         "whois",
@@ -59,7 +46,7 @@ public class WhoisCommandModule : InteractionModuleBase<SocketInteractionContext
                     .WithValue(sql.RohmeGivenName + "　" + sql.RohmeFirstName),
                 new EmbedFieldBuilder()
                     .WithName("学籍番号")
-                    .WithValue(sql.Email.Replace("@" + EmailDomain, "")),
+                    .WithValue(sql.Email.Replace("@" + _emailDomain, "")),
                 new EmbedFieldBuilder()
                     .WithName("ロール")
                     .WithValue(roles[..^1])
@@ -86,14 +73,14 @@ public class WhoisCommandModule : InteractionModuleBase<SocketInteractionContext
                 {
                     DbContext.MatsudairaDatas.Add(new MatsudairaDatas()
                     {
-                        AccountId = Context.User.Id, Chank = 0, Email = studentId + "@"+EmailDomain, FactBook = 0,
+                        AccountId = Context.User.Id, Chank = 0, Email = studentId + "@"+_emailDomain, FactBook = 0,
                         FirstName = firstname, GivenName = givenname.ToUpper(), RohmeFirstName = rohmefirstname, RohmeGivenName = rohmegivenname
                     });
                 }
                 else
                 {
                     var existsuser = DbContext.MatsudairaDatas.FirstOrDefault(x => x.AccountId == Context.User.Id);
-                    existsuser.Email = studentId + "@"+EmailDomain;
+                    existsuser.Email = studentId + "@"+_emailDomain;
                     existsuser.FirstName = firstname;
                     existsuser.GivenName = givenname;
                     existsuser.RohmeFirstName = rohmefirstname;

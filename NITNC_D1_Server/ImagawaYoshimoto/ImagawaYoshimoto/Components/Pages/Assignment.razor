@@ -1,50 +1,105 @@
 @page "/Assignment"
 @rendermode InteractiveServer
-@inject ApplicationDbContext Context
-
-<h3>課題登録</h3>
-<RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
-    <RadzenColumn Size="12" SizeMD="4">
-        <RadzenCard>
-            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">教科名</RadzenText>
-            <RadzenDropDown @bind-Value=@_subjectName Data=@Context.KiyomoriSubject Style="width: 100%; max-width: 400px;" Name="Subjects" />
-        </RadzenCard>
-    </RadzenColumn>
-    @if (_subjectName != null)
+@inject IDbContextFactory<ApplicationDbContext> DbContextFactory
+@inject DialogService DialogService
+@code{
+    private ApplicationDbContext Context { get; set; } = null!;
+    private ApplicationDbContext ContextView { get; set; } = null!;
+    protected override async Task OnInitializedAsync()
     {
+        Context = await DbContextFactory.CreateDbContextAsync();
+        ContextView = await DbContextFactory.CreateDbContextAsync();
+        await base.OnInitializedAsync();
+    }
+
+
+}
+@using Microsoft.EntityFrameworkCore
+@implements IDisposable
+
+<RadzenCard>
+    <RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
         <RadzenColumn Size="12" SizeMD="4">
             <RadzenCard>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">ワークブック名(該当しない場合はデフォルトを選択)</RadzenText>
-                <RadzenDropDown @bind-Value=@_workingName Data=@Context.KiyomoriWorking.Where(x=>x.SubjectId==_subjectName.Id) Style="width: 100%; max-width: 400px;" Name="Workings" />
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">教科名</RadzenText>
+                <RadzenDropDown @bind-Value=@_subjectName Data=@ContextView.KiyomoriSubject Style="width: 100%; max-width: 400px;" Name="Subjects" />
             </RadzenCard>
         </RadzenColumn>
-    }
-    <RadzenColumn Size="12" SizeMD="4">
-        <RadzenCard>
-            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">詳細(範囲など)</RadzenText>
-            <RadzenTextBox Change=@(args => _comment=args) Style="width: 100%" aria-label="ワークブック名" />
-        </RadzenCard>
-    </RadzenColumn>
-    <RadzenColumn Size="12" SizeMD="4">
-        <RadzenCard>
-            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">期限</RadzenText>
-            <RadzenCheckBox @bind-value=@_isNextClass>次の授業まで(次の @_subjectName.Day.ToString() まで)</RadzenCheckBox>
-            <RadzenDatePicker @bind-Value=@_date Name="Deadline" ShowCalendarWeek />
-        </RadzenCard>
-    </RadzenColumn>
-    <RadzenColumn Size="12" SizeMD="4">
-        <RadzenButton Click="Register">登録</RadzenButton>
-    </RadzenColumn>
-</RadzenRow>
-@if (_hasMessage)
+        @if (_subjectName != null)
+        {
+            <RadzenColumn Size="12" SizeMD="4">
+                <RadzenCard>
+                    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">ワークブック名(該当しない場合はデフォルトを選択)</RadzenText>
+                    <RadzenDropDown @bind-Value=@_workingName Data=@ContextView.KiyomoriWorking.Where(x=>x.SubjectId==_subjectName.Id) Style="width: 100%; max-width: 400px;" Name="Workings" />
+                </RadzenCard>
+            </RadzenColumn>
+        }
+    </RadzenRow>
+</RadzenCard>
+@if (_workingName != null)
 {
-    <RadzenAlert Variant="Variant.Flat" AlertStyle="AlertStyle.Info" Icon="info" Shade="Shade.Lighter" Size="AlertSize.Small" AllowClose=false>
-        @_message
-    </RadzenAlert>
+<RadzenCard>
+    <RadzenText TextStyle="TextStyle.Subtitle1" TagName="TagName.H2">課題登録</RadzenText>
+    <RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">詳細(範囲など)</RadzenText>
+                <RadzenTextBox Change=@(args => _comment=args) Style="width: 100%" aria-label="詳細" />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">期限</RadzenText>
+                <RadzenCheckBox @bind-value=@_isNextClass>
+                </RadzenCheckBox>
+                <RadzenDatePicker @bind-Value=@_date Name="Deadline" ShowCalendarWeek />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenButton Click="Register">登録</RadzenButton>
+        </RadzenColumn>
+    </RadzenRow>
+</RadzenCard>
+
+<RadzenCard>
+    <RadzenText TextStyle="TextStyle.Subtitle1" TagName="TagName.H2">課題変更・削除</RadzenText>
+    <RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">詳細(選択)</RadzenText>
+                <RadzenDropDown @bind-Value=@_assignmentObj  Change=@(_ =>
+                {
+                _comment = _assignmentObj.Detail;
+                }) Data=@ContextView.KiyomoriAssignment.Where(x=>x.WorkId==_workingName.Id) Style="width: 100%; max-width: 400px;" Name="Assignments" />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">詳細(範囲など)</RadzenText>
+                <RadzenTextBox Value=@_comment Change=@(args => _comment=args) Style="width: 100%" aria-label="詳細" />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">期限</RadzenText>
+                <RadzenCheckBox @bind-value=@_isNextClass>
+                </RadzenCheckBox>次の授業まで(次の @(_subjectName?.Day.ToString()??"")  まで)
+                <RadzenDatePicker @bind-Value=@_date Name="Deadline" ShowCalendarWeek />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenButton Click="Change">変更</RadzenButton>
+            <RadzenButton Click="Delete">削除</RadzenButton>
+        </RadzenColumn>
+    </RadzenRow>
+</RadzenCard>
 }
+
 @code {
-    private KiyomoriSubject _subjectName;
-    private KiyomoriWorking _workingName;
+    public void Dispose(){}
+    private KiyomoriSubject? _subjectName;
+    private KiyomoriWorking? _workingName;
+    private KiyomoriAssignment _assignmentObj;
     private string _comment;
     private DateTime _date;
     private bool _isNextClass;
@@ -53,10 +108,49 @@
 
     private async Task Register(MouseEventArgs obj)
     {
+        var ahs = DateTime.UtcNow.AddHours(9);
+        if (_isNextClass) _date = new DateTime(ahs.Year, ahs.Month, ahs.Day, 0, 0, 0, DateTimeKind.Utc);//DateTime.UtcNow.AddHours(9);
+        while (_date.DayOfWeek == _subjectName.Day)
+        {
+            _date = _date.AddDays(1);
+        }
         await Context.KiyomoriAssignment.AddAsync(new KiyomoriAssignment(){ Deadline = _date, Detail = _comment, WorkId = _workingName.Id});
         await Context.SaveChangesAsync();
-        _message = "教科「" + _subjectName.SubjectName + "」のワークブック課題「"+_workingName+"("+_comment+")」を登録しました．";
-        _hasMessage = true;
+        await DialogService.Alert("教科「" + _subjectName.SubjectName + "」のワークブック課題「"+_workingName+"("+_comment+")」を登録しました．","平清盛・今川義元");
+    }
+    private async Task Change(MouseEventArgs obj)
+    {
+        
+        if (_isNextClass) _date = DateTime.UtcNow.AddHours(9);
+        while (_date.DayOfWeek == _subjectName.Day)
+        {
+            _date = _date.AddDays(1);
+        }
+
+        _assignmentObj.Detail = _comment;
+        _assignmentObj.Deadline = _date;
+        Context.KiyomoriAssignment.Update(_assignmentObj);
+        await Context.SaveChangesAsync();
+        
+    }
+
+    private async Task Delete(MouseEventArgs obj)
+    {
+        var dialog = await DialogService.Confirm(
+            "本当に教科「" + _assignmentObj.KiyomoriWorking.KiyomoriSubject.SubjectName + "」のワークブック「"+_assignmentObj.KiyomoriWorking.WorkName+
+            "」の課題「"+_assignmentObj.Detail+"(期限："+_assignmentObj.Deadline.ToString("yyyy年M月d日")+")」を削除しますか？","平清盛・今川義元",
+            new ConfirmOptions(){ OkButtonText = "はい", CancelButtonText = "いいえ"})??false;
+        if (!dialog)
+        {
+            await DialogService.Alert("キャンセルしました．","平清盛・今川義元");
+            return;
+        }
+
+        Context.KiyomoriAssignment.Remove(_assignmentObj);
+        await Context.SaveChangesAsync();
+        await DialogService.Alert("教科「" + _assignmentObj.KiyomoriWorking.KiyomoriSubject.SubjectName + 
+                                  "」のワークブック「"+_assignmentObj.KiyomoriWorking.WorkName+"」の課題「"+
+                                  _assignmentObj.Detail+"(期限："+_assignmentObj.Deadline.ToString("yyyy年M月d日")+")」を削除しました．","平清盛・今川義元");
     }
 
 }

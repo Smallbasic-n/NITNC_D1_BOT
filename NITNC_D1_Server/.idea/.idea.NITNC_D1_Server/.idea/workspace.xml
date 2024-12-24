@@ -21,15 +21,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="平清盛が授業変更を通知できるようになった">
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Assignment.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Subject.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Working.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/KiyomoriAssignment.cs" afterDir="false" />
+    <list default="true" id="efac238a-dc1e-42b2-9b6b-9e0a028cd578" name="変更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.NITNC_D1_Server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Layout/NavMenu.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Assignment.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Assignment.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Home.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Subject.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Subject.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Working.razor" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Components/Pages/Working.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ImagawaYoshimoto/ImagawaYoshimoto/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/KiyomoriAssignment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NITNC_D1_Server.MigrationService/KiyomoriAssignment.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +99,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "imagawasystem",
+    "last_opened_file_path": "/run/media/nobu/Nobu_Data/sources/codes/sources/BrakeFireWall/BrakeFireWall.sln",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -421,7 +421,7 @@
       <workItem from="1733012457037" duration="32462000" />
       <workItem from="1733496247239" duration="89271000" />
       <workItem from="1734085715588" duration="48025000" />
-      <workItem from="1734478174853" duration="59765000" />
+      <workItem from="1734478174853" duration="77452000" />
     </task>
     <task id="LOCAL-00001" summary="今川がデータベースを利用できる要になった&#10;microsoftでログインできる">
       <option name="closed" value="true" />
@@ -543,7 +543,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734956410318</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="平清盛に教科・ワーク・課題を登録できる用になった">
+      <option name="closed" value="true" />
+      <created>1734962629667</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1734962629667</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -579,7 +587,8 @@
     <MESSAGE value="Aspire Serviceとして再構築した松平定信" />
     <MESSAGE value="リンカン完成！" />
     <MESSAGE value="平清盛が授業変更を通知できるようになった" />
-    <option name="LAST_COMMIT_MESSAGE" value="平清盛が授業変更を通知できるようになった" />
+    <MESSAGE value="平清盛に教科・ワーク・課題を登録できる用になった" />
+    <option name="LAST_COMMIT_MESSAGE" value="平清盛に教科・ワーク・課題を登録できる用になった" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

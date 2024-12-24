@@ -1,7 +1,18 @@
 ﻿@page "/"
 @using Microsoft.EntityFrameworkCore
+@using Microsoft.EntityFrameworkCore.Internal
 @rendermode InteractiveServer
-@inject ApplicationDbContext Context
+@inject IDbContextFactory<ApplicationDbContext> DbContextFactory
+@code{
+    private ApplicationDbContext Context { get; set; } = null!;
+    protected override async Task OnInitializedAsync()
+    {
+        Context = await DbContextFactory.CreateDbContextAsync();
+        await base.OnInitializedAsync();
+    }
+}
+
+@implements IDisposable
 
 <PageTitle>Home</PageTitle>
 
@@ -16,4 +27,7 @@ Welcome to your new app.
         詳　細：@data.Detail<br/>
         期　限：@data.Deadline<br/>
     </div>
+}
+@code{
+    public void Dispose(){}
 }

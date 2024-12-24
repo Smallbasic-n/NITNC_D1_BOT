@@ -13,7 +13,7 @@ public class KiyomoriAssignment
     public KiyomoriWorking KiyomoriWorking { get; set; } = null!;
     public override string ToString()
     {
-        return $"{KiyomoriWorking.KiyomoriSubject.SubjectName}, {KiyomoriWorking.WorkName}, {Detail}";
+        return $"{KiyomoriWorking}, {Detail}";
     }
 }
 
@@ -22,24 +22,13 @@ public class KiyomoriSubject
     [Key]
     public int Id { get; set; }
     public string SubjectName { get; set; }
-    public DayEnums Day { get; set; }
+    public DayOfWeek Day { get; set; }
     
     public List<KiyomoriWorking> KiyomoriWorking { get; set; }=new List<KiyomoriWorking>();
     public override string ToString()
     {
         return SubjectName;
     }
-}
-
-public enum DayEnums
-{
-    Monday = 1,
-    Tuesday = 2,
-    Wednesday = 3,
-    Thursday = 4,
-    Friday = 5,
-    Saturday = 6,
-    Sunday = 7
 }
 
 public class KiyomoriWorking

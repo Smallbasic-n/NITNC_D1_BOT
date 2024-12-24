@@ -1,43 +1,115 @@
 @page "/Working"
 @rendermode InteractiveServer
-@inject ApplicationDbContext Context
+@inject IDbContextFactory<ApplicationDbContext> DbContextFactory
+@inject DialogService  DialogService
+@code{
+    private ApplicationDbContext Context { get; set; } = null!;
+    private ApplicationDbContext ContextView { get; set; } = null!;
+    protected override async Task OnInitializedAsync()
+    {
+        Context = await DbContextFactory.CreateDbContextAsync();
+        ContextView = await DbContextFactory.CreateDbContextAsync();
+        await base.OnInitializedAsync();
+    }
 
-<h3>ワークブック等登録</h3>
-<RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
-    <RadzenColumn Size="12" SizeMD="4">
-        <RadzenCard>
-            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">教科名</RadzenText>
-            <RadzenDropDown @bind-Value=@_subjectName Data=@Context.KiyomoriSubject Style="width: 100%; max-width: 400px;" Name="Subjects" />
-        </RadzenCard>
-    </RadzenColumn>
-    <RadzenColumn Size="12" SizeMD="4">
-        <RadzenCard>
-            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">ワークブック名</RadzenText>
-            <RadzenTextBox Change=@(args => _workingName=args) Style="width: 100%" aria-label="ワークブック名" />
-        </RadzenCard>
-    </RadzenColumn>
-    <RadzenColumn Size="12" SizeMD="4">
-        <RadzenButton Click="Register">登録</RadzenButton>
-    </RadzenColumn>
-</RadzenRow>
-@if (_hasMessage)
-{
-    <RadzenAlert Variant="Variant.Flat" AlertStyle="AlertStyle.Info" Icon="info" Shade="Shade.Lighter" Size="AlertSize.Small" AllowClose=false>
-        @_message
-    </RadzenAlert>
+
+
 }
+@using Microsoft.EntityFrameworkCore
+@implements IDisposable
+<RadzenCard>
+    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">教科名</RadzenText>
+    <RadzenDropDown @bind-Value=@_subjectName Data=@ContextView.KiyomoriSubject Style="width: 100%; max-width: 400px;" Name="Subjects" />
+</RadzenCard>
+
+
+<RadzenCard>
+    <RadzenText TextStyle="TextStyle.Subtitle1" TagName="TagName.H2">ワークブック等登録</RadzenText>
+    <RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
+        <RadzenColumn Size="12" SizeMD="4">
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">ワークブック名</RadzenText>
+                <RadzenTextBox Change=@(args => _workingName=args) Style="width: 100%" aria-label="ワークブック名" />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenButton Click="Register">登録</RadzenButton>
+        </RadzenColumn>
+    </RadzenRow>
+</RadzenCard>
+
+<RadzenCard>
+    <RadzenText TextStyle="TextStyle.Subtitle1" TagName="TagName.H2">ワークブック等変更</RadzenText>
+    <RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">ワークブック名(選択)</RadzenText>
+                <RadzenDropDown @bind-Value=@_workingObj Change=@(_ =>
+                                                               {
+                                                                   _workingName = _workingObj.WorkName;
+                                                               })  Data=@ContextView.KiyomoriWorking Style="width: 100%; max-width: 400px;" Name="Workbooks" />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">ワークブック名</RadzenText>
+                <RadzenTextBox Change=@(args => _workingName=args) Style="width: 100%" aria-label="ワークブック名" />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenButton Click="Change">変更</RadzenButton>
+            <RadzenButton Click="Delete">削除</RadzenButton>
+        </RadzenColumn>
+    </RadzenRow>
+</RadzenCard>
 @code {
+    public void Dispose(){}
     private KiyomoriSubject _subjectName;
+    private KiyomoriWorking _workingObj;
     private string _workingName = "";
-    private bool _hasMessage = false;
-    private string _message = "";
 
     private async Task Register(MouseEventArgs obj)
     {
         await Context.KiyomoriWorking.AddAsync(new KiyomoriWorking() { SubjectId = _subjectName.Id, WorkName = _workingName });
         await Context.SaveChangesAsync();
-        _message = "教科「" + _subjectName.SubjectName + "」のワークブック「"+_workingName+"」を登録しました．";
-        _hasMessage = true;
+        await DialogService.Alert("教科「" + _subjectName.SubjectName + "」のワークブック「" + _workingName + "」を登録しました．","平清盛・今川義元");
+    }
+    private async Task Change(MouseEventArgs obj)
+    {
+        _workingObj.WorkName = _workingName;
+        await Context.SaveChangesAsync();
+        await DialogService.Alert("教科「" + _subjectName.SubjectName + "」のワークブック「" + _workingName + "」を変更しました．","平清盛・今川義元");
+    }
+    private async Task Delete(MouseEventArgs obj)
+    {
+        var work = 
+            Context.KiyomoriWorking.Where(x => x.Id == _workingObj.Id)
+                .Include(x=>x.KiyomoriAssignments)
+                .Single();
+        if (work.WorkName == "デフォルト" && Context.KiyomoriWorking.Where(x => x.WorkName == "デフォルト").Count() <= 1)
+        {
+            await DialogService.Alert("各教科にはワークブック「デフォルト」が必要です．(通常のワーク課題以外の課題に対応するため)","平清盛・今川義元");
+            return;
+        }
+        var depts = "";
+        foreach (var assignment in work.KiyomoriAssignments)
+        {
+            depts += "<br/>─課題「" + assignment.Detail + "("+assignment.Deadline.ToString("yyyy年M月d日")+"まで)」";
+        }
+        var dialog = await DialogService.Confirm(
+            "本当に教科「" + _workingObj.KiyomoriSubject.SubjectName + "」のワークブック「"+_workingName+"」を削除しますか？このワークブックを削除すると，次のオブジェクトも削除されます．" + depts,"平清盛・今川義元",
+            new ConfirmOptions(){ OkButtonText = "はい", CancelButtonText = "いいえ"})??false;
+        if (!dialog)
+        {
+            await DialogService.Alert("キャンセルしました．","平清盛・今川義元");
+            return;
+        }
+
+        Context.KiyomoriWorking.Remove(work);
+        await Context.SaveChangesAsync();
+        await DialogService.Alert("教科「" + _workingObj.KiyomoriSubject.SubjectName + "」のワークブック「"+_workingName+"」を削除しました．","平清盛・今川義元");
     }
 
 }

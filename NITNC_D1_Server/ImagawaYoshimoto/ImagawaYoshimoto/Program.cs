@@ -16,8 +16,8 @@ builder.Services.AddRazorComponents()
     .AddAuthenticationStateSerialization();
 
 
-ApplicationDbContext._encryptionKey = Convert.FromBase64String("4RWxkL6rX0B/Z4L5zEdnFQ==");//(Environment.GetEnvironmentVariable("EncryptionKey"));
-ApplicationDbContext._encryptionIV = Convert.FromBase64String("ztA3yKfQhMjyRmMji66z2Xj9Im4h2o7hTj6JdpR418E=");//(Environment.GetEnvironmentVariable("EncryptionIV"));
+ApplicationDbContext._encryptionKey = Convert.FromBase64String(Environment.GetEnvironmentVariable("EncryptionKey"));
+ApplicationDbContext._encryptionIV = Convert.FromBase64String(Environment.GetEnvironmentVariable("EncryptionIV"));
 
 
 builder.Services.AddRadzenComponents();
@@ -43,7 +43,7 @@ var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__d1
 
 builder.Configuration["ConnectionStrings:postgresdb"]=connectionString;
 
-builder.Services.AddDbContext<ApplicationDbContext>(options=>
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options=>
     options.UseNpgsql(connectionString, sqlOptions =>
     {
         sqlOptions.ExecutionStrategy(c => new NpgsqlRetryingExecutionStrategy(c));

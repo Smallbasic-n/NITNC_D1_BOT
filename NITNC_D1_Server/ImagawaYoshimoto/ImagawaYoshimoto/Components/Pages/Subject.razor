@@ -1,0 +1,185 @@
+@page "/Subject"
+@using Microsoft.EntityFrameworkCore
+@rendermode InteractiveServer
+@inject IDbContextFactory<ApplicationDbContext> DbContextFactory
+@code{
+    private ApplicationDbContext Context { get; set; } = null!;
+    private ApplicationDbContext ContextView { get; set; } = null!;
+    protected override async Task OnInitializedAsync()
+    {
+        Context = await DbContextFactory.CreateDbContextAsync();
+        ContextView = await DbContextFactory.CreateDbContextAsync();
+        await base.OnInitializedAsync();
+    }
+}
+@inject DialogService DialogService
+@implements IDisposable
+
+<RadzenCard>
+    <RadzenText TextStyle="TextStyle.Subtitle1" TagName="TagName.H2">教科登録</RadzenText>
+    <RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">教科名</RadzenText>
+                <RadzenTextBox Change=@(args => _subjectName=args) Style="width: 100%" aria-label="教科名" />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">曜日</RadzenText>
+                <RadzenDropDown @bind-Value=@_chosenDay Data=@_days Style="width: 100%; max-width: 400px;" Name="Day" />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenButton Click="Register">登録</RadzenButton>
+        </RadzenColumn>
+    </RadzenRow>
+</RadzenCard>
+
+<RadzenCard>
+    <RadzenText TextStyle="TextStyle.Subtitle1" TagName="TagName.H2">教科変更</RadzenText>
+    <RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">教科名(選択)</RadzenText>
+                <RadzenDropDown @bind-Value=@_chosenSubject Data=@ContextView.KiyomoriSubject Change=@(_ =>
+                                                                                                 {
+                                                                                                     _chosenDay = _days[Convert.ToInt32(_chosenSubject.Day) - 1];
+                                                                                                     _subjectName = _chosenSubject.SubjectName;
+                                                                                                 }) Style="width: 100%; max-width: 400px;" Name="Subjects" />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">教科名</RadzenText>
+                <RadzenTextBox Change=@(args => _subjectName=args) Value=@_subjectName Style="width: 100%" aria-label="教科名" />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenCard>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">曜日</RadzenText>
+                <RadzenDropDown @bind-Value=@_chosenDay Data=@_days Style="width: 100%; max-width: 400px;" Name="Day" />
+            </RadzenCard>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <RadzenButton Click="Change">変更</RadzenButton>
+            <RadzenButton Click="Delete">削除</RadzenButton>
+        </RadzenColumn>
+    </RadzenRow>
+</RadzenCard>
+@code {
+    public void Dispose(){}
+    private KiyomoriSubject _chosenSubject;
+    private string _subjectName = "";
+    private string[] _days = ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"];
+    private string _chosenDay = "";
+    private bool _hasMessage = false;
+    private string _message = "";
+
+    private async Task Register(MouseEventArgs obj)
+    {
+        DayOfWeek dayEnums = DayOfWeek.Monday;
+        switch (_chosenDay)
+        {
+            case "月曜日":
+                dayEnums=DayOfWeek.Monday;
+                break;
+            case "火曜日":
+                dayEnums=DayOfWeek.Tuesday;
+                break;
+            case "水曜日":
+                dayEnums=DayOfWeek.Wednesday;
+                break;
+            case "木曜日":
+                dayEnums=DayOfWeek.Thursday;
+                break;
+            case "金曜日":
+                dayEnums=DayOfWeek.Friday;
+                break;
+            case "土曜日":
+                dayEnums=DayOfWeek.Saturday;
+                break;
+            case "日曜日":
+                dayEnums=DayOfWeek.Sunday;
+                break;
+        }
+        var subject=await Context.KiyomoriSubject.AddAsync(new KiyomoriSubject() { Day = dayEnums, SubjectName = _subjectName });
+        await Context.SaveChangesAsync();
+        await Context.KiyomoriWorking.AddAsync(new KiyomoriWorking() { SubjectId = subject.Entity.Id, WorkName = "デフォルト" });
+        await Context.SaveChangesAsync();
+        await DialogService.Alert("教科「" + _subjectName + "」を登録しました","平清盛・今川義元");
+    }
+
+    private async Task Delete(MouseEventArgs obj)
+    {
+        var subject = 
+            Context.KiyomoriSubject.Where(x => x.Id == _chosenSubject.Id)
+                .Include(x=>x.KiyomoriWorking)
+                .ThenInclude(x=>x.KiyomoriAssignments)
+                .Single();
+        var depts = "";
+        foreach (var working in subject.KiyomoriWorking)
+        {
+            depts += "<br/>─ワークブック「" + working.WorkName + "」";
+            foreach (var assignment in working.KiyomoriAssignments)
+            {
+                depts += "<br/>｜────課題「" + assignment.Detail + "("+assignment.Deadline.ToString("yyyy年M月d日")+"まで)」";
+            }
+        }
+        var dialog = await DialogService.Confirm(
+            "本当に教科「" + _chosenSubject.SubjectName + "」を削除しますか？この教科を削除すると，次のオブジェクトも削除されます．" + depts,"平清盛・今川義元",
+            new ConfirmOptions(){ OkButtonText = "はい", CancelButtonText = "いいえ"})??false;
+        if (!dialog)
+        {
+            await DialogService.Alert("キャンセルしました．","平清盛・今川義元");
+            return;
+        }
+        foreach (var working in subject.KiyomoriWorking)
+        {
+            foreach (var assignment in working.KiyomoriAssignments)
+            {
+                Context.KiyomoriAssignment.Remove(assignment);
+            }
+            Context.KiyomoriWorking.Remove(working);
+        }
+        Context.KiyomoriSubject.Remove(subject);
+        await Context.SaveChangesAsync();
+        await DialogService.Alert("教科「" + _chosenSubject.SubjectName + "」を削除しました．","平清盛・今川義元");
+    }
+
+    private async Task Change(MouseEventArgs obj)
+    {
+        DayOfWeek dayEnums = DayOfWeek.Monday;
+        switch (_chosenDay)
+        {
+            case "月曜日":
+                dayEnums=DayOfWeek.Monday;
+                break;
+            case "火曜日":
+                dayEnums=DayOfWeek.Tuesday;
+                break;
+            case "水曜日":
+                dayEnums=DayOfWeek.Wednesday;
+                break;
+            case "木曜日":
+                dayEnums=DayOfWeek.Thursday;
+                break;
+            case "金曜日":
+                dayEnums=DayOfWeek.Friday;
+                break;
+            case "土曜日":
+                dayEnums=DayOfWeek.Saturday;
+                break;
+            case "日曜日":
+                dayEnums=DayOfWeek.Sunday;
+                break;
+        }
+
+        _chosenSubject.SubjectName = _subjectName;
+        _chosenSubject.Day = dayEnums;
+        Context.KiyomoriSubject.Update(_chosenSubject);
+        await Context.SaveChangesAsync();
+        await DialogService.Alert("教科「" + _subjectName + "」を変更しました","平清盛・今川義元");
+    }
+
+}

@@ -1,0 +1,53 @@
+﻿@implements IDisposable
+
+@rendermode InteractiveServer
+@inject NavigationManager NavigationManager
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">今川義元</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler"/>
+
+    <RadzenPanelMenu Multiple="true">
+        <RadzenPanelMenuItem Style=".bi .bi-house-door-fill-nav-menu .nav-item .px-3" Text="ホーム" Path="/" Icon="home"></RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="エイブラハム・リンカン" Icon="line_weight">
+            <RadzenPanelMenuItem Text="チャンク登録" Path="/ChankAdd" Icon="input"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="FACTBOOK登録" Path="/FactbookAdd" Icon="description"></RadzenPanelMenuItem>
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="平清盛" Icon="line_weight">
+            <RadzenPanelMenuItem Text="教科登録" Path="/Subject" Icon="input"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="ワークブック等登録" Path="/Working" Icon="input"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="課題登録" Path="/Assignment" Icon="input"></RadzenPanelMenuItem>
+        </RadzenPanelMenuItem>
+            <form action="Account/Logout" method="post">
+                <AntiforgeryToken/>
+                <input type="hidden" name="ReturnUrl" value="@currentUrl"/>
+                <button type="submit" class="nav-link">
+                    <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> ログアウト
+                </button>
+            </form>
+    </RadzenPanelMenu>
+@code {
+    private string? currentUrl;
+
+    protected override void OnInitialized()
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+
+}

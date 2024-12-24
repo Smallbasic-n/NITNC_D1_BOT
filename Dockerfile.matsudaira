@@ -1,7 +1,0 @@
-FROM public.ecr.aws/lambda/nodejs:20.2024.10.16.12
-WORKDIR /app
-COPY ./package.json /app/package.json
-RUN npm install
-COPY ./matsudaira.js /app/matsudaira.js
-
-ENTRYPOINT [ "sh","-c","while true; do node /app/matsudaira.js; done" ]

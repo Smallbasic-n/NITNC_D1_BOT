@@ -17,7 +17,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AbrahamLincoln\AbrahamLincoln.csproj" />
-      <ProjectReference Include="..\ImagawaYoshimoto\ImagawaYoshimoto\ImagawaYoshimoto.csproj" />
+      <ProjectReference Include="..\ImagawaYoshimoto\ImagawaYoshimoto.csproj" />
       <ProjectReference Include="..\MatsudairaSadanobu\MatsudairaSadanobu.csproj" />
       <ProjectReference Include="..\NITNC_D1_Server.MigrationService\NITNC_D1_Server.MigrationService.csproj" />
       <ProjectReference Include="..\TairanoKiyomori\TairanoKiyomori.csproj" />

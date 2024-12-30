@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NITNC_D1_Server.DataContext;
+using NITNC_D1_Server.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace DiscordBotBasic;

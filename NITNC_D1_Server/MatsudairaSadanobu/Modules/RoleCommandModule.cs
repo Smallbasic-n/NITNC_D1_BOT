@@ -2,7 +2,8 @@ using Discord;
 using Discord.Interactions;
 using DiscordBotBasic;
 using Microsoft.EntityFrameworkCore;
-using NITNC_D1_Server.DataContext;
+using NITNC_D1_Server.Data;
+using NITNC_D1_Server.Data.Models;
 using static DiscordBotBasic.Supports;
 
 namespace MatsudairaSadanobu.Modules;
@@ -29,7 +30,7 @@ public class RoleCommandModule(IDbContextFactory<ApplicationDbContext> context, 
         }
                 
         var createdRole=await Context.Guild.CreateRoleAsync(name, color: Color.Parse(color));
-        DbContext.MatsudairaROles.Add(new MatsudairaRoles() { RoleId = createdRole.Id });
+        DbContext.MatsudairaRoles.Add(new MatsudairaRoles() { DiscordRoleId = createdRole.Id });
         await DbContext.SaveChangesAsync();
         await RespondAsync(ephemeral: true, embed: EmbedInstanceCreator("ロール"+name+"を作成しました",""));
     }
@@ -49,12 +50,12 @@ public class RoleCommandModule(IDbContextFactory<ApplicationDbContext> context, 
             return;
         }
         var dbrole=Context.Guild.Roles.Single(x=>x.Id==role.Id);
-        if (DbContext.MatsudairaROles.Any(x => x.RoleId == dbrole.Id))
+        if (DbContext.MatsudairaRoles.Any(x => x.DiscordRoleId == dbrole.Id))
         {
             await RespondAsync(ephemeral: true,text:"このロールは既に松平定信に登録されています．");
             return;
         }
-        DbContext.MatsudairaROles.Add(new MatsudairaRoles() { RoleId = dbrole.Id });
+        DbContext.MatsudairaRoles.Add(new MatsudairaRoles() { DiscordRoleId = dbrole.Id });
         await DbContext.SaveChangesAsync();
         await RespondAsync(ephemeral: true, embed: EmbedInstanceCreator("ロール"+role.Name+"を登録しました",""));
     }
@@ -68,9 +69,9 @@ public class RoleCommandModule(IDbContextFactory<ApplicationDbContext> context, 
     )
     {
         var roleList = "";
-        foreach (var role1 in DbContext.MatsudairaROles)
+        foreach (var role1 in DbContext.MatsudairaRoles)
         {
-            roleList += "@"+Context.Guild.GetRole(role1.RoleId).Name + ", ";
+            roleList += "@"+Context.Guild.GetRole(role1.DiscordRoleId).Name + ", ";
         }
         if (string.IsNullOrWhiteSpace(roleList))
         {
@@ -108,13 +109,13 @@ public class RoleCommandModule(IDbContextFactory<ApplicationDbContext> context, 
     {
         if (!Equals(role, null))
         {
-            if (DbContext.MatsudairaROles.All(x => x.RoleId != role.Id))
+            if (DbContext.MatsudairaRoles.All(x => x.DiscordRoleId != role.Id))
             {
                 await RespondAsync(ephemeral: true, text: "このロールは松平定信に登録されていません．");
                 return;
             }
 
-            DbContext.MatsudairaROles.Remove(DbContext.MatsudairaROles.Single(x => x.RoleId == role.Id));
+            DbContext.MatsudairaRoles.Remove(DbContext.MatsudairaRoles.Single(x => x.DiscordRoleId == role.Id));
             if (purge) await Context.Guild.GetRole(role.Id).DeleteAsync(new RequestOptions{ AuditLogReason = "From Matsudaira Sadanobu", RetryMode = RetryMode.AlwaysRetry});
             await DbContext.SaveChangesAsync();
             await RespondAsync(
@@ -128,7 +129,7 @@ public class RoleCommandModule(IDbContextFactory<ApplicationDbContext> context, 
         var roleData = Context.Guild.GetRole(roleId);
         if (!Equals(roleData, null))
         {
-            DbContext.MatsudairaROles.Remove(DbContext.MatsudairaROles.Single(x => x.RoleId == roleId));
+            DbContext.MatsudairaRoles.Remove(DbContext.MatsudairaRoles.Single(x => x.DiscordRoleId == roleId));
             await DbContext.SaveChangesAsync();
             await RespondAsync(ephemeral: true, embed: EmbedInstanceCreator("ロール" + roleId + "の登録を解除しました．", ""));
             return;
@@ -145,9 +146,9 @@ public class RoleCommandModule(IDbContextFactory<ApplicationDbContext> context, 
     )
     {
         var buttons = new ComponentBuilder();
-        foreach (var roleDt1 in DbContext.MatsudairaROles)
+        foreach (var roleDt1 in DbContext.MatsudairaRoles)
         {
-            buttons.WithButton(Context.Guild.GetRole(roleDt1.RoleId).Name,"role-"+roleDt1.RoleId.ToString());
+            buttons.WithButton(Context.Guild.GetRole(roleDt1.DiscordRoleId).Name,"role-"+roleDt1.DiscordRoleId.ToString());
         }
         await RespondAsync(ephemeral:true, text:"ロール付与令を発行します．");
         var message= await Context.Guild.GetTextChannel(_joinChId).SendMessageAsync(

@@ -1,0 +1,112 @@
+@page "/Migration"
+@using System.Security.Cryptography
+@using System.Text
+@using System.Text.Json.Nodes
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@rendermode InteractiveServer
+@inject ApplicationDbContext Context
+
+<h3>Migration</h3>
+
+<RadzenAlert Variant="Variant.Flat" AlertStyle="AlertStyle.Info" Icon="info" Shade="Shade.Lighter" Size="AlertSize.Small" AllowClose=false>
+    ここでは，旧松平定信Bot(Node.js)のデータを新松平定信Bot(APS.NET Core And EntityFramework Core)用のものに変換します．旧データと暗号化キー・IVをアップロードしてください．
+</RadzenAlert>
+<RadzenTextBox Change="s=>EncryptionKey=s" Placeholder="暗号化キー"></RadzenTextBox><br/>
+<RadzenTextBox Change="s=>EncryptionIv=s" Placeholder="暗号化IV"></RadzenTextBox><br/>
+<RadzenFormField Text="データファイル(user.data)" Style="width: 100%;">
+    <RadzenFileInput TValue="string" Change="s => UserData=s"></RadzenFileInput>
+</RadzenFormField>
+@Result
+<RadzenButton Click="Migrate">変換</RadzenButton>
+
+@code {
+    private string EncryptionKey { get; set; } = "";
+    private string EncryptionIv { get; set; } = "";
+    private string UserData { get; set; } = "";
+    private string Result { get; set; } = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        var user = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        if (user.User.Identity?.Name != AllSystemEnvVar.Supervisor + "@" + AllSystemEnvVar.Domain)
+        {
+            throw new AccessViolationException("Permission Denied.");
+        }
+
+    }
+
+    private void Migrate(MouseEventArgs obj)
+    {
+        var json = Convert.FromBase64String(UserData.Replace("data:application/octet-stream;base64,", ""));
+        var analyze = JsonNode.Parse(Encoding.UTF8.GetString(json))?["users"];
+        foreach (var user in analyze?.AsArray())
+        {
+            if (user?["accountId"]?.ToString()=="INVAILD") continue;
+            Context.MatsudairaDatas.Add(new MatsudairaDatas()
+            {
+                AccountId = Convert.ToUInt64(user?["accountId"]?.ToString()),
+                FirstName = user?["firstName"]?.ToString() ?? "",
+                RohmeFirstName = user?["rohmeFirstName"]?.ToString() ?? "",
+                GivenName = user?["givenName"]?.ToString() ?? "",
+                RohmeGivenName = user?["rohmeGivenName"]?.ToString() ?? "",
+                Email = (user?["studentId"]?.ToString() ?? "") + "@" + AllSystemEnvVar.Domain
+            });
+        }
+
+        Context.SaveChanges();
+        Result = "終了しました．";
+    }
+    public static void AesCtrTransform(
+        byte[] key, byte[] salt, Stream inputStream, Stream outputStream)
+    {
+        SymmetricAlgorithm aes = Aes.Create();
+        aes.Mode = CipherMode.ECB;
+        aes.Padding = PaddingMode.None;
+
+        int blockSize = aes.BlockSize / 8;
+
+        if (salt.Length != blockSize)
+        {
+            throw new ArgumentException(
+                "Salt size must be same as block size " +
+                $"(actual: {salt.Length}, expected: {blockSize})");
+        }
+
+        var counter = (byte[])salt.Clone();
+
+        var xorMask = new Queue<byte>();
+
+        var zeroIv = new byte[blockSize];
+        ICryptoTransform counterEncryptor = aes.CreateEncryptor(key, zeroIv);
+
+        int b;
+        while ((b = inputStream.ReadByte()) != -1)
+        {
+            if (xorMask.Count == 0)
+            {
+                var counterModeBlock = new byte[blockSize];
+
+                counterEncryptor.TransformBlock(
+                    counter, 0, counter.Length, counterModeBlock, 0);
+
+                for (var i2 = counter.Length - 1; i2 >= 0; i2--)
+                {
+                    if (++counter[i2] != 0)
+                    {
+                        break;
+                    }
+                }
+
+                foreach (var b2 in counterModeBlock)
+                {
+                    xorMask.Enqueue(b2);
+                }
+            }
+
+            var mask = xorMask.Dequeue();
+            outputStream.WriteByte((byte)(((byte)b) ^ mask));
+        }
+    }
+
+}

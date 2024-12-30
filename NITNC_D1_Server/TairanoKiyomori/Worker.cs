@@ -1,7 +1,7 @@
 using Discord.WebSocket;
 using DiscordBotBasic;
 using Microsoft.EntityFrameworkCore;
-using NITNC_D1_Server.DataContext;
+using NITNC_D1_Server.Data;
 
 namespace TairanoKiyomori;
 

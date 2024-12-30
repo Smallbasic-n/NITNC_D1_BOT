@@ -3,7 +3,7 @@ using Discord.Interactions;
 using DiscordBotBasic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using NITNC_D1_Server.DataContext;
+using NITNC_D1_Server.Data;
 using static DiscordBotBasic.Supports;
 namespace AbrahamLincoln.Modules;
 

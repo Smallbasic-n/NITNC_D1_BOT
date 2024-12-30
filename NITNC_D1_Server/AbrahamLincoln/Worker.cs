@@ -5,7 +5,8 @@ using DiscordBotBasic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using NITNC_D1_Server.DataContext;
+using NITNC_D1_Server.Data;
+using NITNC_D1_Server.Data.Models;
 
 namespace AbrahamLincoln;
 

@@ -1,0 +1,68 @@
+﻿@page "/Account/Login"
+
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Identity
+@using NITNC_D1_Server.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject ILogger<Login> Logger
+@inject NavigationManager NavigationManager
+@inject IdentityRedirectManager RedirectManager
+
+<PageTitle>Log in</PageTitle>
+
+<h1>ログイン</h1>
+<section>
+    @if (!string.IsNullOrEmpty(ErrorMessage))
+    {
+        var statusMessageClass = ErrorMessage.StartsWith("Error") ? "danger" : "success";
+        <div class="alert alert-@statusMessageClass" role="alert">
+            @ErrorMessage
+        </div>
+    }
+    <hr/>
+    <form class="form-horizontal" action="Account/PerformExternalLogin" method="post">
+        <div>
+            <AntiforgeryToken/>
+            <input type="hidden" name="ReturnUrl" value="@ReturnUrl"/>
+            <p>
+                @foreach (var provider in externalLogins)
+                {
+                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                }
+            </p>
+        </div>
+    </form>
+</section>
+
+
+@code {
+    private AuthenticationScheme[] externalLogins = [];
+    
+    private string? ErrorMessage { get; set; }
+
+    [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
+
+    [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        externalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToArray();
+        var errs = HttpContext.Request.Query["ErrorMessage"].ToString();
+        switch (errs)
+        {
+            case "school":
+                ErrorMessage = AllSystemEnvVar.NoKosenStudent;
+                break;
+            case "notdept":
+                ErrorMessage = AllSystemEnvVar.NoDeptStudent;
+                break;
+        }
+        if (HttpMethods.IsGet(HttpContext.Request.Method))
+        {
+            // Clear the existing external cookie to ensure a clean login process
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+        }
+    }
+}

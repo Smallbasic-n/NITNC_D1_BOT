@@ -13,6 +13,5 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DiscordBotBasic\DiscordBotBasic.csproj" />
-      <ProjectReference Include="..\NITNC_D1_Server.MigrationService\NITNC_D1_Server.MigrationService.csproj" />
     </ItemGroup>
 </Project>

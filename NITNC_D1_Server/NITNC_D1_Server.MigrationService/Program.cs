@@ -1,28 +1,17 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
-using NITNC_D1_Server.DataContext;
-using Npgsql.EntityFrameworkCore.PostgreSQL;
+using NITNC_D1_Server.Data;
+using NITNC_D1_Server.MigrationService;
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<ApiDbInitializer>();
 
 builder.AddServiceDefaults();
+builder.Services.AddHostedService<Worker>();
 
-ApplicationDbContext._encryptionKey = Convert.FromBase64String(builder.Configuration["EncryptionKey"]?? "");
-ApplicationDbContext._encryptionIV = Convert.FromBase64String(builder.Configuration["EncryptionIV"]?? "");
+ApplicationDbContext._encryptionKey = Convert.FromBase64String(Environment.GetEnvironmentVariable("EncryptionKey"));
+ApplicationDbContext._encryptionIV = Convert.FromBase64String(Environment.GetEnvironmentVariable("EncryptionIV"));
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing => tracing.AddSource(Worker.ActivitySourceName));
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("d1system"), sqlOptions =>
-    {
-        sqlOptions.MigrationsAssembly("NITNC_D1_Server.MigrationService");
-        sqlOptions.ExecutionStrategy(c => new NpgsqlRetryingExecutionStrategy(c));
-
-   }));
-
-builder.EnrichNpgsqlDbContext<ApplicationDbContext>(settings =>
-    // Disable Aspire default retries as we're using a custom execution strategy
-    settings.DisableRetry = true);
+builder.AddNpgsqlDbContext<ApplicationDbContext>("d1system");
 
 var host = builder.Build();
-
 host.Run();

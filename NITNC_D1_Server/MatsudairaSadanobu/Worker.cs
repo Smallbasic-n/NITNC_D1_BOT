@@ -7,7 +7,6 @@ using Google.Protobuf.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Newtonsoft.Json;
-using NITNC_D1_Server.DataContext;
 using Npgsql;
 
 namespace MatsudairaSadanobu;

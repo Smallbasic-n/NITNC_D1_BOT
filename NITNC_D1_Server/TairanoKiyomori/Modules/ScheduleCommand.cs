@@ -2,7 +2,8 @@ using Discord;
 using Discord.Interactions;
 using DiscordBotBasic;
 using Microsoft.EntityFrameworkCore;
-using NITNC_D1_Server.DataContext;
+using NITNC_D1_Server.Data;
+using NITNC_D1_Server.Data.Models;
 
 namespace TairanoKiyomori.Modules;
 

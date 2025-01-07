@@ -42,15 +42,15 @@ public class CommandMoudle(IDbContextFactory<ApplicationDbContext> context, ICon
                     .WithValue("<@"+chankChamp[0].AccountId+">/"+chankChamp[0].Chank),
                 new EmbedFieldBuilder()
                     .WithName("FACTBOOKチャンプ/正答数")
-                    .WithValue("<@"+factbookChamp[0].AccountId+"/"+factbookChamp[0].FactBook),
+                    .WithValue("<@"+factbookChamp[0].AccountId+">/"+factbookChamp[0].FactBook),
                 new EmbedFieldBuilder()
                     .WithName("チャンク四天王")
-                    .WithValue("<@"+chankChamp[1].AccountId+">/<@"+"<@"+chankChamp[2].AccountId+">/<@"+
-                               "<@"+chankChamp[3].AccountId+">/<@"+"<@"+chankChamp[4].AccountId+">"),
+                    .WithValue("<@"+chankChamp[1].AccountId+">/<@"+chankChamp[2].AccountId+">/"+
+                               "<@"+chankChamp[3].AccountId+">/<@"+chankChamp[4].AccountId+">"),
                 new EmbedFieldBuilder()
                     .WithName("FACTBOOK四天王")
-                    .WithValue("<@"+factbookChamp[1].AccountId+">/<@"+"<@"+factbookChamp[2].AccountId+">/<@"+
-                               "<@"+factbookChamp[3].AccountId+">/<@"+"<@"+factbookChamp[4].AccountId+">"),
+                    .WithValue("<@"+factbookChamp[1].AccountId+">/<@"+factbookChamp[2].AccountId+">/"+
+                               "<@"+factbookChamp[3].AccountId+">/<@"+factbookChamp[4].AccountId+">"),
                 new EmbedFieldBuilder()
                     .WithName("チャンクの延べ正答数／延べ回答数／延べ出題数")
                     .WithValue(config.ChankSolved+"／"+config.ChankAnswered+"／"+config.ChankIssued),

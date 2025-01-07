@@ -52,8 +52,8 @@
         <RadzenColumn Size="12" SizeMD="4">
             <RadzenCard>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">期限</RadzenText>
-                <RadzenCheckBox @bind-value=@_isNextClass>
-                </RadzenCheckBox>
+                <RadzenCheckBox TValue="bool" @bind-value=@_isNextClass Change="@(arg=>_isNextClass=arg)">
+                </RadzenCheckBox>次の授業まで(次の @(_subjectName?.Day.ToString()??"")  まで)
                 <RadzenDatePicker @bind-Value=@_date Name="Deadline" ShowCalendarWeek />
             </RadzenCard>
         </RadzenColumn>
@@ -84,7 +84,7 @@
         <RadzenColumn Size="12" SizeMD="4">
             <RadzenCard>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">期限</RadzenText>
-                <RadzenCheckBox @bind-value=@_isNextClass>
+                <RadzenCheckBox TValue="bool" @bind-value=@_isNextClass Change="@(arg=>_isNextClass=arg)">
                 </RadzenCheckBox>次の授業まで(次の @(_subjectName?.Day.ToString()??"")  まで)
                 <RadzenDatePicker @bind-Value=@_date Name="Deadline" ShowCalendarWeek />
             </RadzenCard>
@@ -111,26 +111,45 @@
     private async Task Register(MouseEventArgs obj)
     {
         var ahs = DateTime.UtcNow.AddHours(9);
-        if (_isNextClass) _date = new DateTime(ahs.Year, ahs.Month, ahs.Day, 0, 0, 0, DateTimeKind.Utc);//DateTime.UtcNow.AddHours(9);
-        while (_date.DayOfWeek == _subjectName.Day)
+        DateTime userDate;
+        if (_isNextClass) userDate = new DateTime(ahs.Year, ahs.Month, ahs.Day, 0, 0, 0, DateTimeKind.Utc).AddDays(1); //DateTime.UtcNow.AddHours(9);
+        else userDate = new DateTime(_date.Year, _date.Month, _date.Day, 0, 0, 0, DateTimeKind.Utc);
+        while (_isNextClass&&userDate.DayOfWeek != _subjectName.Day)
         {
-            _date = _date.AddDays(1);
+            userDate = userDate.AddDays(1);
         }
-        await Context.KiyomoriAssignment.AddAsync(new KiyomoriAssignment(){ Deadline = _date, Detail = _comment, WorkId = _workingName.Id});
+        await Context.KiyomoriAssignment.AddAsync(new KiyomoriAssignment(){ Deadline = userDate, Detail = _comment, WorkId = _workingName.Id});
+        var configured = "";
+        if (_workingName.WorkName == "チャンクで英単語")
+        {
+            Context.LincolnConfiguration.Single().RangeStep = Convert.ToInt32(_comment);
+            configured = "また，チャンクで英単語のデータのため，エイブラハム・リンカンのチャンク範囲を更新しました．";
+        }
+        if (_workingName.WorkName == "FACTBOOK 暗唱例文")
+        {
+            var csv = _comment.Split(",");
+            var data=Context.LincolnConfiguration.Single();
+            data.RangeStart = Convert.ToInt32(csv[0]);
+            data.RangeEnds = Convert.ToInt32(csv[1]);
+            configured = "また，暗唱例文のデータのため，エイブラハム・リンカンの暗唱例文を更新しました．";
+        }
         await Context.SaveChangesAsync();
-        await DialogService.Alert("教科「" + _subjectName.SubjectName + "」のワークブック課題「"+_workingName+"("+_comment+")」を登録しました．","平清盛・今川義元");
+        await DialogService.Alert("教科「" + _subjectName.SubjectName + "」のワークブック課題「"+_workingName+"("+_comment+")」を登録しました．"+configured,"平清盛・今川義元");
     }
     private async Task Change(MouseEventArgs obj)
     {
         
-        if (_isNextClass) _date = DateTime.UtcNow.AddHours(9);
-        while (_date.DayOfWeek == _subjectName.Day)
+        var ahs = DateTime.UtcNow.AddHours(9);
+        DateTime userDate;
+        if (_isNextClass) userDate = new DateTime(ahs.Year, ahs.Month, ahs.Day, 0, 0, 0, DateTimeKind.Utc); //DateTime.UtcNow.AddHours(9);
+        else userDate = new DateTime(_date.Year, _date.Month, _date.Day, 0, 0, 0, DateTimeKind.Utc);
+        while (_isNextClass&&userDate.DayOfWeek != _subjectName.Day)
         {
-            _date = _date.AddDays(1);
+            userDate = userDate.AddDays(1);
         }
 
         _assignmentObj.Detail = _comment;
-        _assignmentObj.Deadline = _date;
+        _assignmentObj.Deadline = userDate;
         Context.KiyomoriAssignment.Update(_assignmentObj);
         await Context.SaveChangesAsync();
         

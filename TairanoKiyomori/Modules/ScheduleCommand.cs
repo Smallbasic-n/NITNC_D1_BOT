@@ -42,4 +42,32 @@ public class ScheduleCommand(IDbContextFactory<ApplicationDbContext> context, IC
                 )
         );
     }
+
+    [SlashCommand("assignment", "本日より1週間以内の課題を表示します．")]
+    public async Task ShowAssignment()
+    {
+        //await RespondAsync(ephemeral: true, text:"please wait....");
+        var JST = DateTime.UtcNow.AddHours(9);
+        var compJST = new DateTime(JST.Year, JST.Month, JST.Day, 0, 0, 0,DateTimeKind.Utc);
+        var weekAssignments = "";
+        foreach (var assignment in DbContext.KiyomoriAssignment.Where(a=>
+                         a.Deadline>=compJST&&
+                         a.Deadline<=compJST.AddDays(7)
+                     )
+                     .Include(a=>a.KiyomoriWorking)
+                     .ThenInclude(a=>a.KiyomoriSubject))
+        {
+            weekAssignments += "## "+assignment.KiyomoriWorking.KiyomoriSubject.SubjectName+
+                               ", "+assignment.KiyomoriWorking.WorkName+
+                               ", "+assignment.Deadline.ToString("yyyy/MM/dd")+
+                               "まで\n"+ assignment.Detail+"\n";
+        }
+
+        if (weekAssignments == "")
+            await Context.Channel.SendMessageAsync("今日より1週間以内提出の課題はありません. \n" + Supports.ApplicationPrefix + "　" +
+                                                   Supports.ApplicationName);
+        else 
+            await Context.Channel.SendMessageAsync("@everyone , 今日より1週間以内提出の課題一覧です. \n"+weekAssignments+ Supports.ApplicationPrefix + "　" +
+                               Supports.ApplicationName);
+    }
 }

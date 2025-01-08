@@ -41,10 +41,11 @@ public class Worker(ILogger<DiscordWorkerService> logger, DiscordSocketClient cl
         
         while (!stoppingToken.IsCancellationRequested)
         {
-            var data = _dbContext.LincolnConfiguration.Single();
+            var data = _dbContext.LincolnConfiguration.AsNoTracking().Single();
             var chankStep = data.RangeStep;
             var factbookStart = data.RangeStart;
             var factbookEnd = data.RangeEnds;
+            Console.WriteLine($"chank:{chankStep},start:{factbookStart},end:{factbookEnd}");
             if (_dbContext.ChankQuestions.Count() != 0)
             {
                 await ChankAllRange(chankStep);

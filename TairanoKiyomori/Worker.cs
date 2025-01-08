@@ -41,7 +41,7 @@ public class Worker(IDbContextFactory<ApplicationDbContext> DbContext,ILogger<Di
                          dbContext.KiyomoriAssignment.Where(x => x.Deadline.Year == JST.Year&&x.Deadline.Month == JST.Month&&x.Deadline.Day == JST.Day)
                              .Include(a=>a.KiyomoriWorking)
                              .ThenInclude(a=>a.KiyomoriSubject)
-                             .ToList()
+                             .OrderBy(a=>a.Deadline)
                          )
                 {
                     assignments = "## 科目名："+schedule.KiyomoriWorking.KiyomoriSubject.SubjectName+"\n"+
@@ -68,7 +68,9 @@ public class Worker(IDbContextFactory<ApplicationDbContext> DbContext,ILogger<Di
                                      a.Deadline<=compJST.AddDays(7)
                                   )
                                  .Include(a=>a.KiyomoriWorking)
-                                 .ThenInclude(a=>a.KiyomoriSubject))
+                                 .ThenInclude(a=>a.KiyomoriSubject)
+                                 .OrderBy(a=>a.Deadline)
+                             )
                     {
                         weekAssignments += "## "+assignment.KiyomoriWorking.KiyomoriSubject.SubjectName+
                                            ", "+assignment.KiyomoriWorking.WorkName+
@@ -97,8 +99,8 @@ public class Worker(IDbContextFactory<ApplicationDbContext> DbContext,ILogger<Di
                                  .ToList()
                             )
                     {
-                        assignments = "科目名："+schedule.KiyomoriWorking.KiyomoriSubject.SubjectName+
-                                      "ワーク名："+schedule.KiyomoriWorking.WorkName+
+                        assignments = "科目名："+schedule.KiyomoriWorking.KiyomoriSubject.SubjectName+"\n"+
+                                      "ワーク名："+schedule.KiyomoriWorking.WorkName+"\n"+
                                       "詳細："+schedule.Detail+ "\n";
                     }
 

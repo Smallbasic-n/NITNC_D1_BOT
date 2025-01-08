@@ -55,7 +55,9 @@ public class ScheduleCommand(IDbContextFactory<ApplicationDbContext> context, IC
                          a.Deadline<=compJST.AddDays(7)
                      )
                      .Include(a=>a.KiyomoriWorking)
-                     .ThenInclude(a=>a.KiyomoriSubject))
+                     .ThenInclude(a=>a.KiyomoriSubject)
+                     .OrderBy(a=>a.Deadline)
+                 )
         {
             weekAssignments += "## "+assignment.KiyomoriWorking.KiyomoriSubject.SubjectName+
                                ", "+assignment.KiyomoriWorking.WorkName+

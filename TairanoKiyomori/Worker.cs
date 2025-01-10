@@ -44,7 +44,7 @@ public class Worker(IDbContextFactory<ApplicationDbContext> DbContext,ILogger<Di
                              .OrderBy(a=>a.Deadline)
                          )
                 {
-                    assignments = "## 科目名："+schedule.KiyomoriWorking.KiyomoriSubject.SubjectName+"\n"+
+                    assignments += "## 科目名："+schedule.KiyomoriWorking.KiyomoriSubject.SubjectName+"\n"+
                                   "### ワーク名："+schedule.KiyomoriWorking.WorkName+"\n"+
                                   "### 詳細："+schedule.Detail+ "\n";
                 }
@@ -59,7 +59,7 @@ public class Worker(IDbContextFactory<ApplicationDbContext> DbContext,ILogger<Di
             else if (JST.Hour == 20)
             {
                 var compJST = new DateTime(JST.Year, JST.Month, JST.Day, 0, 0, 0,DateTimeKind.Utc);
-                if (JST.DayOfWeek == DayOfWeek.Sunday)
+                if (JST.DayOfWeek == DayOfWeek.Friday)
                 {
                     
                     var weekAssignments = "";
@@ -99,7 +99,7 @@ public class Worker(IDbContextFactory<ApplicationDbContext> DbContext,ILogger<Di
                                  .ToList()
                             )
                     {
-                        assignments = "科目名："+schedule.KiyomoriWorking.KiyomoriSubject.SubjectName+"\n"+
+                        assignments += "科目名："+schedule.KiyomoriWorking.KiyomoriSubject.SubjectName+"\n"+
                                       "ワーク名："+schedule.KiyomoriWorking.WorkName+"\n"+
                                       "詳細："+schedule.Detail+ "\n";
                     }
@@ -107,7 +107,7 @@ public class Worker(IDbContextFactory<ApplicationDbContext> DbContext,ILogger<Di
                     if (assignments != "")
                     {
                         await textch.SendMessageAsync(
-                            "@everyone \n# 重要　明日の課題について \n明日" + JST.ToString("yyyy年MM月d日") + "は次の課題の締切日です．お忘れなきようにお願いします．\n"+assignments +"\n "+Supports.ApplicationPrefix+" "+Supports.ApplicationName);
+                            "@everyone \n# 重要　明日の課題について \n明日" + JST.AddDays(1).ToString("yyyy年MM月d日") + "は次の課題の締切日です．お忘れなきようにお願いします．\n"+assignments +"\n "+Supports.ApplicationPrefix+" "+Supports.ApplicationName);
                     }
                 }
                 foreach (var schedule in dbContext.KiyomoriSchedule.Where(x => x.Date >= compJST.AddDays(1)&&x.Date < compJST.AddDays(2)).ToList())

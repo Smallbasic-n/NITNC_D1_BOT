@@ -65,9 +65,10 @@ public static class Supports
                 sqlOptions.ExecutionStrategy(c => new NpgsqlRetryingExecutionStrategy(c));
 
             }));
+        
         builder.Services.AddSingleton(new DiscordSocketConfig()
         {
-            GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.GuildMembers |
+            GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.GuildMembers | GatewayIntents.GuildVoiceStates |
                              GatewayIntents.MessageContent | GatewayIntents.Guilds | GatewayIntents.GuildMessageReactions | GatewayIntents.All,
             UseInteractionSnowflakeDate = false
         });

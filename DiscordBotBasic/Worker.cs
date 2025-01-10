@@ -23,7 +23,6 @@ public class DiscordWorkerService(
         
         client.Log += LogAsync;
         client.Ready += ReadyAsync;
-        
         await client.LoginAsync(tokenType: TokenType.Bot, configuration["Token"]);
         await client.StartAsync();
         

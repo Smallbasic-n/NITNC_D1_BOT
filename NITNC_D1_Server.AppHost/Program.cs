@@ -15,8 +15,9 @@ var migration=builder.AddProject<Projects.NITNC_D1_Server_MigrationService>("mig
     .WithEnvironment("EncryptionKey",keyparam)
     .WithEnvironment("EncryptionIV", ivparam);
 var email = builder.AddParameter("EmailDomain");
+var guildId = builder.AddParameter("GuildId");
 
-builder.AddProject<Projects.ImagawaYoshimoto>("imagawayoshimoto").WithReference(postgres)
+/*builder.AddProject<Projects.ImagawaYoshimoto>("imagawayoshimoto").WithReference(postgres)
     .WaitForCompletion(migration)
     .WithEnvironment("Microsoft-ClientId",builder.AddParameter("Microsoft-ClientId", true))
     .WithEnvironment("Microsoft-ClientSecret",builder.AddParameter("Microsoft-ClientSecret", true))
@@ -30,8 +31,6 @@ builder.AddProject<Projects.ImagawaYoshimoto>("imagawayoshimoto").WithReference(
     .WithEnvironment("EncryptionKey",keyparam)
     .WithEnvironment("EncryptionIV", ivparam);
 
-
-var guildId = builder.AddParameter("GuildId");
 builder.AddProject<Projects.AbrahamLincoln>("abrahamlincoln").WithReference(postgres)
    .WithEnvironment("ClientId", builder.AddParameter("Lincoln-ClientId"))
    .WithEnvironment("Token", builder.AddParameter("Lincoln-Token", true))
@@ -43,7 +42,7 @@ builder.AddProject<Projects.AbrahamLincoln>("abrahamlincoln").WithReference(post
    .WithEnvironment("Interval", builder.AddParameter("Interval"))
    .WithEnvironment("EncryptionKey",keyparam)
    .WithEnvironment("EncryptionIV", ivparam);
-
+*/
 builder.AddProject<Projects.MatsudairaSadanobu>("matsudairasadanobu").WithReference(postgres)
    .WithEnvironment("ClientId", builder.AddParameter("Matsudaira-ClientId"))
    .WithEnvironment("Token", builder.AddParameter("Matsudaira-Token", true))
@@ -52,7 +51,7 @@ builder.AddProject<Projects.MatsudairaSadanobu>("matsudairasadanobu").WithRefere
    .WithEnvironment("EmailDomain", email)
    .WithEnvironment("EncryptionKey",keyparam)
    .WithEnvironment("EncryptionIV", ivparam);
-   
+   /*
 builder.AddProject<Projects.TairanoKiyomori>("tairanokiyomori").WithReference(postgres)
     .WithEnvironment("ClientId", builder.AddParameter("Kiyomori-ClientId", true))
     .WithEnvironment("Token", builder.AddParameter("Kiyomori-Token", true))
@@ -60,5 +59,5 @@ builder.AddProject<Projects.TairanoKiyomori>("tairanokiyomori").WithReference(po
     .WithEnvironment("ScheduleChId", builder.AddParameter("ScheduleChId"))
     .WithEnvironment("EncryptionKey",keyparam)
     .WithEnvironment("EncryptionIV", ivparam);
-
+*/
 builder.Build().Run();

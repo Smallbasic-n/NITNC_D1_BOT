@@ -12,6 +12,7 @@ public class Program
                 x.AddHostedService<Worker>();
                 x.AddSingleton<WhoisCommandModule>();
                 x.AddSingleton<RoleCommandModule>();
+                x.AddSingleton<TalkCommandModule>();
             }
         );
     }

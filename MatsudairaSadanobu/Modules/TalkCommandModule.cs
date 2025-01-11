@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json.Nodes;
 using Discord;
 using Discord.Audio;
 using Discord.Audio.Streams;
@@ -16,16 +17,66 @@ namespace MatsudairaSadanobu.Modules;
 
 public class TalkCommandModule(IDbContextFactory<ApplicationDbContext> context, IConfiguration configuration) : DiscordBotBasic.Module(context, configuration)
 {
+    private HttpClient _httpClient = new HttpClient()
+    {
+        BaseAddress = new Uri("http://localhost:50021")
+    };
+
+    [SlashCommand("speaker", "キャラクタを選択します。")]
+    public async Task SetSpeakerCommand()
+    {
+        var input = new SelectMenuBuilder()
+            .WithPlaceholder("VOICEBOXキャラクタ").WithCustomId("selector-"+Context.User.Id);
+        var json = JsonNode.Parse(await _httpClient.GetStringAsync("/speakers"))?.AsArray();
+        if (json == null) return;
+        foreach (var item in json)
+        {
+            if (input.Options.Count>=25) break;
+            input.AddOption(item?["name"]?.ToString() ?? "", (item?["speaker_uuid"]?.ToString() ?? ""));
+        }
+
+        await RespondAsync(ephemeral:true,text: "あなたのメッセージを担当するキャラクタを選択してください。", components: new ComponentBuilder().WithSelectMenu(input).Build());
+    }
+
+    [ComponentInteraction("selector-*")]
+    public async Task SetType(string id,string[] selectedSpeakers)
+    {
+        var input = new SelectMenuBuilder()
+            .WithPlaceholder("声のタイプ").WithCustomId("typesection-"+Context.User.Id);
+        var json = JsonNode.Parse(await _httpClient.GetStringAsync("/speakers"))?.AsArray();
+        if (json == null) return;
+        foreach (var item in json.Where(a=>a["speaker_uuid"].ToString()==selectedSpeakers[0])?.FirstOrDefault()?["styles"]?.AsArray())
+        {
+            input.AddOption(item?["name"]?.ToString() ?? "", (item?["id"]?.ToString() ?? ""));
+        }
+
+        await RespondAsync(ephemeral:true,text: "あなたのメッセージを担当するキャラクタの声のタイプを選択してください。", components: new ComponentBuilder().WithSelectMenu(input).Build());
+        
+    }
+
+    [ComponentInteraction("typesection-*")]
+    public async Task SelectedType(string id, string[] selectedTypes)
+    {
+        if (Program.Speakers.Any(x=>x.Item1==Context.User.Id))
+        {
+            Program.Speakers.Remove(Program.Speakers.First(x=>x.Item1==Context.User.Id));
+        }
+        Program.Speakers.Add((Convert.ToUInt64(id),Convert.ToInt32(selectedTypes[0])));
+        await RespondAsync(ephemeral:true,text:"設定しました。");
+    }
+
     [SlashCommand("talk", "松平定信がずんだもんの声でしゃべります．",runMode: RunMode.Async)]
     public async Task TalkCommand([Summary("content","内容")]string content,[Summary("channel","ボイスチャネル")] IVoiceChannel channel)
     {
-        var httpClient = new HttpClient()
+        if (!Program.Speakers.Any(x=>x.Item1==Context.User.Id))
         {
-            BaseAddress = new Uri("http://localhost:50021")
-        };
-        var quary=await httpClient.PostAsync($"/audio_query?text={content}&speaker=3",JsonContent.Create(""));
+            await RespondAsync(ephemeral:true,text:"キャラクタを選択してください。");
+            return;
+        }
+        var speaker=Program.Speakers.First(x=>x.Item1==Context.User.Id).Item2;
+        var quary=await _httpClient.PostAsync($"/audio_query?text={content}&speaker="+speaker,JsonContent.Create(""));
         var quaryData=await quary.Content.ReadAsStringAsync();
-        var audio= await (await httpClient.PostAsync("/synthesis?speaker=1&enable_interrogative_upspeak=true",new StringContent(quaryData,Encoding.UTF8,"application/json"))).Content.ReadAsByteArrayAsync();
+        var audio= await (await _httpClient.PostAsync("/synthesis?speaker="+speaker+"&enable_interrogative_upspeak=true",new StringContent(quaryData,Encoding.UTF8,"application/json"))).Content.ReadAsByteArrayAsync();
 
         var file = Path.GetTempFileName()+".wav";
         File.WriteAllBytes(file,audio);

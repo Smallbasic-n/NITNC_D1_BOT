@@ -16,4 +16,5 @@ public class Program
             }
         );
     }
+    public static List<(ulong,int)> Speakers = new List<(ulong, int)>();
 }
